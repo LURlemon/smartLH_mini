@@ -1,0 +1,78 @@
+<!--pages/organization/orgAudit/reAudit/reAudit.wxml-->
+<mp-form-page title="单位信息" subtitle="请依据提示填写正确的信息">
+  <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+
+  <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+    <mp-cells title="" footer="感谢合作，请认真检查信息的准确性">
+
+      <mp-cell prop="orgname" title="单位名称" ext-class="">
+        <view>{{organization.name}}</view>
+      </mp-cell>
+
+      <mp-cell prop="address" title="地址" ext-class="">
+        <input bindinput="formInputChange" data-field="address" class="weui-input" placeholder="请输入单位注册地址" value="{{organization.address}}" />
+      </mp-cell>
+
+      <mp-cell ext-class="type">
+        <view slot="title" class="">单位类型</view>
+        <picker bindchange="bindTypeChange" value="{{typeIndex}}" range="{{types}}">
+          <view class="select">{{type}}</view>
+        </picker>
+      </mp-cell>
+
+      <mp-cell prop="phone" title="联系电话" ext-class="">
+        <input bindinput="formInputChange" data-field="phone" class="weui-input" placeholder="请输入联系电话" value="{{organization.phone}}" />
+      </mp-cell>
+
+      <mp-cell prop="serialNumber" title="机构代码" ext-class="">
+        <input bindinput="formInputChange" data-field="serialNumber" class="weui-input" placeholder="请输入统一社会信用代码" value="{{organization.serialNumber}}" />
+      </mp-cell>
+
+
+      <mp-cell prop="introduction" title="单位介绍" ext-class=""></mp-cell>
+      <mp-cell has-header="{{false}}" has-footer="{{false}}" title="" ext-class="">
+        <textarea class="textarea" value="{{introduction}}" bindinput="bindContent" placeholder="请输入该单位的简单介绍" style="height: 3.3em" maxlength="100" auto-height />
+        <view class="weui-textarea-counter">{{currentWord}}/200</view>
+      </mp-cell>
+
+      <mp-cell prop="material" title="审核材料" ext-class=""></mp-cell>
+      <mp-cells title="上传单位营业执照">
+        <mp-cell>
+          <view slot="title"></view>
+          <!-- 打开截图 开始 -->
+          <view class="imageContainer">
+            <view class="imageFrame">
+              <view class="imageSingle" wx:for="{{imgs}}" wx:for-item="item" wx:key="*this">
+                <image class="imagePic" src="{{item}}" data-index="{{index}}" mode="aspectFill" bindtap="previewImg">
+                  <icon type="cancel" class="imageRemove" data-index="{{index}}" catchtap="deleteImg"></icon>
+                </image>
+              </view>
+              <!-- 用来提示用户上传图片 -->
+              <view class="imageIcon" bindtap="chooseImg" wx:if="{{isUpload}}">
+                <image class="icon" src="../../../../image/add.png"></image>
+              </view>
+            </view>
+          </view>
+          <view class="upButton" wx:if="{{!isUpload}}">
+            <button type="default" bindtap="upload">上传</button>
+          </view>
+          <!-- 打开截图 结束 -->
+        </mp-cell>
+      </mp-cells>
+
+
+    </mp-cells>
+
+
+  </mp-form>
+
+
+  <view slot="button">
+    <button class="weui-btn" bindtap="submit">提交</button>
+  </view>
+</mp-form-page>
+
+<view style="background:#fff">
+  <label class="page-label" style="width:95%;margin:0 20rpx">智汇隆回</label>
+
+</view>

@@ -1,0 +1,33 @@
+<!--pages/organization/setInfo/accountInfo/accountInfo.wxml-->
+
+<mp-form-page title="个人信息填写" subtitle="请依据提示填写正确信息，并将确保您的信息安全">
+  <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+
+  <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+    <mp-cells title="" footer="感谢合作，请认真检查信息的准确性">
+
+      <mp-cell prop="username" title="姓名" ext-class="">
+        <image slot="icon" src="/image/must.png" style="width: 36rpx; height: 36rpx; position: absolute; left: 210rpx;"></image>
+        <input bindinput="formInputChange" data-field="name" class="weui-input" placeholder="请输入姓名" value="{{wxOrg.name}}" />
+      </mp-cell>
+
+      <mp-cell prop="phone" title="联系电话" ext-class="phone">
+        <image slot="icon" src="/image/must.png" style="width: 36rpx; height: 36rpx; position: absolute; left: 210rpx;"></image>
+        <view slot="title">{{user.phone}}</view>
+        <input bindinput="formInputChange" data-field="phone" class="weui-input" placeholder="请填写号码" value="{{wxOrg.phone}}"/>
+        <button slot="footer" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class="weui-vcode-btn" style="background-color: #fdfdfd;color: #3369e6; width: 120rpx;height: 54rpx;display: flex; justify-content: center; align-items: center; font-size: 28rpx; border-color: #3369e6;">获 取</button>
+      </mp-cell>
+
+      <mp-cell prop="mail" title="邮箱" ext-class="">
+        <image slot="icon" src="/image/must.png" style="width: 36rpx; height: 36rpx; position: absolute; left: 210rpx;"></image>
+        <input bindinput="formInputChange" data-field="mail" class="weui-input" placeholder="请输入邮箱" value="{{wxOrg.mail}}" />
+      </mp-cell>
+
+    </mp-cells>
+  </mp-form>
+
+  <view slot="button">
+    <button class="weui-btn" bindtap="submit">提交</button>
+  </view>
+
+</mp-form-page>

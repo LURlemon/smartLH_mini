@@ -1,0 +1,28 @@
+<!--pages/detail/detail.wxml-->
+<view>
+  <view class="top">
+    <view class="title">{{list.title}}</view>
+    <view class="salary">{{list.salaryFloor}} ~ {{list.salaryCell}} 元 / 月</view>
+    <view class="education" >{{list.education}}</view>
+    <View class="experience">{{list.experience}}</View>
+    <view class="date"></view>
+  </view>
+  <view class="org_name">
+    <image style="width: 86rpx; height: 92rpx; display: inline-block; box-sizing: border-box; position: relative; left: 10rpx; top: 8rpx" calss="png" mode="heightFix" src="../../../image/orgs.png" />
+    <text style="position: relative; left: 20rpx; top: -25rpx; font-size: 40rpx; color: #2d4e6d">{{list.orgName}}</text>
+  </view>
+  <view class="infor">
+    <view class="subject" style="margin-bottom: 40rpx; font-size: 32rpx;">专业要求：{{list.subject}}</view>
+    <view class="age" style="margin-bottom: 40rpx; font-size: 32rpx; ">年龄要求：{{list.age}}</view>
+    <view style="  margin-bottom: 40rpx;font-size: 32rpx;">职位：{{list.position}}</view>
+    <view class="number" style=" font-size: 32rpx;">招聘人数：{{list.number}}</view>
+    <view class="time" style=" font-size: 32rpx;">招聘时间：{{list.publishTime}} 至 {{list.endTime}}</view>
+    <view style="  margin-bottom: 40rpx;font-size: 32rpx;">单位地址：{{list.place}}</view>
+    <view style=" font-size: 32rpx; line-height: 42rpx; color:dodgerblue;margin-bottom: 10rpx;">岗位职责：</view>
+    <text class="content" style="line-height: 48rpx;">{{list.content}}</text>
+    <view style=" margin-top: 40rpx;font-size: 32rpx; line-height: 32rpx; color:dodgerblue;margin-bottom: 10rpx;">岗位要求：</view>
+    <text class="content">{{list.remark}}</text>
+
+  </view>
+
+</view>

@@ -1,0 +1,39 @@
+<!--pages/organization/orgLink/orgLink.wxml-->
+<view class="container">
+  <view class="search">
+    <view class="inputBox">
+      <input placeholder="请查找您要绑定的单位名称" maxlength="30" type="text" value="{{name}}" bindinput="bindInput" />
+    </view>
+    <image src="../../../image/search.png" bindtap="search"></image>
+  </view>
+
+
+
+  <view class="body" wx:if="{{orgs.length != 0}}">
+    <view class="tips">
+      <text>搜索结果如下:</text>
+    </view>
+
+    <scroll-view class="orgBox" scroll-y="true" enable-flex="true" enable-back-to-top="true" scroll-top="30">
+
+      <view class="item" wx:for="{{orgs}}" wx:key="id" wx:for-item="item" bindtap="selectOrg" >
+        <view class="content">
+          <view class="orgName">名称：{{item.name}}</view>
+          <view class="orgType">类型：{{item.type}}</view>
+          <view class="orgAddress">地址：{{item.address}}</view>
+        </view>
+        <view class="join" data-orgName="{{item.name}}" data-id="{{item.id}}" bindtap="bindJoin">加入</view>
+      </view>
+    </scroll-view>
+    <view wx:if="{{isfind}}" class="info">
+      <text>该用人单位不存在，请创建并提交审核</text>
+    </view>
+  </view>
+
+
+
+  <view class="build" bindtap="bindBuild">
+    <text>创建用人单位</text>
+  </view>
+
+</view>

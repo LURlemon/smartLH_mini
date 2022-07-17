@@ -1,0 +1,39 @@
+/* pages/center/about/about.wxss */
+
+.heager{
+  width: 96%;
+  margin-left: 2%;
+}
+
+.title{
+  width: 92%;
+  height: 100rpx;
+  margin-left: 4%;
+  margin-top: 5%;
+  background-color: #0566c0;
+  color: #fefefe;
+  font-size: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14rpx;
+}
+
+.content{
+  width: 88%;
+  margin-left: 7%;
+  padding-top: 7%;
+  padding-bottom: 7%;
+  font-size: 35rpx;
+  line-height: 60rpx;
+  color: rgb(36, 36, 36);
+}
+
+.body{
+  width: 92%;
+  border-radius: 14rpx;
+  margin-left: 4%;
+  margin-top: 6%;
+  background-color: #fafafa;
+}
+

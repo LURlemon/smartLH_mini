@@ -1,0 +1,18 @@
+<!--pages/organization/recruitment/record/record.wxml-->
+<view class='swiper-nav'>
+  <view wx:for="{{swiperNav}}" wx:key="index" class='item-nav {{item.cond ? "active" : ""}}' data-index="{{index}}" bindtap='swiperNav'>{{item.tabName}}</view>
+</view>
+
+<scroll-view class="box" scroll-y="true" enable-flex="true" enable-back-to-top="true" scroll-top="30">
+  <view class="item" wx:for="{{recruitments}}" wx:key="id" wx:for-item="item" bindtap="selectRec" data-id="{{item.id}}">
+    <view class="body">
+      <view class="title">{{item.title}} </view>
+
+      <view class="contentbox">
+        <view class="content">岗位职责：{{item.content}}</view>
+        <view class="time">截止日期：{{item.endTime}}</view>
+
+      </view>
+    </view>
+  </view>
+</scroll-view>

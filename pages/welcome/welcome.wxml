@@ -1,0 +1,10 @@
+<!--pages/welcome/welcome.wxml-->
+<view class="container">
+  <view class="avatarUrl">
+    <image src="{{avatarUrl}}"></image>
+
+  </view>
+
+  <view class="nickName">欢迎你：{{nickName}}</view>
+
+</view>

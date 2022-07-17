@@ -1,0 +1,121 @@
+/* pages/organization/orgLink/linkAudit/linkAudit.wxss */
+/* 顶部选项栏样式 */
+.swiper-nav {
+  background-color: #fff;
+  width: 100%;
+  height: 115rpx;
+  padding: 0;
+  display: flex;
+}
+
+.swiper-nav .item-nav {
+  flex: 1;
+  height: 110rpx;
+  line-height: 110rpx;
+  text-align: center;
+  color: #9fa0a2;
+  font-size: 36rpx;
+}
+
+/* 实现选项栏选中效果 */
+.swiper-nav .active {
+  color: #86aafc;
+  border-bottom: 5rpx solid #7da4fc;
+}
+
+.body {
+  width: 100%;
+  display: flex;
+  margin-top: 5%;
+  background-color: #fafafa;
+}
+
+/* .aduitBox {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+.item {
+  width: 90%;
+
+  margin-left: 5%;
+  margin-top: 3%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fefefe;
+  border-radius: 16rpx;
+  border-style:solid;
+  border-color: #c0d3ff;
+  border-width:1rpx;
+}
+
+.info {
+  width: 60%;
+  margin-left: 13%;
+  font-size: 17px;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+.name{
+  color: #1566b3;
+  font-size: 18px;
+}
+
+.phone{
+  color: rgb(48, 47, 47);
+  font-size: 17px;
+}
+
+.mail{
+  color: rgb(114, 114, 114);
+  font-size: 17px;
+}
+
+.audit {
+  width: 40%;
+  margin-left: 6%;
+  margin-top: 2%;
+}
+
+.btnY{
+  border-radius: 15rpx;
+  background-color:#4393df;
+  color: white;
+}
+
+.btn1Y ::after {
+  border: 0; 
+}
+
+.btnN{
+  margin-top: 3%;
+  border-radius: 15rpx;
+  border-color: #4393df;
+  color: #4393df;
+}
+
+.resultY{
+  width: 140rpx;
+  height: 70rpx;
+  background-color: #4393df;
+  color: #fafafa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16rpx;
+}
+
+.resultN{
+  width: 140rpx;
+  height: 70rpx;
+  background-color: rgb(221, 118, 99);
+  color: #fafafa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16rpx;
+}

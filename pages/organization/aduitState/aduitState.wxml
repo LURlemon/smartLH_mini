@@ -1,0 +1,69 @@
+<!--pages/organization/aduitState/aduitState.wxml-->
+<view class="container">
+
+  <view wx:if="{{audit == 0}}" class="process">
+    <view class="state">
+      <image mode="widthFix" src="../../../image/process2.png"></image>
+      <view class="info1" color="#52a7e7">已提交审核</view>
+    </view>
+    <view class="baseLine">
+      <view class="line2"></view>
+    </view>
+    <view class="state">
+      <image mode="widthFix" src="../../../image/process1.png"></image>
+      <view class="info2">待管理员审核</view>
+    </view>
+    <view class="baseLine">
+      <view class="line2"></view>
+    </view>
+    <view class="state">
+      <image mode="widthFix" src="../../../image/process1.png"></image>
+      <view class="info2">待返回审核结果</view>
+    </view>
+  </view>
+
+  <view wx:if="{{audit == 1}}" class="process">
+    <view class="state">
+      <image mode="widthFix" src="../../../image/process2.png"></image>
+      <view class="info1" color="#52a7e7">已提交审核</view>
+    </view>
+    <view class="baseLine">
+      <view class="line1"></view>
+    </view>
+    <view class="state">
+      <image mode="widthFix" src="../../../image/process2.png"></image>
+      <view class="info1">管理员已审核</view>
+    </view>
+    <view class="baseLine">
+      <view class="line1"></view>
+    </view>
+    <view class="state">
+      <image mode="widthFix" src="../../../image/process2.png"></image>
+      <view class="info1">审核成功</view>
+    </view>
+  </view>
+
+  <view wx:if="{{audit == 2}}" class="process">
+    <view class="state">
+      <image mode="widthFix" src="../../../image/process2.png"></image>
+      <view class="info1" color="#52a7e7">已提交审核</view>
+    </view>
+    <view class="baseLine">
+      <view class="line1"></view>
+    </view>
+    <view class="state">
+      <image mode="widthFix" src="../../../image/process2.png"></image>
+      <view class="info1">管理员已审核</view>
+    </view>
+    <view class="baseLine">
+      <view class="line1"></view>
+    </view>
+    <view class="state">
+      <image mode="widthFix" src="../../../image/process2.png"></image>
+      <view class="info1" style="color: brown;">审核不通过，请重新提交</view>
+    </view>
+    <view class="build" bindtap="bindBuild">
+      <text>重新提交单位审核</text>
+    </view>
+  </view>
+</view>

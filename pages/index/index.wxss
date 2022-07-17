@@ -1,0 +1,73 @@
+/**index.wxss**/
+.userinfo {
+  margin-top: 11%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ 
+}
+
+.userinfo-avatar {
+  overflow: hidden;
+  width: 600rpx;
+  height: 275rpx;
+  margin: 20rpx;
+  border-radius: 10rpx;
+}
+
+.header {
+  margin-top: 40rpx;
+  font-size: 50rpx;
+  font-weight: bold;
+  color: rgb(255, 165, 0);
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+
+.tips {
+  font-size: 34rpx;
+  /* align-items: center; */
+  width: 100%;
+  margin-top: 4%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  color: #b6b6b6;
+}
+
+
+.body {
+  margin-top: 20%;
+
+  display: flex;
+  flex-direction: row;
+  height: 190px;
+  align-items: center;
+  justify-content: center;
+}
+
+.select {
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fcfcfc;
+  border-radius: 10px;
+}
+
+
+.select-info {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: rgb(43, 42, 40);
+  font-size: 20px;
+}

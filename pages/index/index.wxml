@@ -1,0 +1,26 @@
+<view class="userinfo">
+  <block>
+    <image bindtap="bindViewTap" class="userinfo-avatar" src="../../image/longhui.png" mode="cover"></image>
+    <view class="header">欢迎使用智汇隆回</view>
+  </block>
+  <!-- <block wx:if="{{hasUserInfo}}">
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block> -->
+</view>
+
+<block wx:if="{{hasUserInfo}}"> </block>
+
+
+
+<view class="body">
+  <view class="select" data-type="user" bindtap="bindUser">
+    <image src="../../image/user.png" style="width: 215rpx; height: 215rpx; display: block; box-sizing: border-box"></image>
+    <text class="select-info">个人用户</text>
+  </view>
+  <view class="select" data-type="org" bindtap="bindOrg">
+    <image src="../../image/org.png" style="width: 215rpx; height: 215rpx; display: block; box-sizing: border-box"></image>
+    <text class="select-info">单位用户</text>
+  </view>
+</view>
+<text class="tips">请选择您的账户类别</text>

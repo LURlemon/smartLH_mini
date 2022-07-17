@@ -1,0 +1,108 @@
+/* pages/detail/detail.wxss */
+page {
+  height: 100%;
+  background-color: rgb(245, 245, 245);
+}
+
+.top {
+  background-color: rgb(255, 255, 255);
+  width: 98%;
+  margin-left: 1%;
+  border-radius: 16rpx;
+  margin-top: 1%;
+  background-color: #287bc9;
+}
+
+.org_name {
+  background-color: rgb(255, 255, 255);
+  margin-top: 20rpx;
+  border-radius: 16rpx;
+  width: 98%;
+  margin-left: 1%;
+
+
+}
+
+.infor {
+  background-color: rgb(255, 255, 255);
+  padding: 20rpx;
+  /* display: flex; */
+  /* flex-wrap: wrap;  */
+  border-radius: 16rpx;
+  width: 90%;
+  margin-left: 1%;
+  padding-left: 5%;
+  padding-top: 4%;
+  line-height: 32rpx;
+  
+}
+
+.number {
+  margin-bottom: 40rpx;
+}
+
+.time {
+  margin-bottom: 40rpx;
+}
+
+.content {
+  word-break: break-all;
+  font-size: 32rpx;
+  line-height: 48rpx;
+  /*行距*/
+  padding-top: 60rpx;
+}
+
+
+
+.title {
+  /* font-family:cursive; */
+  font-size: 55rpx;
+  font-weight: 500;
+  position: relative;
+  left: 20rpx;
+  color: #fefefe;
+  padding-top: 4%;
+  margin-left: 4%;
+  width: 90%;
+}
+
+.infor {
+  margin-top: 20rpx;
+}
+
+.salary {
+  /* font-family:cursive; */
+  font-size: 31rpx;
+  font-weight: 500;
+  position: relative;
+  left: 30rpx;
+  top: 10rpx;
+  color: #eeeeee;
+  margin-left: 2%;
+}
+
+.education {
+  width: 144rpx;
+  height: 44rpx;
+  display: block;
+  box-sizing: border-box;
+  left: 30rpx;
+  top: 30rpx;
+  position: relative;
+  margin-bottom: 2%;
+  margin-left: 2%;
+  color: #fdfdfd;
+}
+
+.experience {
+  width: 194rpx;
+  height: 44rpx;
+  display: block;
+  box-sizing: border-box;
+  position: relative;
+  left: 200rpx;
+  top: -30rpx;
+  margin-bottom: 2%;
+  color: #fdfdfd;
+}

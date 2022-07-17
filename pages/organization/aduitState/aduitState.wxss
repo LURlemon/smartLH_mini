@@ -1,0 +1,72 @@
+/* pages/organization/aduitState/aduitState.wxss */
+
+.process {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  margin: 0 auto;
+  padding: 10rpx 10rpx 20rpx 10rpx;
+  background-color: #fff;
+  margin-left: 24%;
+  margin-top: 2%;
+ }
+
+ .state{
+  width: 500rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items:center;
+  box-sizing: border-box
+ }
+
+ .state image{
+   width: 100rpx;
+ }
+
+.info1{
+  margin-left: 8%;
+  color: #0566c0;
+}
+
+.info2{
+  margin-left: 8%;
+  color: #3b3b3b;
+}
+
+ .baseLine{
+  height: 150rpx;
+  width: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+ .line1{
+  width: 15rpx;
+  height: 140rpx;
+  background: #52a7e7;
+  border-radius: 10rpx;
+ }
+
+ .line2{
+  width: 15rpx;
+  height: 140rpx;
+  background: #bebebe;
+  border-radius: 10rpx;
+ }
+
+ .build{
+  height: 90rpx;
+  width: 68%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: aliceblue;
+  color: #1e6eb9;
+  font-size: 17px;
+  border-radius: 18rpx;
+  margin-top: 12%;
+  margin-left: 4%;
+}

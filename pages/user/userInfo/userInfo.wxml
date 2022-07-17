@@ -1,0 +1,193 @@
+<!--pages/user/userInfo/userInfo.wxml-->
+
+<mp-form-page title="个人信息填写" subtitle="请依据提示填写正确信息，并将确保您的信息安全">
+  <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+
+  <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+    <mp-cells title="" footer="感谢合作，请认真检查信息的准确性">
+
+      <mp-cell prop="username" title="姓名" ext-class="">
+        <image slot="icon" src="/image/must.png" style="width: 36rpx; height: 36rpx; position: absolute; left: 210rpx;"></image>
+        <input bindinput="formInputChange" data-field="name" class="weui-input" placeholder="请输入姓名" value="{{user.name}}" />
+      </mp-cell>
+
+      <mp-cell prop="phone" title="联系电话" ext-class="phone">
+        <image slot="icon" src="/image/must.png" style="width: 36rpx; height: 36rpx; position: absolute; left: 210rpx;"></image>
+        <view slot="title">{{user.phone}}</view>
+        <input bindinput="formInputChange" data-field="phone" class="weui-input" placeholder="请输入手机号" value="{{user.phone}}" />
+        <button slot="footer" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class="weui-vcode-btn" style="background-color: #fdfdfd;color: #3369e6; width: 108rpx;height: 54rpx;display: flex; justify-content: center; align-items: center; font-size: 26rpx; border-color: #3369e6;">获 取</button>
+      </mp-cell>
+
+      
+
+      <mp-cell prop="sex" title="性别" ext-class="">
+        <image slot="icon" src="/image/must.png" style="width: 36rpx; height: 36rpx; position: absolute; left: 210rpx;"></image>
+        <radio-group bindchange="radioChange" class="radiogroup">
+          <view class="radiobox" wx:for="{{sex}}" wx:key="value">
+            <radio value="{{item.id}}" color="#87cefa" checked="{{item.checked}}" />
+            <view class="radiotxt">{{item.value}}</view>
+          </view>
+        </radio-group>
+      </mp-cell>
+
+      <mp-cell prop="wxAccount" title="微信号" ext-class="">
+        <input bindinput="formInputChange" data-field="wxAccount" class="weui-input" placeholder="请输入微信号" value="{{user.wxAccount}}" />
+      </mp-cell>
+
+      <mp-cell prop="date" title="出生日期" ext-class="">
+        <picker field="date" mode="date" value="{{user.birthday}}" start="1960-09-01" end="2005-09-01" bindchange="bindBirthdayChange">
+          <view class="">{{user.birthday}}</view>
+        </picker>
+      </mp-cell>
+
+      <mp-cell prop="home" title="籍贯" ext-class="">
+        <input bindinput="formInputChange" data-field="home" class="weui-input" placeholder="请输入籍贯" value="{{user.home}}" />
+      </mp-cell>
+
+      <mp-cell prop="place" title="现居地" ext-class="">
+        <input bindinput="formInputChange" data-field="place" class="weui-input" placeholder="请输入现居地" value="{{user.place}}" />
+      </mp-cell>
+
+      <mp-cell prop="subject" title="专业" ext-class="">
+        <input bindinput="formInputChange" data-field="subject" class="weui-input" placeholder="请输入专业" value="{{user.subject}}" />
+      </mp-cell>
+
+      <mp-cell ext-class="academic">
+        <view slot="title" class="">学历</view>
+        <picker bindchange="bindAcademicChange" value="{{academicIndex}}" range="{{academics}}">
+          <view style="margin-left: 119rpx;">{{academics[academicIndex]}}</view>
+        </picker>
+      </mp-cell>
+
+      <mp-cell ext-class="education">
+        <view slot="title">教育经历</view>
+        <block wx:if="{{isShow}}" wx:for="{{eduList}}" wx:key="index" wx:for-item="item">
+          <view class="input-edu" data-id="{{index}}" style="border:1px solid #e1e1e1; border-radius:10rpx; border-color: rgb(225, 234, 248); width: 92%; margin-left: 10%;">
+
+            <view class="item" style="margin:15rpx 20rpx">
+              <text class="xrequired">学校名称</text>
+              <input class="weui-input" name="schoolName" data-id="{{index}}" type="text" placeholder="输入学校名称" value="{{item.schoolName}}" bindinput="schoolInput" />
+            </view>
+
+            <view class="item" style="border-bottom:1px solid #f5f5f5; margin:15rpx 20rpx">
+              <view>入学日期</view>
+              <picker data-field="date" mode="date" value="{{inDate}}" start="1980-09" end="2022-09" data-id="{{index}}" bindchange="bindInDateChange">
+                <view class="weui-input">{{item.inDate}}</view>
+              </picker>
+            </view>
+
+            <view class="btnview">
+              <view class="item" style="border-bottom:1px solid #f5f5f5;margin:15rpx 20rpx">
+                <text class="text-color">毕业日期</text>
+                <picker data-field="date" mode="date" value="{{outDate}}" start="1980-09" end="2022-09" data-id="{{index}}" bindchange="bindOutDateChange">
+                  <view class="weui-input">{{item.outDate}}</view>
+                </picker>
+              </view>
+              <view class="deletebtn" bindtap="deleteEdu" data-id="{{index}}">
+                <mp-icon icon="close" color="brown"></mp-icon>
+              </view>
+            </view>
+
+          </view>
+        </block>
+        <mp-icon icon="add2" color="#3369e6" type="outline" size="{{25}}" bindtap="additem" style="margin-left:30px;"></mp-icon>
+      </mp-cell>
+
+      <mp-cell prop="marriage" title="婚姻状况" ext-class="">
+        <view slot="title"></view>
+        <radio-group bindchange="marriageChange" class="radiogroup">
+          <view class="radiobox" wx:for="{{marriage}}" wx:key="value">
+            <radio value="{{item.id}}" color="#87cefa" checked="{{item.checked}}" />
+            <view class="radiotxt">{{item.value}}</view>
+          </view>
+        </radio-group>
+      </mp-cell>
+
+      <mp-cell ext-class="politics">
+        <view slot="title" class="">政治面貌</view>
+        <picker bindchange="bindPoliticChange" value="{{politicIndex}}" range="{{politics}}">
+          <view class="select">{{politics[politicIndex]}}</view>
+        </picker>
+      </mp-cell>
+
+      <mp-cell prop="nation" title="民族" ext-class="">
+        <input bindinput="formInputChange" data-field="nation" class="weui-input" placeholder="请输入民族" value="{{user.nation}}" />
+      </mp-cell>
+
+      <mp-cell prop="mailbox" title="邮箱" ext-class="">
+        <input bindinput="formInputChange" data-field="mailbox" class="weui-input" placeholder="请输入邮箱" value="{{user.mailbox}}" />
+      </mp-cell>
+
+      <mp-cell title="应届毕业生" ext-class="">
+        <switch slot="footer" bindchange="bindFreshChange" checked="{{isFresh}}"/>
+      </mp-cell>
+
+      <mp-cell prop="date" title="毕业日期" ext-class="">
+        <picker field="date" mode="date" value="{{user.graduation}}" start="1980-09-01" end="2022-09-01" bindchange="bindGraduationChange">
+          <view>{{user.graduation}}</view>
+        </picker>
+      </mp-cell>
+
+      <mp-cell prop="work" title="工作单位" ext-class="">
+        <input bindinput="formInputChange" data-field="work" class="weui-input" placeholder="请输入现工作单位" value="{{user.work}}" />
+      </mp-cell>
+
+      <mp-cell prop="post" title="职称职务" ext-class="">
+        <input bindinput="formInputChange" data-field="post" class="weui-input" placeholder="请输入职称职务" value="{{user.post}}" />
+      </mp-cell>
+
+      <mp-cell prop="prize" title="获奖情况" ext-class="">
+        <input bindinput="formInputChange" data-field="prize" class="weui-input" placeholder="请输入获奖情况" value="{{user.prize}}" />
+      </mp-cell>
+
+      <mp-cells title="自我简介">
+        <mp-cell has-header="{{false}}" has-footer="{{false}}" title="" ext-class="">
+          <textarea class="textarea" value="{{introduction}}" bindinput="bindIntroduce" placeholder="请输入文本，并点击完成结束" style="height: 3.3em" maxlength="200" auto-height />
+          <view class="weui-textarea-counter">{{currentWord}}/200</view>
+        </mp-cell>
+      </mp-cells>
+
+      <mp-cells title="上传图片">
+        <mp-cell>
+          <view slot="title"></view>
+          <!-- 打开截图 开始 -->
+          <view class="imageContainer">
+            <view class="imageFrame">
+              <view class="imageSingle" wx:for="{{imgs}}" wx:for-item="item" wx:key="*this">
+                <image class="imagePic" src="{{item}}" data-index="{{index}}" mode="aspectFill" bindtap="previewImg">
+                  <icon type="cancel" class="imageRemove" data-index="{{index}}" catchtap="deleteImg"></icon>
+                </image>
+              </view>
+              <!-- 用来提示用户上传图片 -->
+              <view class="imageIcon" bindtap="chooseImg" wx:if="{{isUpload}}">
+                <image class="icon" src="../../../image/add.png"></image>
+              </view>
+            </view>
+          </view>
+          <view class="upButton" wx:if="{{!isUpload}}">
+            <button type="default" bindtap="upload">上传</button>
+          </view>
+          <!-- 打开截图 结束 -->
+        </mp-cell>
+      </mp-cells>
+
+    </mp-cells>
+  </mp-form>
+
+  <!-- <checkbox-group slot="tips" bindchange="bindAgreeChange">
+      <label class="weui-agree">
+        <checkbox class="weui-agree__checkbox-check" />
+        <text class="weui-agree__checkbox"></text>
+        <view class="weui-agree__text">阅读并同意<navigator>《相关条款》</navigator>
+        </view>
+      </label>
+    </checkbox-group> -->
+  <view slot="button">
+    <button class="weui-btn" bindtap="submit">提交</button>
+  </view>
+</mp-form-page>
+
+<view style="background:#fff">
+  <label class="page-label" style="width:95%;margin:0 20rpx">智汇隆回</label>
+
+</view>

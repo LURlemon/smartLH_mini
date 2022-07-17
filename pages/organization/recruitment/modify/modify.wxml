@@ -1,0 +1,100 @@
+<!--pages/organization/recruitment/modify/modify.wxml-->
+<!--pages/organization/recruitment/recruitment.wxml-->
+
+<mp-form-page title="人才需求信息" subtitle="请依据提示填写正确的信息">
+  <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+
+  <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+    <mp-cells title="" footer="感谢合作，请认真检查信息的准确性">
+
+      <mp-cell prop="title" title="标题" ext-class="">
+        <input bindinput="formInputChange" data-field="title" class="weui-input" placeholder="请输入标题" value="{{recruitment.title}}" />
+      </mp-cell>
+
+      <mp-cell prop="position" title="岗位名称" ext-class="">
+        <input bindinput="formInputChange" data-field="position" class="weui-input" placeholder="请输入招聘岗位名称" value="{{recruitment.position}}" />
+      </mp-cell>
+
+      <mp-cell prop="content" title="岗位职责" ext-class=""></mp-cell>
+      <mp-cell has-header="{{false}}" has-footer="{{false}}" title="内容描述" ext-class="">
+        <textarea class="textarea" value="{{recruitment.content}}" bindinput="bindContent" placeholder="请描述该岗位的工作内容" style="height: 3.3em" maxlength="100" auto-height />
+        <view class="weui-textarea-counter">{{contentWord}}/200</view>
+      </mp-cell>
+
+      <mp-cell prop="number" title="人数" ext-class="">
+        <input bindinput="formInputChange" data-field="number" class="weui-input" placeholder="请输入需求人数" value="{{recruitment.number}}" />
+      </mp-cell>
+
+      <mp-cell prop="subject" title="专业" ext-class="">
+        <input bindinput="formInputChange" data-field="subject" class="weui-input" placeholder="请输入专业要求" value="{{recruitment.subject}}" />
+      </mp-cell>
+
+      <mp-cell prop="fresh" title="招聘对象" ext-class="">
+        <input bindinput="formInputChange" data-field="fresh" class="weui-input" placeholder="请输入招聘对象" value="{{recruitment.fresh}}" />
+      </mp-cell>
+
+      <!-- <mp-cell title="应届毕业生" ext-class="">
+          <switch slot="footer" bindchange="bindFreshChange" />
+        </mp-cell> -->
+
+      <mp-cell prop="age" title="年龄" ext-class="">
+        <input bindinput="formInputChange" data-field="age" class="weui-input" placeholder="请输入年龄要求" value="{{recruitment.age}}" />
+      </mp-cell>
+
+      <mp-cell ext-class="education">
+        <view slot="title" class="">学历要求</view>
+        <picker bindchange="bindEducationChange" value="{{academicIndex}}" range="{{academics}}">
+          <view class="select">{{academics[academicIndex]}}</view>
+        </picker>
+      </mp-cell>
+
+      <mp-cell prop="place" title="工作地址" ext-class="">
+        <input bindinput="formInputChange" data-field="place" class="weui-input" placeholder="请输入工作地点" value="{{recruitment.place}}" />
+      </mp-cell>
+
+      <mp-cell ext-class="politics">
+        <view slot="title" class="">政治面貌</view>
+        <picker bindchange="bindPoliticChange" value="{{politicIndex}}" range="{{politics}}">
+          <view class="select">{{politics[politicIndex]}}</view>
+        </picker>
+      </mp-cell>
+
+      <mp-cell prop="date" title="截止日期" ext-class="">
+        <picker field="date" mode="date" value="{{recruitment.endTime}}" start="2022-06-30" end="2040-09-01" bindchange="bindEndTimeChange">
+          <view class="">{{endTime}}</view>
+        </picker>
+      </mp-cell>
+
+      <mp-cell prop="salaryCell" title="薪资上限" ext-class="">
+        <input bindblur="bindSalary" data-field="salaryCell" class="weui-input" placeholder="请输入薪资上限" value="{{recruitment.salaryCell}}" />
+      </mp-cell>
+
+      <mp-cell prop="salaryFloor" title="薪资下限" ext-class="">
+        <input bindblur="bindSalary" data-field="salaryFloor" class="weui-input" placeholder="请输入薪资下限" value="{{recruitment.salaryFloor}}" />
+      </mp-cell>
+
+      <mp-cell ext-class="experience">
+        <view slot="title" class="">工作经验</view>
+        <picker bindchange="bindExperienceChange" value="{{experienceIndex}}" range="{{experience}}">
+          <view class="select">{{experience[experienceIndex]}}</view>
+        </picker>
+      </mp-cell>
+
+
+      <mp-cell prop="remark" title="岗位要求" ext-class=""></mp-cell>
+      <mp-cell has-header="{{false}}" has-footer="{{false}}" title="" ext-class="">
+        <textarea class="textarea" value="{{recruitment.remark}}" bindinput="bindRemark" placeholder="请补充您的岗位要求信息" style="height: 3.3em" maxlength="200" auto-height />
+        <view class="weui-textarea-counter">{{remarkWord}}/200</view>
+      </mp-cell>
+
+
+    </mp-cells>
+  </mp-form>
+
+
+  <view slot="button">
+    <button class="weui-btn" bindtap="submit">提交</button>
+  </view>
+</mp-form-page>
+
+

@@ -1,0 +1,14 @@
+/* pages/welcome/welcome.wxss */
+
+.avatarUrl image{
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 50%;
+}
+
+.nickName{
+  margin-top: 10%;
+  font-size: 18px;
+  font-weight: bold;
+  color:  rgb(255, 165, 0);
+}

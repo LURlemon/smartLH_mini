@@ -1,0 +1,95 @@
+<!--pages/center/center.wxml-->
+<view class="container">
+
+  <view class="user">
+    <view class="name">{{orgName}}</view>
+  
+    <view class="avatarUrl">
+      <image src="{{avatarUrl}}" mode="widthFix"></image>
+    </view>
+  </view>
+  <view class="gif">
+    <image class="gif-wave" src="../../image/wave.gif" />
+  </view>
+
+
+  <view class="process">
+
+    <view wx:if="{{state == 1}}" class="item" data-url="/pages/organization/setInfo/accountInfo/accountInfo" hover-class="search-hover" bindtap="openPage">
+      <view class="icon">
+        <image src="../../image/user.png" />
+      </view>
+      <view class="box">个人信息</view>
+    </view>
+
+    <view wx:if="{{state == 1}}" class="item" data-url="/pages/organization/recruitment/record/record" hover-class="search-hover" bindtap="openPage">
+      <view class="icon">
+        <image src="../../image/send.png" />
+      </view>
+      <view class="box">人才需求发布记录</view>
+    </view>
+
+    <view wx:if="{{orgStatus == 0 && state ==1}}" class="item" bindtap="openPage" data-url="/pages/organization/orgLink/orgLink" hover-class="search-hover">
+      <view class="icon">
+        <image src="../../image/link.png" />
+      </view>
+      <view class="box">绑定单位</view>
+    </view>
+
+    
+    <view wx:if="{{orgStatus == 2}}" class="item" bindtap="cancelLink"  hover-class="search-hover">
+      <view class="icon">
+        <image src="../../image/link.png" />
+      </view>
+      <view class="box">解绑单位</view>
+    </view>
+
+
+
+    <view wx:if="{{orgStatus == 1}}" class="item" bindtap="openPage" data-url="/pages/organization/orgLink/change/changeLink" hover-class="search-hover">
+      <view class="icon">
+        <image src="../../image/link.png" />
+      </view>
+      <view class="box">管理员转让</view>
+    </view>
+
+
+    <view wx:if="{{orgStatus == 1}}" class="item" bindtap="openPage" data-url="/pages/organization/aduitState/aduitState" hover-class="search-hover">
+      <view class="icon">
+        <image src="../../image/state.png" />
+      </view>
+      <view class="box">单位审核状态</view>
+    </view>
+
+    <view wx:if="{{orgStatus == 1}}" class="item" data-url="/pages/organization/setInfo/setInfo" hover-class="search-hover" bindtap="openPage">
+      <view class="icon">
+        <image src="../../image/set.png" />
+      </view>
+      <view class="box">修改单位信息</view>
+    </view>
+
+    <view wx:if="{{orgStatus == 1}}" class="item" data-url="/pages/organization/orgLink/linkAudit/linkAudit" hover-class="search-hover" bindtap="openPage">
+      <view class="icon">
+        <image src="../../image/audit.png" />
+      </view>
+      <view class="box">发布人审核</view>
+    </view>
+
+    <view class="item" data-url="/pages/center/notice/notice" hover-class="search-hover" bindtap="openPage">
+      <view class="icon">
+        <image src="../../image/message.png" />
+      </view>
+      <view class="box">系统消息</view>
+    </view>
+
+    <view class="item" data-url="/pages/center/about/about" hover-class="search-hover" bindtap="openPage">
+      <view class="icon">
+        <image src="../../image/recall.png" />
+      </view>
+      <view class="box">关于我们</view>
+    </view>
+
+
+  </view>
+
+</view>

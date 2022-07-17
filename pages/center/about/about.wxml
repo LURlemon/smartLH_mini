@@ -1,0 +1,10 @@
+<!--pages/center/about/about.wxml-->
+<view class="header">
+  <view class="title">背景介绍</view>
+  <view class="body">
+    <view class="content" style="white-space:pre-wrap">
+      <text>{{content}}</text>
+      <text>{{info}}</text>
+    </view>
+  </view>
+</view>

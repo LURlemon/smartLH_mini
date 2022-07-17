@@ -1,0 +1,8 @@
+.weui-cell_wxss.weui-cell_wxss:before {
+  display: block
+}
+.weui-cell__hd{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

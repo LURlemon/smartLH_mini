@@ -1,0 +1,23 @@
+<!--pages/center/notice/notice.wxml-->
+<view class='swiper-nav'>
+  <view wx:for="{{swiperNav}}" wx:key="index" class='item-nav {{item.cond ? "active" : ""}}' data-index="{{index}}" bindtap='swiperNav'>{{item.tabName}}</view>
+</view>
+
+<scroll-view class="noticeBox" scroll-y="true" enable-flex="true" enable-back-to-top="true" scroll-top="30">
+  <text wx:if="{{tips != ''}}">{{tips}}</text>
+  <view class="item" wx:for="{{notices}}" wx:key="id" wx:for-item="item" bindtap="selectOrg" data-id="{{item.id}}">
+    <view class="body">
+      <view class="title">{{item.title}} </view>
+
+      <view class="contentbox">
+        <view class="content {{item.isF?'show':'hide'}}">
+          <rich-text nodes="{{item.content}}"></rich-text>
+        </view>
+        <view bindtap="change" class="state" data-index="{{index}}">{{item.isF ?'收起':'展开'}}</view>
+      </view>
+
+      <view class="time">{{item.sendTime}}</view>
+    </view>
+
+  </view>
+</scroll-view>

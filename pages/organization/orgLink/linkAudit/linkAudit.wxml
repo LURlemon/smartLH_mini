@@ -1,0 +1,35 @@
+<!--pages/organization/orgLink/linkAudit/linkAudit.wxml-->
+<view class='swiper-nav'>
+  <view wx:for="{{swiperNav}}" wx:key="index" class='item-nav {{item.cond ? "active" : ""}}' data-index="{{index}}" bindtap='swiperNav'>{{item.tabName}}</view>
+</view>
+
+<view class="body">
+  <scroll-view class="auditBox" wx:if="{{swiperNav[0].cond}}" scroll-y="true" enable-flex="true" enable-back-to-top="true" scroll-top="30">
+    <view class="item" wx:for="{{auditList}}" wx:key="id" wx:for-item="item" bindtap="selectOrg" data-id="{{item.id}}">
+      <view class="info">
+        <view class="name">{{item.name}}</view>
+        <view class="phone">{{item.phone}}</view>
+      </view>
+
+      <view class="audit" >
+        <button class="btnY" size="mini" data-type="y" data-id="{{item.id}}" bindtap="bindAudit">通过</button>
+        <button class="btnN" size="mini" data-type="n" data-id="{{item.id}}" bindtap="bindAudit">拒绝</button>
+      </view>
+    </view>
+  </scroll-view>
+
+  <scroll-view class="auditBox" wx:if="{{swiperNav[1].cond}}" scroll-y="true" enable-flex="true" enable-back-to-top="true" scroll-top="30">
+    <view class="item" wx:for="{{auditList}}" wx:key="id" wx:for-item="item" bindtap="selectOrg" data-id="{{item.id}}">
+      <view class="info">
+        <view class="name">姓名：{{item.name}}</view>
+        <view class="phone">手机：{{item.phone}}</view>
+        <view class="mail">邮箱：{{item.mail}}</view>
+      </view>
+
+      <view class="audit" >
+        <view class="resultY" wx:if="{{item.status == 2}}">已通过</view>
+        <view class="resultN" wx:if="{{item.status == 4}}">已拒绝</view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
