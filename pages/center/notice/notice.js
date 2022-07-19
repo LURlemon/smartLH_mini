@@ -20,6 +20,7 @@ Page({
     notices: [],
     systemMessage: [],
     tips: '',
+    state: 0
   },
 
   /**
@@ -28,6 +29,9 @@ Page({
   onLoad(options) {
     console.log(app.globalData.userId)
     console.log(app.globalData.token)
+    this.setData({
+      state: app.globalData.state
+    })
     if(app.globalData.state == 0){
       var id = app.globalData.userId
     }else{

@@ -20,7 +20,8 @@
     "pages/organization/setInfo/accountInfo/accountInfo",
     "pages/welcome/welcome",
     "pages/user/welcome/welcome",
-    "pages/organization/orgLink/change/changeLink"
+    "pages/organization/orgLink/change/changeLink",
+    "pages/user/center/center"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -58,7 +59,14 @@
         "text": "用户中心",
         "iconPath": "/image/add.png",
         "selectedIconPath": "/image/add.png"
+      },
+      {
+        "pagePath": "pages/user/center/center",
+        "text": "用户中心",
+        "iconPath": "/image/add.png",
+        "selectedIconPath": "/image/add.png"
       }
+
     ]
   },
   "usingComponents": {

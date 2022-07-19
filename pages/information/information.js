@@ -19,7 +19,8 @@ Page({
     bool: false,
     noMore: false,
     isLoading: true,
-    isNew: true
+    isNew: true,
+    isJoin: false
   },
   salary(list, floor, cell) {
     let i = 0,
@@ -95,7 +96,6 @@ Page({
   filterClears(e) {
     var that = this;
     wx.showModal({
-      cancelColor: 'brown',
       title: '确定要清空当前所选条件吗？',
       success(res) {
         if (res.confirm) {
@@ -111,8 +111,8 @@ Page({
             })
           })
           that.setData({
-            tabTxt: tabTxt,
-          }),
+              tabTxt: tabTxt,
+            }),
             that.filterSubmit();
         }
       }
@@ -127,7 +127,7 @@ Page({
     let positionListData = [].concat(this.data.positionList)
     tabTxt.forEach(e1 => {
       console.log(e1)
-      e1.active = false;  //关闭抽屉
+      e1.active = false; //关闭抽屉
       e1.child.forEach(e2 => {
         if (Object.keys(e2).length == 0) return
         if (e2.title == "薪资") {
@@ -241,7 +241,10 @@ Page({
     this.setData({
       isLoading: false,
     })
-    let positionListData = await request('/Recruitment/getAll', { pageNum: num / 6 + 1, number: 6 })
+    let positionListData = await request('/Recruitment/getAll', {
+      pageNum: num / 6 + 1,
+      number: 6
+    })
 
     console.log(positionListData.data)
     if (positionListData.data == null) {
@@ -291,12 +294,13 @@ Page({
   },
   //企业用户得到招聘信息
   async showMyPosition(index) {
-    let positionListData = await request('/Recruitment/getRecsByState',
-      { orgId: app.globalData.orgId, state: index },
-      {
-        'content-type': 'application/json', // 默认值
-        'X-token': app.globalData.token
-      })
+    let positionListData = await request('/Recruitment/getRecsByState', {
+      orgId: app.globalData.orgId,
+      state: index
+    }, {
+      'content-type': 'application/json', // 默认值
+      'X-token': app.globalData.token
+    })
 
     this.setData({
       positionList: positionListData.data,
@@ -321,9 +325,27 @@ Page({
       this.getPosition(0)
     } else {
       let that = this;
+      if (app.globalData.orgStatus == 1 || app.globalData.orgStatus == 2) {
+        that.setData({
+          isJoin: true
+        })
+      } else {
+        that.setData({
+          isJoin: false
+        })
+      }
       that.setData({
         state: app.globalData.state == 1,
-        tabTxt: [{ text: "全部", active: true }, { text: "进行中", active: false }, { text: "已结束", active: false }]
+        tabTxt: [{
+          text: "全部",
+          active: true
+        }, {
+          text: "进行中",
+          active: false
+        }, {
+          text: "已结束",
+          active: false
+        }]
       })
       this.showMyPosition(0)
     }
@@ -331,7 +353,9 @@ Page({
   //开启下拉刷新
   handleRefresh() {
     if (this.data.state == 0) {
-      wx.showLoading({ title: '加载中…' })
+      wx.showLoading({
+        title: '加载中…'
+      })
       this.setData({
         positionList: [],
         nowPositionList: [],
@@ -373,8 +397,7 @@ Page({
   onReachBottom: function () {
 
   },
-  onPullDownRefresh: function () {
-  },
+  onPullDownRefresh: function () {},
 
   /**
    * 生命周期函数--监听页面显示
@@ -387,8 +410,18 @@ Page({
         selected: 1
       })
     }
+    var that = this
 
-    if(app.globalData.state == 1){
+    if (app.globalData.state == 1) {
+      if (app.globalData.orgStatus == 1 || app.globalData.orgStatus == 2) {
+        that.setData({
+          isJoin: true
+        })
+      } else {
+        that.setData({
+          isJoin: false
+        })
+      }
       if (app.globalData.phone == '' || app.globalData.phone == null) {
         wx.showModal({
           title: '温馨提示',
@@ -401,8 +434,7 @@ Page({
             }
           }
         })
-      }
-      if (app.globalData.orgId == '' || app.globalData.orgId == null || app.globalData.orgId == 0) {
+      } else if (app.globalData.orgId == '' || app.globalData.orgId == null || app.globalData.orgId == 0 || app.globalData.orgStatus == 4) {
         wx.showModal({
           title: '温馨提示',
           content: '请先绑定您的单位',
@@ -414,6 +446,17 @@ Page({
             }
           }
         })
+      } else if (app.globalData.orgStatus == 3) {
+        wx.showToast({
+          title: '请等待加入审核',
+          duration: 2000,
+          image: "/image/tips.png"
+        })
+        setTimeout(function () {
+          wx.switchTab({
+            url: '/pages/center/center',
+          })
+        }, 2000)
       }
     }
   },

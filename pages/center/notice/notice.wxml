@@ -1,5 +1,5 @@
 <!--pages/center/notice/notice.wxml-->
-<view class='swiper-nav'>
+<view wx:if="{{state == 1}}" class='swiper-nav'>
   <view wx:for="{{swiperNav}}" wx:key="index" class='item-nav {{item.cond ? "active" : ""}}' data-index="{{index}}" bindtap='swiperNav'>{{item.tabName}}</view>
 </view>
 

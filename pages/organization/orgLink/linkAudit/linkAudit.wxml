@@ -12,8 +12,8 @@
       </view>
 
       <view class="audit" >
-        <button class="btnY" size="mini" data-type="y" data-id="{{item.id}}" bindtap="bindAudit">通过</button>
-        <button class="btnN" size="mini" data-type="n" data-id="{{item.id}}" bindtap="bindAudit">拒绝</button>
+        <button class="btnY" size="mini" data-type="y" data-id="{{item.id}}" data-name="{{item.name}}" bindtap="bindAudit">通过</button>
+        <button class="btnN" size="mini" data-type="n" data-id="{{item.id}}" data-name="{{item.name}}" bindtap="bindAudit">拒绝</button>
       </view>
     </view>
   </scroll-view>

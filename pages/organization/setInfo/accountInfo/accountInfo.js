@@ -46,9 +46,32 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    var that = this
 
     this.setData({
       ['wxOrg.id']: app.globalData.wxId
+    })
+    wx.request({
+      url: app.globalData.baseUrl + 'WxOrg/getById',
+        method: 'GET',
+        header: {
+          'content-type': 'application/json', // 默认值
+          'X-token': wx.getStorageSync('token')
+        },
+        data: {
+          id: app.globalData.wxId,
+        },
+      
+        success(res){
+          that.setData({
+            wxOrg: res.data.data,
+            ['formData.username']: res.data.data.name,
+            ['formData.phone']: res.data.data.phone,
+            ['formData.mail']: res.data.data.mail,
+
+          })
+
+        }
     })
   },
 

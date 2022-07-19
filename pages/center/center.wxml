@@ -15,21 +15,21 @@
 
   <view class="process">
 
-    <view wx:if="{{state == 1}}" class="item" data-url="/pages/organization/setInfo/accountInfo/accountInfo" hover-class="search-hover" bindtap="openPage">
+    <view class="item" data-url="/pages/organization/setInfo/accountInfo/accountInfo" hover-class="search-hover" bindtap="openPage">
       <view class="icon">
         <image src="../../image/user.png" />
       </view>
       <view class="box">个人信息</view>
     </view>
 
-    <view wx:if="{{state == 1}}" class="item" data-url="/pages/organization/recruitment/record/record" hover-class="search-hover" bindtap="openPage">
+    <view class="item" data-url="/pages/organization/recruitment/record/record" hover-class="search-hover" bindtap="openPage">
       <view class="icon">
         <image src="../../image/send.png" />
       </view>
       <view class="box">人才需求发布记录</view>
     </view>
 
-    <view wx:if="{{orgStatus == 0 && state ==1}}" class="item" bindtap="openPage" data-url="/pages/organization/orgLink/orgLink" hover-class="search-hover">
+    <view wx:if="{{orgStatus == 0 || orgStatus == 4}}" class="item" bindtap="openPage" data-url="/pages/organization/orgLink/orgLink" hover-class="search-hover">
       <view class="icon">
         <image src="../../image/link.png" />
       </view>
@@ -43,8 +43,6 @@
       </view>
       <view class="box">解绑单位</view>
     </view>
-
-
 
     <view wx:if="{{orgStatus == 1}}" class="item" bindtap="openPage" data-url="/pages/organization/orgLink/change/changeLink" hover-class="search-hover">
       <view class="icon">

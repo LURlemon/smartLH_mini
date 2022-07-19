@@ -15,7 +15,7 @@
         <image slot="icon" src="/image/must.png" style="width: 36rpx; height: 36rpx; position: absolute; left: 210rpx;"></image>
         <view slot="title">{{user.phone}}</view>
         <input bindinput="formInputChange" data-field="phone" class="weui-input" placeholder="请输入手机号" value="{{user.phone}}" />
-        <button slot="footer" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class="weui-vcode-btn" style="background-color: #fdfdfd;color: #3369e6; width: 108rpx;height: 54rpx;display: flex; justify-content: center; align-items: center; font-size: 26rpx; border-color: #3369e6;">获 取</button>
+        <button slot="footer" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class="weui-vcode-btn" style="background-color: #fdfdfd;color: #3369e6; width: 120rpx;height: 54rpx;display: flex; justify-content: center; align-items: center; font-size: 26rpx; border-color: #3369e6;">获 取</button>
       </mp-cell>
 
       

@@ -23,14 +23,7 @@ Page({
     ],
 
     isfind: false,
-
-    request: {
-      orgName: '',
-      orgAddress: '',
-      orgType: '',
-      pageNum: 1,
-      size: 10
-    },
+    orgName: '',
 
 
   },
@@ -59,16 +52,18 @@ Page({
   bindInput(e) {
     this.setData({
       name: e.detail.value,
-      ['request.orgName']: e.detail.value
+      orgName: e.detail.value
     })
   },
 
   search: function (e) {
-    console.log(this.data.request);
+    console.log(this.data.orgName);
     var that = this;
     wx.request({
-      url: app.globalData.baseUrl + 'Organization/getOrgBySearch',
-      data: that.data.request,
+      url: app.globalData.baseUrl + 'WxOrg/getOrgByWxSearch',
+      data: {
+        orgName: this.data.orgName
+      },
       header: {
         'content-type': 'application/json', // 默认值
         'X-token': app.globalData.token
@@ -76,13 +71,13 @@ Page({
       method: 'GET',
       success(res) {
         console.log(res)
-        if (res.data.data.list == null) {
+        if (res.data.data == null) {
           that.setData({
             isfind: true
           })
         } else {
           that.setData({
-            orgs: res.data.data.list
+            orgs: res.data.data
           })
         }
 
@@ -93,39 +88,50 @@ Page({
 
   bindJoin: function (e) {
     var that = this;
+    var orgName = e.currentTarget.dataset.orgname;
     console.log(e.currentTarget.dataset.orgname)
-    wx.showModal({
-      title: '确定要加入该单位吗',
-      success(res) {
-        if (res.confirm) {
-          wx.request({
-            url: app.globalData.baseUrl + 'WxOrg/linkOrg',
-            method: 'GET',
-            header: {
-              'content-type': 'application/json', // 默认值
-              'X-token': app.globalData.token
-            },
-            data: {
-              id: app.globalData.wxId,
-              orgId: e.currentTarget.dataset.id,
-            },
-            success(res) {
-              console.log(res.data);
-              wx.showToast({
-                title: '请等待审核',
-                duration: 2000,
-                success(res){
-                  wx.switchTab({
-                    url: '../../center/center',
-                  })
-                }
-              })
-
-            }
-          })
+    var audit = e.currentTarget.dataset.audit;
+    if(audit == 0){
+      wx.showModal({
+        title: orgName+" 还未通过创建审核，请稍作等待"
+      })
+    }
+    else{
+      wx.showModal({
+        title: '您确定要加入 '+orgName+' 吗?',
+        success(res) {
+          if (res.confirm) {
+            wx.request({
+              url: app.globalData.baseUrl + 'WxOrg/linkOrg',
+              method: 'GET',
+              header: {
+                'content-type': 'application/json', // 默认值
+                'X-token': app.globalData.token
+              },
+              data: {
+                id: app.globalData.wxId,
+                orgId: e.currentTarget.dataset.id,
+              },
+              success(res) {
+                console.log(res.data);
+                wx.showToast({
+                  title: '请等待审核',
+                  duration: 2000,
+                  success(res){
+                    wx.switchTab({
+                      url: '../../center/center',
+                    })
+                  }
+                })
+  
+              }
+            })
+          }
         }
-      }
-    })
+      })
+    }
+    
+    
 
   },
 

@@ -315,7 +315,7 @@ Page({
           }
         }
       })
-    }else if(app.globalData.data.orgStatus == 3){
+    }else if(app.globalData.orgStatus == 3){
       wx.showToast({
         title: '请等待您的加入申请通过',
         duration: 2000,
@@ -448,7 +448,7 @@ Page({
         }
       })
     }
-    if (app.globalData.orgId == '' || app.globalData.orgId == null || app.globalData.orgId == 0) {
+    else if (app.globalData.orgId == '' || app.globalData.orgId == null || app.globalData.orgId == 0 || app.globalData.orgStatus == 4) {
       wx.showModal({
         title: '温馨提示',
         content: '请先绑定您的单位',
@@ -464,14 +464,14 @@ Page({
     if(app.globalData.orgStatus == 3){
       wx.showToast({
         title: '请等待加入审核',
-        duration: 3000,
+        duration: 2000,
         image: "/image/tips.png"
       })
       setTimeout(function() {
         wx.switchTab({
           url: '/pages/center/center',
         })
-      }, 3000)
+      }, 2000)
 
     }
   },

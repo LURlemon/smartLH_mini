@@ -1,0 +1,35 @@
+<!--pages/center/center.wxml-->
+<view class="container">
+
+  <view class="user">
+    <view class="name">{{orgName}}</view>
+  
+    <view class="avatarUrl">
+      <image src="{{avatarUrl}}" mode="widthFix"></image>
+    </view>
+  </view>
+  <view class="gif">
+    <image class="gif-wave" src="/image/wave.gif" />
+  </view>
+
+
+  <view class="process">
+
+    <view class="item" data-url="/pages/center/notice/notice" hover-class="search-hover" bindtap="openPage">
+      <view class="icon">
+        <image src="/image/message.png" />
+      </view>
+      <view class="box">系统消息</view>
+    </view>
+
+    <view class="item" data-url="/pages/center/about/about" hover-class="search-hover" bindtap="openPage">
+      <view class="icon">
+        <image src="/image/recall.png" />
+      </view>
+      <view class="box">关于我们</view>
+    </view>
+
+
+  </view>
+
+</view>

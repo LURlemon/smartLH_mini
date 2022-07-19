@@ -28,7 +28,7 @@ const tabTxt = [
         },
         {
           'id': 3,
-          'text': '专科',
+          'text': '大专',
           'selected': false,
         },
         {

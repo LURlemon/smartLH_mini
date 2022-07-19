@@ -281,7 +281,8 @@ Page({
         console.log(res.data.data.phone_info.phoneNumber)
         var phone = res.data.data.phone_info.phoneNumber;
         that.setData({
-          ['user.phone']: phone
+          ['user.phone']: phone,
+          ['formData.phone']: phone
         })
       }
     })

@@ -80,16 +80,16 @@ Page({
     console.log(e.currentTarget.dataset);
     var type = e.currentTarget.dataset.type;
     var id = e.currentTarget.dataset.id;
-    var index = e.currentTarget.dataset.index;
+    var name = e.currentTarget.dataset.name;
     var tips;
     var status;
     if (type == 'y') {
-      tips = "您确定通过吗？"
-      status = 2
+      tips = "您确定通过 "+name+" 加入"+app.globalData.orgName+"的请求吗？";
+      status = 2;
     };
     if (type == 'n') {
-      tips = "您确定拒绝吗？"
-      status = 4
+      tips = "您确定拒绝 "+name+" 加入"+app.globalData.orgName+"的请求吗？";
+      status = 4;
     };
 
     wx.showModal({
@@ -118,7 +118,7 @@ Page({
       }
     })
 
-  },
+ },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

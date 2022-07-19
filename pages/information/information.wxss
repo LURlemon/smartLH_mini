@@ -265,3 +265,13 @@
 .subject {
   margin-right: 14%;
 }
+
+.tips{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 600rpx;
+  color: rgb(255, 165, 0);
+  font-size: 21px;
+  font-weight: bold;
+}

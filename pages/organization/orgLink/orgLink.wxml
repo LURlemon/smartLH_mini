@@ -22,7 +22,7 @@
           <view class="orgType">类型：{{item.type}}</view>
           <view class="orgAddress">地址：{{item.address}}</view>
         </view>
-        <view class="join" data-orgName="{{item.name}}" data-id="{{item.id}}" bindtap="bindJoin">加入</view>
+        <view class="join" data-orgName="{{item.name}}" data-id="{{item.id}}" data-audit="{{item.audit}}" bindtap="bindJoin">加入</view>
       </view>
     </scroll-view>
     <view wx:if="{{isfind}}" class="info">

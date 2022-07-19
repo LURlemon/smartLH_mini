@@ -45,7 +45,7 @@
     </view>
   </view>
 
-  <view>
+  <view wx:if="{{state == 0}}">
     <scroll-view class="recommand" enable-flex scroll-y refresher-enabled bindrefresherrefresh="handleRefresh" refresher-triggered="{{isTriggered}}" bindscrolltolower="handleToLower">
       <view class="item" wx:for="{{nowPositionList}}" wx:key="id" data-index="{{index}}" bindtap="detail" wx:if="{{bool}}">
         <view class="title">
@@ -74,4 +74,38 @@
 
     </scroll-view>
   </view>
+
+  <view wx:if="{{isJoin}}">
+    <scroll-view class="recommand" enable-flex scroll-y refresher-enabled bindrefresherrefresh="handleRefresh" refresher-triggered="{{isTriggered}}" bindscrolltolower="handleToLower">
+      <view class="item" wx:for="{{nowPositionList}}" wx:key="id" data-index="{{index}}" bindtap="detail" wx:if="{{bool}}">
+        <view class="title">
+          <text>{{item.title}}</text>
+        </view>
+        <view class="info">
+          <text class="name">{{item.orgName}}</text>
+          <view class="position">{{item.position}}</view>
+        </view>
+        <view class="content">
+          <text>{{item.content}}</text>
+        </view>
+
+        <!-- <text class="salary">{{item.salaryFloor}}-{{item.salaryCell}}/月</text> -->
+        <view class="bottom">
+          <view class="number">人数：{{item.number}}</view>
+          <view class="subject">{{item.subject}}</view>
+          <view class="education">{{item.education}}</view>
+        </view>
+        <text class="date">{{item.publishTime}}</text>
+      </view>
+
+      <view class="noMore">
+        <text wx:if="{{bool && noMore}}">没有更多数据了哦</text>
+      </view>
+
+    </scroll-view>
+  </view>
+  <view wx:else class="tips">
+    <text>请绑定单位</text>
+  </view>
+
 </view>

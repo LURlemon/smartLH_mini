@@ -18,7 +18,7 @@ Component({
         "selectedIconPath": "/image/list2.png"
       },
       {
-        "pagePath": "/pages/center/center",
+        "pagePath": "/pages/user/center/center",
         "text": "用户中心",
         "iconPath": "/image/center1.png",
         "selectedIconPath": "/image/center2.png"
@@ -57,7 +57,7 @@ Component({
       "selectedIconPath": "/image/list2.png"
     },
     {
-      "pagePath": "/pages/center/center",
+      "pagePath": "/pages/user/center/center",
       "text": "用户中心",
       "iconPath": "/image/center1.png",
       "selectedIconPath": "/image/center2.png"

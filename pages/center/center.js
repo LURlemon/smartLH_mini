@@ -10,7 +10,6 @@ Page({
     userId: app.globalData.userId,
     orgName: '欢迎使用',
     avatarUrl: '../../image/avatar.png',
-    state: Number,
     orgStatus: 0,
     wxOrg: {}
   },
@@ -19,18 +18,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log(this.data.state)
-    
+    console.log(app.globalData.state)
+
     this.setData({
-      state: app.globalData.state,
       avatarUrl: app.globalData.avatarUrl,
       orgStatus: app.globalData.orgStatus,
-      orgName: app.globalData.orgName
+
 
     })
+    if (app.globalData.orgName != "" && app.globalData.orgName != null) {
+      this.setData({
+        orgName: app.globalData.orgName
+      })
+    }
 
     console.log(this.data.orgStatus)
-    
+
   },
 
   /**
@@ -58,95 +61,92 @@ Page({
       orgStatus: app.globalData.orgStatus,
     })
 
-    if(app.globalData.state == 1){
-      wx.request({
-        url: app.globalData.baseUrl + 'WxOrg/getById',
-        method: 'GET',
-        header: {
-          'content-type': 'application/json', // 默认值
-          'X-token': wx.getStorageSync('token')
-        },
-        data: {
-          id: app.globalData.wxId,
-        },
-      
-        success(res){
-          console.log(res.data)
-          app.globalData.orgId = res.data.data.orgId;
-          app.globalData.orgStatus = res.data.data.status
+    wx.request({
+      url: app.globalData.baseUrl + 'WxOrg/getById',
+      method: 'GET',
+      header: {
+        'content-type': 'application/json', // 默认值
+        'X-token': wx.getStorageSync('token')
+      },
+      data: {
+        id: app.globalData.wxId,
+      },
+
+      success(res) {
+        console.log(res.data)
+        app.globalData.orgId = res.data.data.orgId;
+        app.globalData.orgStatus = res.data.data.status
+        that.setData({
+          wxOrg: res.data.data,
+          orgStatus: res.data.data.status,
+          orgName: res.data.data.orgName
+        })
+        if (res.data.data.orgName == "" || res.data.data.orgName == null) {
           that.setData({
-            wxOrg: res.data.data,
-            orgStatus: res.data.data.status
+            orgName: '欢迎使用'
           })
-          
         }
-      })
-    }
+
+      }
+    })
   },
 
   openPage: function (e) {
     var url = e.currentTarget.dataset.url;
-    var linkUrl =  '/pages/organization/orgLink/orgLink';
+    var linkUrl = '/pages/organization/orgLink/orgLink';
     var recordUrl = '/pages/organization/recruitment/record/record';
     var that = this;
     console.log(url);
     console.log(app.globalData.orgId)
-    if(app.globalData.state == 1){
-      if(app.globalData.phone == '' || app.globalData.phone == null){
+    
+    if (app.globalData.phone == '' || app.globalData.phone == null) {
+      wx.showModal({
+        title: '温馨提示',
+        content: '请先设置您的信息',
+        success(res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '../organization/setInfo/accountInfo/accountInfo',
+            })
+          }
+        }
+      })
+    } else {
+      if ((app.globalData.orgId == null || app.globalData.orgId == '' || app.globalData.orgId == 0) && url == recordUrl) {
         wx.showModal({
           title: '温馨提示',
-          content: '请先设置您的信息',
-          success(res){
-            if(res.confirm){
+          content: '请先绑定您的单位',
+          success(res) {
+            if (res.confirm) {
               wx.navigateTo({
-                url: '../organization/setInfo/accountInfo/accountInfo',
+                url: linkUrl,
               })
             }
           }
         })
-      }else{
-        if ((app.globalData.orgId == null || app.globalData.orgId == '' || app.globalData.orgId == 0) && url == recordUrl) {
-          wx.showModal({
-            title: '温馨提示',
-            content: '请先绑定您的单位',
-            success(res) {
-              if (res.confirm) {
-                wx.navigateTo({
-                  url: linkUrl,
-                })
-              }
-            }
+      } else {
+        if (app.globalData.orgStatus == 3 && url == recordUrl) {
+          wx.showToast({
+            title: '请等待加入审核',
+            duration: 2000,
+            image: "/image/tips.png"
           })
-        }else {
-          if(app.globalData.orgStatus == 3 && url == recordUrl){
-            wx.showToast({
-              title: '请等待加入审核',
-              duration: 2000,
-              image: "/image/tips.png"
-            })     
-          }else{
-            wx.navigateTo({
-              url: url,
-            })
-          }
-          
+        } else {
+          wx.navigateTo({
+            url: url,
+          })
         }
+
       }
-      
-    }
-     else {
-      wx.navigateTo({
-        url: url,
-      })
     }
   },
 
-  cancelLink:function(e){
+  cancelLink: function (e) {
     var that = this;
     wx.showModal({
-      title: '您确定要解除与 “'+app.globalData.orgName+'” 的绑定吗？',
-      success(res){
-        if(res.confirm){
+      title: '您确定要解除与 “' + app.globalData.orgName + '” 的绑定吗？',
+      success(res) {
+        if (res.confirm) {
           wx.request({
             url: app.globalData.baseUrl + 'WxOrg/cancelLink',
             method: 'GET',
@@ -158,19 +158,20 @@ Page({
               wxId: app.globalData.wxId,
               orgName: app.globalData.orgName
             },
-          
-            success(res){
+
+            success(res) {
               console.log(res.data)
-              if(res.data.code == 6){
+              if (res.data.code == 6) {
                 wx.showToast({
                   title: '解除绑定成功',
                 })
                 app.globalData.status = 0,
-                app.globalData.orgName = "欢迎使用",
-                app.globalData.orgId = 0,
-                wx.setStorageSync('orgId', "")
+                  app.globalData.orgName = "欢迎使用",
+                  app.globalData.orgId = 0,
+                  wx.setStorageSync('orgId', "")
                 that.setData({
-                  orgStatus: 0
+                  orgStatus: 0,
+                  orgName: "欢迎使用",
                 })
               }
 
