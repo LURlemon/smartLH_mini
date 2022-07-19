@@ -19,6 +19,11 @@ Page({
   },
 
   bindUser: function (e) {
+    wx.showToast({
+      title: '请稍后',
+      icon: 'loading',
+      duration: 800
+    })
     app.globalData.state = 0;
     wx.setStorageSync('state', 0)
     var that = this;
@@ -90,6 +95,11 @@ Page({
 
 
   bindOrg: function (e) {
+    wx.showToast({
+      title: '请稍后',
+      icon: 'loading',
+      duration: 800
+    })
     app.globalData.state = 1;
     console.log(app.globalData.orgName)
     wx.setStorageSync('state', 1)
