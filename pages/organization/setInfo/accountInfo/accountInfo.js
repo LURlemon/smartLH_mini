@@ -87,7 +87,12 @@ Page({
 		var ivObj = e.detail.iv
 		var telObj = e.detail.encryptedData
 		var code = e.detail.code
-		var that = this;
+    var that = this;
+    wx.showToast({
+      title: '正在获取',
+      icon: 'loading',
+      duration: 2200
+    })
 		wx.request({
       url: app.globalData.baseUrl + 'WxOrg/getPhone',
       header: {

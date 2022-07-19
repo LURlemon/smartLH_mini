@@ -113,8 +113,7 @@ Page({
    */
   onLoad(options) {
     var that = this;
-    app.globalData.userId = wx.getStorageSync('userId')
-
+    
     wx.request({
       url: app.globalData.baseUrl + 'User/getUserById',
       method: 'GET',
@@ -262,6 +261,11 @@ Page({
     var telObj = e.detail.encryptedData
     var code = e.detail.code
     var that = this;
+    wx.showToast({
+      title: '正在获取',
+      icon: 'loading',
+      duration: 2200
+    })
     wx.request({
       url: app.globalData.baseUrl + 'User/getPhone',
       header: {
