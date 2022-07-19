@@ -20,7 +20,7 @@ Page({
     noMore: false,
     isLoading: true,
     isNew: true,
-    isJoin: false
+    isJoin: false,
   },
   salary(list, floor, cell) {
     let i = 0,
@@ -282,6 +282,10 @@ Page({
     var that = this;
     var data = JSON.parse(JSON.stringify(that.data.tabTxt));
     var index = e.currentTarget.dataset.index;
+    console.log(index)
+    this.setData({
+      index: index
+    })
     this.showMyPosition(index)
     var newTabTxt = data.map(function (e) {
       e.active = false;
@@ -306,7 +310,6 @@ Page({
       positionList: positionListData.data,
       nowPositionList: positionListData.data,
       isTriggered: false,
-      index,
       bool: true,
       noMore: true,
     })
@@ -457,6 +460,8 @@ Page({
             url: '/pages/center/center',
           })
         }, 2000)
+      }else{
+        that.showMyPosition(that.data.index)
       }
     }
   },

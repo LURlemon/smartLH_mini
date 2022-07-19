@@ -434,6 +434,11 @@ Page({
         selected: 0
       })
     }
+    this.setData({
+      ['recruitment.orgName']: app.globalData.orgName,
+      ['recruitment.wxOrgId']: app.globalData.wxId,
+      ['recruitment.orgId']: app.globalData.orgId
+    })
 
     if (app.globalData.phone == '' || app.globalData.phone == null) {
       wx.showModal({
