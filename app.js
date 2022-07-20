@@ -22,9 +22,9 @@ App({
     orgStatus: 0, //是否企业管理员 1为管理员，2为普通用户，3为待审核
     orgName: "欢迎使用",
     //baseUrl: 'https://localhost/',
-    //baseUrl: 'http://49.51.244.95:8081/',
+    baseUrl: 'http://49.51.244.95:8081/',
    // baseUrl: 'https://www.rencai.lhx.cn/',
-    baseUrl: 'https://8.134.53.211/',
+    //baseUrl: 'https://8.134.53.211/',
 
     phone: '',
     password: '123456',

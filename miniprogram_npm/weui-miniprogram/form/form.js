@@ -685,7 +685,7 @@ module.exports =
       mobile: function mobile(r, val) {
         if (!isOptional(val)) {
           val = val || '';
-          if (val.length !== 11 || !/^1(3|4|5|6|7|8)\d{9}$/.test(val)) return string_1.sprintf(r.message || defaultMessage.mobile);
+          if (val.length !== 11 || !/^1(3|4|5|6|7|8|9)\d{9}$/.test(val)) return string_1.sprintf(r.message || defaultMessage.mobile);
         }
       },
       email: function email(r, value) {

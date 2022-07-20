@@ -104,7 +104,7 @@
 
     </scroll-view>
   </view>
-  <view wx:else class="tips">
+  <view wx:if="{{!isJoin && state == 1}}" class="tips">
     <text>请绑定单位</text>
   </view>
 
