@@ -44,7 +44,7 @@
       <view class="box">解绑单位</view>
     </view>
 
-    <view wx:if="{{orgStatus == 1}}" class="item" bindtap="openPage" data-url="/pages/organization/orgLink/change/changeLink" hover-class="search-hover">
+    <view wx:if="{{orgStatus == 1 && isAudit == 1}}" class="item" bindtap="openPage" data-url="/pages/organization/orgLink/change/changeLink" hover-class="search-hover">
       <view class="icon">
         <image src="../../image/link.png" />
       </view>
@@ -66,7 +66,7 @@
       <view class="box">修改单位信息</view>
     </view>
 
-    <view wx:if="{{orgStatus == 1}}" class="item" data-url="/pages/organization/orgLink/linkAudit/linkAudit" hover-class="search-hover" bindtap="openPage">
+    <view wx:if="{{orgStatus == 1 && isAudit == 1}}" class="item" data-url="/pages/organization/orgLink/linkAudit/linkAudit" hover-class="search-hover" bindtap="openPage">
       <view class="icon">
         <image src="../../image/audit.png" />
       </view>

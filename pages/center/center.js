@@ -11,7 +11,8 @@ Page({
     orgName: '欢迎使用',
     avatarUrl: '../../image/avatar.png',
     orgStatus: 0,
-    wxOrg: {}
+    wxOrg: {},
+    isAudit: 0
   },
 
   /**
@@ -23,7 +24,7 @@ Page({
     this.setData({
       avatarUrl: app.globalData.avatarUrl,
       orgStatus: app.globalData.orgStatus,
-
+      isAudit:  app.globalData.isAudit
 
     })
     if (app.globalData.orgName != "" && app.globalData.orgName != null) {
@@ -59,6 +60,7 @@ Page({
     this.setData({
       orgName: app.globalData.orgName,
       orgStatus: app.globalData.orgStatus,
+      isAudit:  app.globalData.isAudit
     })
 
     wx.request({
@@ -76,6 +78,7 @@ Page({
         console.log(res.data)
         app.globalData.orgId = res.data.data.orgId;
         app.globalData.orgStatus = res.data.data.status
+        app.globalData.phone = res.data.data.phone
         that.setData({
           wxOrg: res.data.data,
           orgStatus: res.data.data.status,
@@ -87,6 +90,25 @@ Page({
           })
         }
 
+      }
+    })
+
+    wx.request({
+      url: app.globalData.baseUrl + 'Organization/getOrgInfo',
+      method: 'GET',
+      header: {
+        'content-type': 'application/json', // 默认值
+        'X-token': app.globalData.token
+      },
+      data: {
+        orgId: app.globalData.orgId
+      },
+      success(res){
+        console.log(res);
+        app.globalData.isAudit = res.data.data.audit
+        that.setData({
+          isAudit: res.data.data.audit
+        })
       }
     })
   },

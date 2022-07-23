@@ -10,14 +10,14 @@
 
 
 
-  <view class="body" wx:if="{{wxOrgs.length != 0}}">
-    <view class="tips">
+  <view class="body" >
+    <view class="tips" wx:if="{{isfind  && isSearch}}">
       <text>搜索结果如下:</text>
     </view>
 
     <scroll-view class="orgBox" scroll-y="true" enable-flex="true" enable-back-to-top="true" scroll-top="30">
 
-      <view class="item" wx:for="{{wxOrgs}}" wx:key="id" wx:for-item="item" >
+      <view class="item" wx:for="{{wxOrgs}}" wx:key="id" wx:for-item="item">
         <view class="content">
           <view class="orgName">姓名：{{item.name}}</view>
           <view class="orgType">电话：{{item.phone}}</view>
@@ -26,9 +26,10 @@
         <view class="join" data-name="{{item.name}}" data-id="{{item.id}}" data-orgId="{{item.orgId}}" bindtap="bindChange">转移</view>
       </view>
     </scroll-view>
-    <view wx:if="{{isfind}}" class="info">
-      <text>您搜索的用户不存在，请确保查询信息准确</text>
-    </view>
+  </view>
+
+  <view wx:if="{{!isfind && isSearch}}" class="info">
+    <text>您搜索的用户不存在，请确保查询信息准确</text>
   </view>
 
 </view>

@@ -6,7 +6,7 @@
   <mp-form id="form" rules="{{rules}}" models="{{formData}}">
     <mp-cells title="" footer="感谢合作，请认真检查信息的准确性">
 
-      <mp-cell prop="name" title="单位名称" ext-class="">
+      <mp-cell prop="orgname" title="单位名称" ext-class="">
         <view>{{organization.name}}</view>
       </mp-cell>
 
@@ -32,7 +32,7 @@
 
       <mp-cell prop="introduction" title="单位介绍" ext-class=""></mp-cell>
       <mp-cell has-header="{{false}}" has-footer="{{false}}" title="" ext-class="">
-        <textarea class="textarea" value="{{introduction}}" bindinput="bindContent" placeholder="请输入该单位的简单介绍" style="height: 3.3em" maxlength="100" auto-height />
+        <textarea class="textarea" value="{{organization.introduction}}" bindinput="bindContent" placeholder="请输入该单位的简单介绍" style="height: 3.3em" maxlength="200" auto-height />
         <view class="weui-textarea-counter">{{currentWord}}/200</view>
       </mp-cell>
 

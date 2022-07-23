@@ -22,6 +22,39 @@ Page({
       introduction: '',
     },
 
+    formData: {},
+    rules: [{
+      name: 'address',
+      rules: {
+        required: true,
+        message: '请输入单位地址'
+      },
+    }, {
+      name: 'type',
+      rules: {
+        required: true,
+        message: '请选择单位类型'
+      },
+    }, {
+      name: 'phone',
+      rules: {
+        required: true,
+        message: '手机号必填'
+      },
+    }, {
+      name: 'serialNumber',
+      rules: {
+        required: true,
+        message: '请输入统一社会信用代码'
+      },
+    }, {
+      name: 'introduction',
+      rules: {
+        required: true,
+        message: '请输入单位介绍'
+      },
+    }]
+
   },
 
 
@@ -31,7 +64,8 @@ Page({
     console.log(types)
     this.setData({
       typeIndex: e.detail.value,
-      ['organization.type']: types[e.detail.value]
+      ['organization.type']: types[e.detail.value],
+      ['formData.type']: types[e.detail.value]
     })
     console.log(this.data.organization.type)
   },
@@ -54,8 +88,14 @@ Page({
       success(res){
         console.log(res);
         that.setData({
-          organization: res.data.data
+          organization: res.data.data,
+          formData:  res.data.data
         })
+        if(res.data.data.introduction != '' && res.data.data.introduction != null){
+          that.setData({
+            currentWord: parseInt(res.data.data.introduction.length)
+          })
+        }
       }
     })
     wx.request({
@@ -98,54 +138,96 @@ Page({
     switch (type) {
       case "phone":
         that.setData({
-          ['organization.phone']: content
+          ['organization.phone']: content,
+          ['formData.phone']: content
         })
         break;
       case "address":
         that.setData({
-          ['organization.address']: content
+          ['organization.address']: content,
+          ['formData.address']: content
         })
         break;
       case "serialNumber":
         that.setData({
-          ['organization.serialNumber']: content
+          ['organization.serialNumber']: content,
+          ['formData.serialNumber']: content
         })
         break;
     }
     console.log(this.data.organization, Object)
   },
 
+  bindContent: function (e) {
+    var that = this;
+    var value = e.detail.value;
+
+    var wordLength = parseInt(value.length); //解析字符串长度转换成整数。
+    if (200 < wordLength) {
+      return;
+    }
+    that.setData({
+      currentWord: wordLength,
+      ['organization.introduction']: value,
+      ['formData.introduction']: value
+    });
+    console.log(this.data.organization.content)
+  },
+
   submit: function () {
-    var organization = this.data.organization;
-    console.log(organization, Object);
-    wx.request({
-      url: app.globalData.baseUrl + 'Organization/setOrgInfo',
-      method: 'POST',
-      header: {
-				'content-type': 'application/json', // 默认值
-				'X-token': app.globalData.token
-      },
-      data: organization,
-      success(res){
-        console.log(res.data);
-        var code = res.data.code;
-        if(code == 7){
-          wx.showToast({
-            title: '修改失败',
-            duration: 2000
+    var that = this;
+    this.selectComponent('#form').validate((valid, errors) => {
+      console.log('valid', valid, errors);
+      if (!valid) {
+        const firstError = Object.keys(errors)
+        if (firstError.length) {
+          this.setData({
+            error: errors[firstError[0]].message
           })
+
         }
-        if(code == 6){
-          wx.showToast({
-            title: '修改成功',
-            duration: 2000
-          })
-          wx.switchTab({
-            url: '../../center/center',
-          })
-        }
+      } else {
+
+        wx.showModal({
+          title: '确认提交吗？',
+          success(res){
+            if(res.confirm){
+              var organization = that.data.organization;
+              console.log(organization, Object);
+              wx.request({
+                url: app.globalData.baseUrl + 'Organization/setOrgInfo',
+                method: 'POST',
+                header: {
+                  'content-type': 'application/json', // 默认值
+                  'X-token': app.globalData.token
+                },
+                data: organization,
+                success(res){
+                  console.log(res.data);
+                  var code = res.data.code;
+                  if(code == 7){
+                    wx.showToast({
+                      title: '修改失败',
+                      duration: 2000
+                    })
+                  }
+                  if(code == 6){
+                    wx.showToast({
+                      title: '修改成功',
+                      duration: 2000
+                    })
+                    wx.switchTab({
+                      url: '../../center/center',
+                    })
+                  }
+                }
+              })
+            }
+          }
+        })
       }
     })
+    
   },
 
   /**

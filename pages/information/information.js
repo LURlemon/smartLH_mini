@@ -437,7 +437,7 @@ Page({
             }
           }
         })
-      } else if (app.globalData.orgId == '' || app.globalData.orgId == null || app.globalData.orgId == 0 || app.globalData.orgStatus == 4) {
+      } else if (app.globalData.orgId == '' || app.globalData.orgId == null || app.globalData.orgId == 0 || app.globalData.orgStatus == 4 || app.globalData.orgStatus == 0) {
         wx.showModal({
           title: '温馨提示',
           content: '请先绑定您的单位',
@@ -460,7 +460,18 @@ Page({
             url: '/pages/center/center',
           })
         }, 2000)
-      }else{
+      }else if(app.globalData.isAudit != 1 ){
+        wx.showToast({
+          title: '单位待创建',
+          duration: 2000,
+          image: "/image/tips.png"
+        })
+        setTimeout(function() {
+          wx.switchTab({
+            url: '/pages/center/center',
+          })
+        }, 2000)
+      } else{
         that.showMyPosition(that.data.index)
       }
     }

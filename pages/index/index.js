@@ -51,6 +51,7 @@ Page({
               wx.setStorageSync('userId', res.data.data.user.id)
               app.globalData.userId =  res.data.data.user.id;
               app.globalData.token = res.data.data.token;
+              app.globalData.isSubmit =  res.data.data.user.submit;
 
 
               console.log(wx.getStorageSync('userId'))
@@ -129,7 +130,7 @@ Page({
               app.globalData.wxId =  res.data.data.wxOrg.id;
               app.globalData.token = res.data.data.token;
               app.globalData.phone =  res.data.data.wxOrg.phone;
-              app.globalData.name = res.data.data.wxOrg.name;
+              app.globalData.name = res.data.data.wxOrg.name; //该用户的名字
 
               if(res.data.data.wxOrg.orgName != null && res.data.data.wxOrg.orgName !=""){
                 console.log("test")

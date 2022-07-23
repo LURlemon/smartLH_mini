@@ -55,13 +55,10 @@ Page({
       },
     }, {
       name: 'phone',
-      rules: [{
+      rules: {
         required: true,
         message: '手机号必填'
-      }, {
-        mobile: true,
-        message: '手机号码格式不对'
-      }],
+      },
     }, {
       name: 'serialNumber',
       rules: {
@@ -103,8 +100,7 @@ Page({
    */
   onLoad(options) {
     this.setData({
-      ['wxSendInfo.wxOrgId']: app.globalData.wxId,
-      ['formData.material']:'http://49.51.244.95:8081/images/598d8332-6e2d-4f54-b80d-9e780a4968821657720009163.jpg' 
+      ['wxSendInfo.wxOrgId']: app.globalData.wxId
     })
     var that = this;
     wx.request({
@@ -301,45 +297,50 @@ Page({
 
         }
       } else {
-        wx.showToast({
-          title: '校验通过',
-        })
-        var organization = that.data.organization;
-        organization.name = app.globalData.name;
-
-        var wxSendInfo = that.data.wxSendInfo;
-        wxSendInfo.organization = organization;
-        console.log(wxSendInfo, Object);
-        that.setData({
-          wxSendInfo: wxSendInfo
-        })
-        wx.request({
-          url: app.globalData.baseUrl + 'Organization/wxAddOrg',
-          method: 'POST',
-          header: {
-            'content-type': 'application/json', // 默认值
-            'X-token': app.globalData.token
-          },
-          data: wxSendInfo,
-          success(res) {
-            console.log(res.data);
-            var code = res.data.code;
-            if (code == 2) {
-              wx.showToast({
-                title: '该单位已存在，请搜索加入',
-                duration: 2000
+        wx.showModal({
+          title: '确认提交吗？',
+          content: '单位名称一经提交不可修改，请您仔细核对。',
+          success(res){
+            if(res.confirm){
+              var organization = that.data.organization;
+              organization.openId = app.globalData.name;
+      
+              var wxSendInfo = that.data.wxSendInfo;
+              wxSendInfo.organization = organization;
+              console.log(wxSendInfo, Object);
+              that.setData({
+                wxSendInfo: wxSendInfo
               })
-            }
-            if (code == 6) {
-              app.globalData.orgId = res.data.data.id;
-              app.globalData.orgName = res.data.data.name,
-              app.globalData.orgStatus = 1
-              wx.showToast({
-                title: '已提交信息，请等待管理员审核',
-                duration: 2000
-              })
-              wx.switchTab({
-                url: '../../center/center',
+              wx.request({
+                url: app.globalData.baseUrl + 'Organization/wxAddOrg',
+                method: 'POST',
+                header: {
+                  'content-type': 'application/json', // 默认值
+                  'X-token': app.globalData.token
+                },
+                data: wxSendInfo,
+                success(res) {
+                  console.log(res.data);
+                  var code = res.data.code;
+                  if (code == 2) {
+                    wx.showToast({
+                      title: '该单位已存在，请搜索加入',
+                      duration: 2000
+                    })
+                  }
+                  if (code == 6) {
+                    app.globalData.orgId = res.data.data.id;
+                    app.globalData.orgName = res.data.data.name,
+                    app.globalData.orgStatus = 1
+                    wx.showToast({
+                      title: '已提交信息，请等待管理员审核',
+                      duration: 2000
+                    })
+                    wx.switchTab({
+                      url: '../../center/center',
+                    })
+                  }
+                }
               })
             }
           }

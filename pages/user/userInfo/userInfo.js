@@ -44,6 +44,8 @@ Page({
     currentWord: 0,
     introduce: "",
 
+    modify: false,
+
     user: {
       id: Number,
       wxAccount: null,
@@ -114,6 +116,16 @@ Page({
   onLoad(options) {
     var that = this;
     
+    if(app.globalData.isSubmit == 0){
+      this.setData({
+        modify: true
+      })
+    }else{
+      this.setData({
+        modify: false
+      })
+    }
+    
     wx.request({
       url: app.globalData.baseUrl + 'User/getUserById',
       method: 'GET',
@@ -134,6 +146,11 @@ Page({
           ['formData.username']: res.data.data.name,
           
         })
+        if(res.data.data.introduction != '' && res.data.data.introduction != null){
+          that.setData({
+            currentWord: parseInt(res.data.data.introduction.length)
+          })
+        }
 
         if(JSON.parse(res.data.data.education).length >0)
         {
@@ -217,6 +234,7 @@ Page({
     }
     var that = this;
     console.log(that.data.user)
+    
     
   },
 
@@ -673,6 +691,10 @@ Page({
           success(res) {
             console.log(res.data);
             app.globalData.orgName = res.data.data.name
+            app.globalData.isSubmit =  res.data.data.submit;
+            that.setData({
+              modify: false
+            })
             wx.showToast({
               title: '提交成功',
               duration: 2000
@@ -688,5 +710,11 @@ Page({
     })
 
     
+  },
+
+  change:function(){
+    this.setData({
+      modify: true
+    })
   }
 })

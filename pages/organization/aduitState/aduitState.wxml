@@ -7,7 +7,7 @@
       <view class="info1" color="#52a7e7">已提交审核</view>
     </view>
     <view class="baseLine">
-      <view class="line2"></view>
+      <view class="line1"></view>
     </view>
     <view class="state">
       <image mode="widthFix" src="../../../image/process1.png"></image>

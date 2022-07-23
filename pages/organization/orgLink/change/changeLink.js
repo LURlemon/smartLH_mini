@@ -7,13 +7,18 @@ Page({
    */
   data: {
     content: "",
-    wxOrgs:[]
+    wxOrgs:[],
+    isfind: Boolean,
+    isSearch: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    this.setData({
+      isfind: true
+    })
 
   },
   bindInput(e) {
@@ -24,30 +29,39 @@ Page({
 
   search: function (e) {
     var that = this;
-    wx.request({
-      url: app.globalData.baseUrl + 'WxOrg/getChangeList',
-      data: {
-        content: this.data.content
-      },
-      header: {
-        'content-type': 'application/json', // 默认值
-        'X-token': app.globalData.token
-      },
-      method: 'GET',
-      success(res) {
-        console.log(res)
-        if (res.data.data == null) {
-          that.setData({
-            isfind: true
-          })
-        } else {
-          that.setData({
-            wxOrgs: res.data.data
-          })
+    if(this.data.content != ''){
+      this.setData({
+        isSearch: true
+      })
+      wx.request({
+        url: app.globalData.baseUrl + 'WxOrg/getChangeList',
+        data: {
+          content: this.data.content,
+          id: app.globalData.wxId
+        },
+        header: {
+          'content-type': 'application/json', // 默认值
+          'X-token': app.globalData.token
+        },
+        method: 'GET',
+        success(res) {
+          console.log(res.data)
+          console.log(res.data.data.length)
+          if (res.data.data.length == 0) {
+            that.setData({
+              isfind: false
+            })
+          } else {
+            that.setData({
+              wxOrgs: res.data.data,
+              isfind: true
+            })
+          }
+  
         }
-
-      }
-    })
+      })
+    }
+    
 
   },
 

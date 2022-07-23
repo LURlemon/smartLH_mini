@@ -1,6 +1,6 @@
 <!--pages/user/userInfo/userInfo.wxml-->
 
-<mp-form-page title="个人信息填写" subtitle="请依据提示填写正确信息，并将确保您的信息安全">
+<mp-form-page wx:if="{{modify}}" title="个人信息填写" subtitle="请依据提示填写正确信息，并将确保您的信息安全">
   <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
 
   <mp-form id="form" rules="{{rules}}" models="{{formData}}">
@@ -52,10 +52,9 @@
         <input bindinput="formInputChange" data-field="subject" class="weui-input" placeholder="请输入专业" value="{{user.subject}}" />
       </mp-cell>
 
-      <mp-cell ext-class="academic">
-        <view slot="title" class="">学历</view>
+      <mp-cell ext-class="academic" title="学历">
         <picker bindchange="bindAcademicChange" value="{{academicIndex}}" range="{{academics}}">
-          <view style="margin-left: 119rpx;">{{academics[academicIndex]}}</view>
+          <view >{{academics[academicIndex]}}</view>
         </picker>
       </mp-cell>
 
@@ -103,10 +102,9 @@
         </radio-group>
       </mp-cell>
 
-      <mp-cell ext-class="politics">
-        <view slot="title" class="">政治面貌</view>
+      <mp-cell ext-class="politics" title="政治面貌">
         <picker bindchange="bindPoliticChange" value="{{politicIndex}}" range="{{politics}}">
-          <view class="select">{{politics[politicIndex]}}</view>
+          <view>{{politics[politicIndex]}}</view>
         </picker>
       </mp-cell>
 
@@ -142,7 +140,7 @@
 
       <mp-cells title="自我简介">
         <mp-cell has-header="{{false}}" has-footer="{{false}}" title="" ext-class="">
-          <textarea class="textarea" value="{{introduction}}" bindinput="bindIntroduce" placeholder="请输入文本，并点击完成结束" style="height: 3.3em" maxlength="200" auto-height />
+          <textarea class="textarea" value="{{user.introduction}}" bindinput="bindIntroduce" placeholder="请输入文本，并点击完成结束" style="height: 3.3em" maxlength="200" auto-height />
           <view class="weui-textarea-counter">{{currentWord}}/200</view>
         </mp-cell>
       </mp-cells>
@@ -174,16 +172,137 @@
     </mp-cells>
   </mp-form>
 
-  <!-- <checkbox-group slot="tips" bindchange="bindAgreeChange">
-      <label class="weui-agree">
-        <checkbox class="weui-agree__checkbox-check" />
-        <text class="weui-agree__checkbox"></text>
-        <view class="weui-agree__text">阅读并同意<navigator>《相关条款》</navigator>
-        </view>
-      </label>
-    </checkbox-group> -->
   <view slot="button">
     <button class="weui-btn" bindtap="submit">提交</button>
+  </view>
+</mp-form-page>
+
+<mp-form-page wx:if="{{!modify}}" title="个人信息">
+
+  <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+    <mp-cells title="" footer="请认真检查信息的准确性">
+
+      <mp-cell prop="username" title="姓名" ext-class="">
+        <image slot="icon" src="/image/must.png" style="width: 36rpx; height: 36rpx; position: absolute; left: 210rpx;"></image>
+        <view>{{user.name}}</view>
+      </mp-cell>
+
+      <mp-cell prop="phone" title="联系电话" ext-class="phone">
+        <image slot="icon" src="/image/must.png" style="width: 36rpx; height: 36rpx; position: absolute; left: 210rpx;"></image>
+        <view>{{user.phone}}</view>
+      </mp-cell>
+
+      
+
+      <mp-cell prop="sex" title="性别" ext-class="">
+        <image slot="icon" src="/image/must.png" style="width: 36rpx; height: 36rpx; position: absolute; left: 210rpx;"></image>
+        <view>{{user.sex}}</view>
+      </mp-cell>
+
+      <mp-cell prop="wxAccount" title="微信号" ext-class="">
+        <view>{{user.wxAccount}}</view>
+      </mp-cell>
+
+      <mp-cell prop="date" title="出生日期" ext-class="">
+        <view class="">{{user.birthday}}</view>
+      </mp-cell>
+
+      <mp-cell prop="home" title="籍贯" ext-class="">
+        <view>{{user.home}}</view>
+      </mp-cell>
+
+      <mp-cell prop="place" title="现居地" ext-class="">
+        <view>{{user.place}}</view>
+      </mp-cell>
+
+      <mp-cell prop="subject" title="专业" ext-class="">
+        <view>{{user.subject}}</view>
+      </mp-cell>
+
+      <mp-cell ext-class="academic" title="学历">
+        <view class="">{{user.academic}}</view>
+      </mp-cell>
+
+      <mp-cell ext-class="education" title="教育经历">
+        <block wx:if="{{isShow}}" wx:for="{{eduList}}" wx:key="index" wx:for-item="item">
+          <view class="input-edu" data-id="{{index}}" style="border:1px solid #e1e1e1; border-radius:10rpx; border-color: rgb(225, 234, 248); width: 92%; margin-left: 10%;">
+
+            <view class="item" style="margin:15rpx 20rpx">
+              <text class="xrequired">学校名称</text>
+              <view class="weui-input">{{item.schoolName}}</view>
+            </view>
+
+            <view class="item" style="border-bottom:1px solid #f5f5f5; margin:15rpx 20rpx">
+              <view>入学日期</view>
+              <view class="weui-input">{{item.inDate}}</view>
+            </view>
+
+            <view class="btnview">
+              <view class="item" style="border-bottom:1px solid #f5f5f5;margin:15rpx 20rpx">
+                <text class="text-color">毕业日期</text>
+                <view class="weui-input">{{item.outDate}}</view>
+              </view>
+            </view>
+
+          </view>
+        </block>
+        <view wx:if="{{!isShow}}">暂无</view>
+      </mp-cell>
+
+      <mp-cell prop="marriage" title="婚姻状况" ext-class="">
+        <view class="radiotxt">{{user.marriage}}</view>
+      </mp-cell>
+
+      <mp-cell ext-class="politics" title="政治面貌">
+        <view >{{user.politics}}</view>
+      </mp-cell>
+
+      <mp-cell prop="nation" title="民族" ext-class="">  
+        <view>{{user.nation}}</view>
+      </mp-cell>
+
+      <mp-cell prop="mailbox" title="邮箱" ext-class="">
+        <view>{{user.mailbox}}</view>
+      </mp-cell>
+
+      <mp-cell title="应届毕业生" ext-class="">
+        <view wx:if="{{isFresh}}">是</view>
+        <view wx:if="{{!isFresh}}">否</view>
+      </mp-cell>
+
+      <mp-cell prop="date" title="毕业日期" ext-class="">
+        <view>{{user.graduation}}</view>
+      </mp-cell>
+
+      <mp-cell prop="work" title="工作单位" ext-class="">
+        <view>{{user.work}}</view>
+      </mp-cell>
+
+      <mp-cell prop="post" title="职称职务" ext-class="">
+        <view>{{user.post}}</view>
+      </mp-cell>
+
+      <mp-cell prop="prize" title="获奖情况" ext-class="">
+        <view>{{user.prize}}</view>
+      </mp-cell>
+
+      <mp-cells title="自我简介">
+        <mp-cell has-header="{{false}}" has-footer="{{false}}" title="" ext-class="">
+          <view>{{user.introduction}}</view>
+        </mp-cell>
+      </mp-cells>
+
+      <mp-cells title="个人图片">
+        <mp-cell>
+          <image src="{{user.photo}}" class="photo"></image>  
+        </mp-cell>
+      </mp-cells>
+
+    </mp-cells>
+  </mp-form>
+
+  <view slot="button">
+    <button class="weui-btn" bindtap="change">编辑</button>
   </view>
 </mp-form-page>
 

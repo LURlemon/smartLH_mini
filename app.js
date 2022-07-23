@@ -25,6 +25,8 @@ App({
     baseUrl: 'http://49.51.244.95:8081/',
    // baseUrl: 'https://www.rencai.lhx.cn/',
     //baseUrl: 'https://8.134.53.211/',
+    isAudit: Number,
+    isSubmit: Number,
 
     phone: '',
     password: '123456',

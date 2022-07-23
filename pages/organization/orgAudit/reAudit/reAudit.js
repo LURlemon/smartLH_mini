@@ -30,12 +30,6 @@ Page({
 
     formData: {},
     rules: [{
-      name: 'orgname',
-      rules: {
-        required: true,
-        message: '请输入单位名称'
-      },
-    }, {
       name: 'address',
       rules: {
         required: true,
@@ -48,13 +42,10 @@ Page({
         message: '请选择单位类型'
       },
     }, {
-      rules: [{
+      rules: {
         required: true,
         message: '手机号必填'
-      }, {
-        mobile: true,
-        message: '手机号码格式不对'
-      }],
+      }
     }, {
       name: 'serialNumber',
       rules: {
@@ -114,6 +105,12 @@ Page({
           formData: res.data.data,
           ['formData.orgname']: res.data.data.name
         })
+        if(res.data.data.introduction != '' && res.data.data.introduction 
+        != null){
+          that.setData({
+            currentWord: parseInt(res.data.data.introduction.length)
+          })
+        }
       }
     })
     wx.request({
@@ -287,6 +284,7 @@ Page({
           title: '校验通过',
         })
         var organization = that.data.organization;
+        organization.audit = 0;
         console.log(organization, Object);
         wx.request({
           url: app.globalData.baseUrl + 'Organization/setOrgInfo',
@@ -301,7 +299,7 @@ Page({
             var code = res.data.code;
             if (code == 7) {
               wx.showToast({
-                title: '提交审核失败',
+                title: '提交失败',
                 duration: 2000
               })
             }

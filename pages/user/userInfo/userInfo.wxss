@@ -63,6 +63,11 @@
   height: 40px;
 }
 
+.photo{
+  width: 200rpx;
+  height: 220rpx;
+}
+
 .upButton {
   width: 40%;
   margin-left: 29%;
