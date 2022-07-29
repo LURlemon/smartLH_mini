@@ -466,8 +466,7 @@ Page({
         }
       })
     }
-
-    if(app.globalData.isAudit != 1 ){
+    else if(app.globalData.isAudit != 1 ){
       wx.showToast({
         title: '单位待创建',
         duration: 2000,
@@ -482,7 +481,7 @@ Page({
 
     if(app.globalData.orgStatus == 3){
       wx.showToast({
-        title: '待审核',
+        title: '请等待加入审核',
         duration: 2000,
         image: "/image/tips.png"
       })

@@ -111,6 +111,7 @@ Page({
               data: {
                 id: app.globalData.wxId,
                 orgId: e.currentTarget.dataset.id,
+                orgName: orgName
               },
               success(res) {
                 console.log(res.data);

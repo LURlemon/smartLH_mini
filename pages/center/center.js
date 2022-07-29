@@ -68,7 +68,7 @@ Page({
       method: 'GET',
       header: {
         'content-type': 'application/json', // 默认值
-        'X-token': wx.getStorageSync('token')
+        'X-token': app.globalData.token
       },
       data: {
         id: app.globalData.wxId,
@@ -105,10 +105,13 @@ Page({
       },
       success(res){
         console.log(res);
-        app.globalData.isAudit = res.data.data.audit
-        that.setData({
-          isAudit: res.data.data.audit
-        })
+        if(res.data.code == 6){
+          app.globalData.isAudit = res.data.data.audit
+          that.setData({
+            isAudit: res.data.data.audit
+          })
+        }
+        
       }
     })
   },
@@ -174,7 +177,7 @@ Page({
             method: 'GET',
             header: {
               'content-type': 'application/json', // 默认值
-              'X-token': wx.getStorageSync('token')
+              'X-token': app.globalData.token
             },
             data: {
               wxId: app.globalData.wxId,

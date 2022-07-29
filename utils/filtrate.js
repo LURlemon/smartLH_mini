@@ -162,7 +162,7 @@ const tabTxt = [
       },
       {
         'id': 6,
-        'text': '不限',
+        'text': '工作经验不限',
         'selected': false,
       },
       ],
