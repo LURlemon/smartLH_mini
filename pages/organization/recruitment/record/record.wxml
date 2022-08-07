@@ -4,7 +4,10 @@
 </view>
 
 <scroll-view class="box" scroll-y="true" enable-flex="true" enable-back-to-top="true" scroll-top="30">
-  <view class="item" wx:for="{{recruitments}}" wx:key="id" wx:for-item="item" bindtap="selectRec" data-id="{{item.id}}">
+  <view class="tips" wx:if="{{recruitments.length == 0}}">
+    <text>暂无发布记录</text>
+  </view>
+  <view class="item" wx:for="{{recruitments}}" wx:key="id" wx:for-item="item" bindtap="selectRec" data-id="{{item.id}}" data-title="{{item.title}}" bindlongpress="deleteRec">
     <view class="body">
       <view class="title">{{item.title}} </view>
 

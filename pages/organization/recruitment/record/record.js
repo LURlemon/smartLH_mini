@@ -7,15 +7,15 @@ Page({
    */
   data: {
 
-    swiperNav: [
-      {
+    swiperNav: [{
         tabName: '我的发布',
         cond: true
       },
       {
         tabName: '所有发布',
         cond: false
-      }],
+      }
+    ],
 
     recruitments: [],
     tips: null
@@ -44,7 +44,7 @@ Page({
           recruitments: res.data.data
         })
       }
-    })   
+    })
 
   },
 
@@ -101,12 +101,52 @@ Page({
 
   },
 
-  selectRec:function(e){
+  selectRec: function (e) {
     var recId = e.currentTarget.dataset.id;
     console.log(recId);
     wx.navigateTo({
-      url: '../modify/modify?recId='+ recId,
+      url: '../modify/modify?recId=' + recId,
     })
+  },
+
+  deleteRec: function (e) {
+    var that = this;
+    var recId = e.currentTarget.dataset.id;
+    var title = e.currentTarget.dataset.title
+    console.log(recId)
+    wx.showModal({
+      title: '删除需求信息',
+      content: "确定要删除标题为 “"+ title +"” 的人才需求信息吗？",
+      success(res) {
+        if (res.confirm) {
+          wx.request({
+            url: app.globalData.baseUrl + 'Recruitment/deleteRecruit',
+            method: 'GET',
+            header: {
+              'content-type': 'application/json', // 默认值
+              'X-token': app.globalData.token
+            },
+            data: {
+              recruitmentId: recId
+            },
+            success(res){
+              console.log(res)
+              wx.showToast({
+                title: res.data.message,
+                duration: 2000
+              })
+
+              if (that.data.swiperNav[0].cond) {
+                that.onLoad()
+              } else {
+                that.request()
+              }
+            }
+          })
+        }
+      }
+    })
+
   },
 
   /**
@@ -120,10 +160,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    if(this.data.swiperNav[0].cond){
+    if (this.data.swiperNav[0].cond) {
       this.onLoad()
-    }
-    else{
+    } else {
       this.request()
     }
   },

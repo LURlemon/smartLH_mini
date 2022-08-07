@@ -87,3 +87,14 @@
   font-size: 14px;
   color: #6988a1;
 }
+
+.tips{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400rpx;
+  color: rgb(255, 165, 0);
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #ffffff;
+}

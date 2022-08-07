@@ -6,15 +6,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    swiperNav: [
-      {
+    swiperNav: [{
         tabName: '系统通知',
         cond: true
       },
       {
         tabName: '我的消息',
         cond: false
-      }],
+      }
+    ],
 
 
     notices: [],
@@ -32,9 +32,9 @@ Page({
     this.setData({
       state: app.globalData.state
     })
-    if(app.globalData.state == 0){
+    if (app.globalData.state == 0) {
       var id = app.globalData.userId
-    }else{
+    } else {
       var id = app.globalData.wxId
     }
 
@@ -58,7 +58,7 @@ Page({
             tips: res.data.message
           })
         }
-        if(res.data.code == 6){
+        if (res.data.code == 6) {
           for (var i = 0; i < res.data.data.length; i++) {
             var notice = {
               content: res.data.data[i].content,
@@ -66,23 +66,44 @@ Page({
               title: res.data.data[i].title,
               sendTime: res.data.data[i].sendTime,
               id: res.data.data[i].id,
+              isMore: false
             }
             list = list.concat(notice);
           }
-          that.setData({
-            tips: '',
-            notices: list
-          })
+          
         }
+        that.setData({
+          tips: '',
+          notices: list
+        })
+
+        const query = wx.createSelectorQuery();
+        query.selectAll('#body').boundingClientRect(function (rects) {
+          console.log(rects)
+          for(var i=0 ; i< rects.length; i++){
+            if(rects[i].height < 130){
+              that.setData({
+                ['notices['+i+'].isMore']: false
+              })
+            }else{
+              that.setData({
+                ['notices['+i+'].isMore']: true
+              })
+            }
+          }
+        }).exec()
+    
+        console.log(that.data.notices)
       }
+
     })
   },
 
   request: function (e) {
     var that = this;
-    if(app.globalData.state == 0){
+    if (app.globalData.state == 0) {
       var id = app.globalData.userId
-    }else{
+    } else {
       var id = app.globalData.wxId
     }
     wx.request({
@@ -98,13 +119,13 @@ Page({
 
       success(res) {
         console.log(res.data)
-        if (res.data.code == 7 ) {
+        if (res.data.code == 7) {
           that.setData({
             tips: res.data.message,
             notices: []
           })
         }
-        if(res.data.code == 6){
+        if (res.data.code == 6) {
           that.setData({
             tips: '',
             notices: res.data.data
