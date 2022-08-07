@@ -1,4 +1,4 @@
-// pages/user/userInfo/userInfo.js
+// pages/organization/andInfo/andInfo.js
 var app = getApp()
 Page({
 
@@ -43,8 +43,6 @@ Page({
 
     currentWord: 0,
     introduce: "",
-
-    modify: false,
 
     user: {
       id: Number,
@@ -141,127 +139,12 @@ Page({
     }]
   },
 
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
     var that = this;
-    console.log(app.globalData.isSubmit)
 
-    if (app.globalData.isSubmit == 0) {
-      this.setData({
-        modify: true
-      })
-    } else {
-      this.setData({
-        modify: false
-      })
-    }
-
-    wx.request({
-      url: app.globalData.baseUrl + 'User/getUserById',
-      method: 'GET',
-      header: {
-        'content-type': 'application/json', // 默认值
-        'X-token': wx.getStorageSync('token')
-      },
-      data: {
-        userId: app.globalData.userId
-      },
-
-      success(res) {
-        console.log("getUserById")
-        console.log(res.data);
-        that.setData({
-          user: res.data.data,
-          formData: res.data.data,
-          ['formData.username']: res.data.data.name,
-
-        })
-        if (res.data.data.introduction != '' && res.data.data.introduction != null) {
-          that.setData({
-            currentWord: parseInt(res.data.data.introduction.length)
-          })
-        }
-
-        if (res.data.data.education != null && res.data.data.education != "") {
-          if (JSON.parse(res.data.data.education).length > 0) {
-            that.setData({
-              eduList: JSON.parse(res.data.data.education),
-              isShow: true
-            })
-          }
-        }
-
-        if (res.data.data.sex == '女') {
-          that.setData({
-            ['sex[0].checked']: true
-          })
-        }
-        if (res.data.data.sex == '男') {
-          that.setData({
-            ['sex[1].checked']: true
-          })
-        }
-
-        if (res.data.data.marriage == "未婚") {
-          that.setData({
-            ['marriage[0].checked']: true
-          })
-        }
-        if (res.data.data.marriage == "已婚") {
-          that.setData({
-            ['marriage[1].checked']: true
-          })
-        }
-
-        if (res.data.data.fresh == 1) {
-          that.setData({
-            isFresh: true
-          })
-        } else {
-          that.setData({
-            isFresh: false
-          })
-        }
-
-        if (res.data.data.birthday == '' || res.data.data.birthday == null) {
-          console.log(res.data.data.birthday)
-          that.setData({
-            ['user.birthday']: "请选择"
-          })
-        }
-
-        if (res.data.data.graduation == '' || res.data.data.graduation == null) {
-          that.setData({
-            ['user.graduation']: "请选择"
-          })
-        }
-
-        for (let i = 0; i < that.data.politics.length; i++) {
-          if (res.data.data.politics == that.data.politics[i]) {
-            console.log(res.data.data.politics)
-            that.setData({
-              politicIndex: i
-            })
-            break;
-          }
-        }
-
-
-
-        for (let i = 0; i < that.data.academics.length; i++) {
-          if (res.data.data.academic == that.data.academics[i]) {
-            console.log(res.data.data.academic)
-            that.setData({
-              academicIndex: i
-            })
-            break;
-          }
-        }
-      }
-    })
 
   },
 
@@ -276,89 +159,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    console.log(this.getTabBar(), Object)
-    if (typeof this.getTabBar === 'function' &&
-      this.getTabBar()) {
-      this.getTabBar().setData({
-        selected: 0
-      })
-    }
-    var that = this;
-    console.log(that.data.user)
-
 
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  },
-
-  getPhoneNumber(e) {
-    console.log(e, Object);
-    var ivObj = e.detail.i
-    var telObj = e.detail.encryptedData
-    var code = e.detail.code
-    var that = this;
-    wx.showToast({
-      title: '正在获取',
-      icon: 'loading',
-      duration: 2200
-    })
-    wx.request({
-      url: app.globalData.baseUrl + 'User/getPhone',
-      header: {
-        'content-type': 'application/json', // 默认值
-        'X-token': wx.getStorageSync('token')
-      },
-      data: {
-        code: code
-      },
-
-      success(res) {
-        console.log(res, Object);
-        console.log(res.data.data.phone_info.phoneNumber)
-        var phone = res.data.data.phone_info.phoneNumber;
-        that.setData({
-          ['user.phone']: phone,
-          ['formData.phone']: phone
-        })
-      }
-    })
-
-  },
-
-
   // sexinp
   radioChange: function (e) {
     // console.log('radio发生change事件，携带value值为：', e.detail.value)
@@ -376,6 +178,7 @@ Page({
       ['formData.sex']: userSex
     })
     console.log(this.data.sex);
+    console.log(e.detail.value)
     console.log(this.data.user.sex);
     console.log(userSex)
   },
@@ -440,7 +243,6 @@ Page({
     var edus = this.data.eduList;
     edus[id].inDate = e.detail.value;
 
-
     this.setData({
       eduList: edus
     })
@@ -492,7 +294,7 @@ Page({
     console.log(marriage)
     this.setData({
       ['user.marriage']: marriage,
-      [`formData.marriage`]: marriage
+      ['formData.marriage']: marriage
 
     })
     console.log(this.data.marriage);
@@ -733,7 +535,10 @@ Page({
     var user = this.data.user;
     user.academic = this.data.academic
     user.politics = this.data.politic
-    user.status = 0
+    user.status = 1
+    user.orgId = app.globalData.orgId
+    user.orgName = app.globalData.orgName
+
 
     if (user.birthday == "请选择") {
       user.birthday = '';
@@ -761,6 +566,57 @@ Page({
         wx.showToast({
           title: '校验通过'
         })
+        that.setData({
+          formData: {},
+          user: {
+            id: Number,
+            wxAccount: null,
+            name: null,
+            phone: null,
+            sex: null,
+            birthday: "请选择",
+            home: null, //籍贯
+            place: null, //现居地
+            subject: null, //专业
+            academic: "本科", //学历
+            education: null, //教育经历
+            marriage: null, //婚姻状况
+            nation: null, //民族
+            politics: "中共党员", //政治面貌
+            graduation: "请选择", //毕业时间
+            fresh: Number, //是否应届生
+            mailbox: null,
+            work: null, //现工作单位
+            post: null, //职务职称
+            prize: null, //获奖情况
+            introduction: null,
+            undergo: null, //个人经历
+            photo: null, //照片
+            submit: Number,
+            isDelete: Number,
+            status: Number
+          },
+          endTime: '请选择',
+          academicIndex: 0,
+          politicIndex: 0,
+          experienceIndex: 0,
+          content: "",
+          currentWord: 0,
+          isFresh: 0,
+
+          eduList: [],
+          isShow: false, //教育经历表单是否显示
+          eduId: 0,
+
+          imgs: [],
+          imgUrl: '',
+          isUpload: 1,
+
+          ['sex[0].checked']: false,
+          ['sex[1].checked']: false,
+          ['marriage[0].checked']: false,
+          ['marriage[1].checked']: false
+        })
 
         if (wx.pageScrollTo) {
           wx.pageScrollTo({
@@ -768,8 +624,10 @@ Page({
           })
         }
 
+
+
         wx.request({
-          url: app.globalData.baseUrl + 'User/setUserInfo',
+          url: app.globalData.baseUrl + 'WxOrg/addUser',
           method: 'POST',
           header: {
             'content-type': 'application/json', // 默认值
@@ -778,21 +636,23 @@ Page({
           data: user,
           success(res) {
             console.log(res.data);
-            app.globalData.orgName = res.data.data.name
-            app.globalData.isSubmit = res.data.data.submit;
-            that.setData({
-              modify: false
-            })
             wx.showToast({
-              title: '提交成功',
+              title: '添加成功',
+              content: res.data.message,
               duration: 2000
             })
-
             setTimeout(function () {
-              wx.switchTab({
-                url: '../../information/information',
-              })
+              // wx.switchTab({
+              //   url: '../../information/information',
+              // })
             }, 2000)
+          },
+          error(res) {
+            console.log(res.data)
+            wx.showToast({
+              title: '添加失败',
+              duration: 2000
+            })
           }
         })
       }
@@ -801,9 +661,38 @@ Page({
 
   },
 
-  change: function () {
-    this.setData({
-      modify: true
-    })
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload() {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh() {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom() {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage() {
+
   }
 })

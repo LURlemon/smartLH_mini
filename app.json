@@ -21,7 +21,8 @@
     "pages/welcome/welcome",
     "pages/user/welcome/welcome",
     "pages/organization/orgLink/change/changeLink",
-    "pages/user/center/center"
+    "pages/user/center/center",
+    "pages/organization/andInfo/andInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -66,7 +67,6 @@
         "iconPath": "/image/add.png",
         "selectedIconPath": "/image/add.png"
       }
-
     ]
   },
   "usingComponents": {

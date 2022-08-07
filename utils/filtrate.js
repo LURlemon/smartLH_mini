@@ -23,26 +23,31 @@ const tabTxt = [
         },
         {
           'id': 2,
-          'text': '高中',
+          'text': '初中',
           'selected': false,
         },
         {
           'id': 3,
-          'text': '大专',
+          'text': '高中',
           'selected': false,
         },
         {
           'id': 4,
-          'text': '本科',
+          'text': '大专',
           'selected': false,
         },
         {
           'id': 5,
-          'text': '硕士',
+          'text': '本科',
           'selected': false,
         },
         {
           'id': 6,
+          'text': '硕士',
+          'selected': false,
+        },
+        {
+          'id': 7,
           'text': '博士',
           'selected': false,
         }

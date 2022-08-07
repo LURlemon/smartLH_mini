@@ -37,7 +37,8 @@ Page({
         url: app.globalData.baseUrl + 'WxOrg/getChangeList',
         data: {
           content: this.data.content,
-          id: app.globalData.wxId
+          id: app.globalData.wxId,
+          orgId: app.globalData.orgId
         },
         header: {
           'content-type': 'application/json', // 默认值

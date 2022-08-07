@@ -22,6 +22,13 @@
       <view class="box">个人信息</view>
     </view>
 
+    <view class="item" data-url="/pages/organization/andInfo/andInfo" hover-class="search-hover" bindtap="openPage">
+      <view class="icon">
+        <image src="../../image/andinfo.png" />
+      </view>
+      <view class="box">人才信息填报</view>
+    </view>
+
     <view class="item" data-url="/pages/organization/recruitment/record/record" hover-class="search-hover" bindtap="openPage">
       <view class="icon">
         <image src="../../image/send.png" />

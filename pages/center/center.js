@@ -93,33 +93,36 @@ Page({
       }
     })
 
-    wx.request({
-      url: app.globalData.baseUrl + 'Organization/getOrgInfo',
-      method: 'GET',
-      header: {
-        'content-type': 'application/json', // 默认值
-        'X-token': app.globalData.token
-      },
-      data: {
-        orgId: app.globalData.orgId
-      },
-      success(res){
-        console.log(res);
-        if(res.data.code == 6){
-          app.globalData.isAudit = res.data.data.audit
-          that.setData({
-            isAudit: res.data.data.audit
-          })
+    if(app.globalData.orgId != 0 && app.globalData.orgId != null && app.globalData.orgId != ''){
+      wx.request({
+        url: app.globalData.baseUrl + 'Organization/getOrgInfo',
+        method: 'GET',
+        header: {
+          'content-type': 'application/json', // 默认值
+          'X-token': app.globalData.token
+        },
+        data: {
+          orgId: app.globalData.orgId
+        },
+        success(res){
+          console.log(res);
+          if(res.data.code == 6){
+            app.globalData.isAudit = res.data.data.audit
+            that.setData({
+              isAudit: res.data.data.audit
+            })
+          }
+          
         }
-        
-      }
-    })
+      })
+    }
   },
 
   openPage: function (e) {
     var url = e.currentTarget.dataset.url;
     var linkUrl = '/pages/organization/orgLink/orgLink';
     var recordUrl = '/pages/organization/recruitment/record/record';
+    var infoUrl = '/pages/organization/andInfo/andInfo'
     var that = this;
     console.log(url);
     console.log(app.globalData.orgId)
@@ -149,8 +152,21 @@ Page({
             }
           }
         })
+      } 
+      else if ((app.globalData.orgId == null || app.globalData.orgId == '' || app.globalData.orgId == 0) && url == infoUrl) {
+        wx.showModal({
+          title: '温馨提示',
+          content: '请先绑定您的单位',
+          success(res) {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: linkUrl,
+              })
+            }
+          }
+        })
       } else {
-        if (app.globalData.orgStatus == 3 && url == recordUrl) {
+        if (app.globalData.orgStatus == 3 && (url == recordUrl || url == infoUrl)) {
           wx.showToast({
             title: '请等待加入审核',
             duration: 2000,

@@ -21,10 +21,11 @@ App({
     state: Number,  //用户的身份，0为个人、1为单位
     orgStatus: 0, //是否企业管理员 1为管理员，2为普通用户，3为待审核
     orgName: "欢迎使用",
-    //baseUrl: 'https://localhost/',
-    baseUrl: 'http://49.51.244.95:8081/',
-   // baseUrl: 'https://www.rencai.lhx.cn/',
+    //baseUrl: 'https://localhost:8443/',
+    //baseUrl: 'http://49.51.244.95:8081/',
+    //baseUrl: 'https://www.rencai.lhx.cn/',
     //baseUrl: 'https://8.134.53.211/',
+    baseUrl: 'https://zhuzhibu.xiangyan.shop:8443/',
     isAudit: Number,
     isSubmit: Number,
 

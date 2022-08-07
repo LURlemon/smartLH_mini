@@ -8,7 +8,7 @@ Page({
   data: {
 
 
-    academics: ['不限', '高中', '大专', '本科', '硕士', '博士'],
+    academics: ['不限','初中', '高中', '大专', '本科', '硕士', '博士'],
     academicIndex: 0,
 
     politics: ["不限", "中共党员", "中共预备党员", "共青团员", "群众", "民革党员", "民盟盟员", "民建会员", "民进会员", "农工党党员", "致公党党", "九三学社社员", "台盟盟员", "无党派人士"],
@@ -134,6 +134,7 @@ Page({
       academicIndex: e.detail.value,
       ['recruitment.education']: academics[e.detail.value],
     })
+    console.log( academics[e.detail.value])
     console.log(this.data.recruitment.education)
   },
 
