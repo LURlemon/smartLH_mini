@@ -50,7 +50,8 @@ Page({
           console.log(res.data.data.length)
           if (res.data.data.length == 0) {
             that.setData({
-              isfind: false
+              isfind: false,
+              wxOrgs: []
             })
           } else {
             that.setData({

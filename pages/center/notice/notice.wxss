@@ -26,7 +26,7 @@
   width: 98%;
   margin-left: 1%;
   background-color: #fafafa;
-  margin-bottom: 14%;
+  margin-bottom: 30px;
 }
 
 .item {
@@ -73,12 +73,11 @@
   font-size: 15.5px;
   color: rgb(34, 34, 34);
   overflow: hidden;
+  word-break: break-all;
   text-overflow: ellipsis;
-  display: -webkit-box;
+  /* display: -webkit-box;
   -webkit-box-orient: vertical;
-  /*设置对齐模式：垂直对齐*/
-  -webkit-line-clamp: 3;
-  /*设置多行的行数*/
+  -webkit-line-clamp: 3; */
   line-height: 25px;
 }
 
@@ -104,15 +103,4 @@
 .show{
   display: block;
   line-height: 25px;
-}
-
-.tips{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 400rpx;
-  color: rgb(255, 165, 0);
-  font-size: 20px;
-  font-weight: bold;
-  background-color: #ffffff;
 }

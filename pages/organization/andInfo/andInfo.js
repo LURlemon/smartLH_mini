@@ -6,6 +6,15 @@ Page({
    * 页面的初始数据
    */
   data: {
+    swiperNav: [{
+        tabName: '人才信息添加',
+        cond: true
+      },
+      {
+        tabName: '添加记录',
+        cond: false
+      }
+    ],
 
     eduList: [],
     isShow: false, //教育经历表单是否显示
@@ -43,6 +52,9 @@ Page({
 
     currentWord: 0,
     introduce: "",
+
+    orgUsers: [], //单位添加的人才信息
+
 
     user: {
       id: Number,
@@ -148,6 +160,30 @@ Page({
 
   },
 
+
+
+  //顶部选项栏切换函数
+  swiperNav: function (e) {
+    console.log(e.currentTarget.dataset.index)
+    let index = e.currentTarget.dataset.index;
+    var arr = this.data.swiperNav;
+    for (let i = 0; i < arr.length; i++) {
+      if (i == index) {
+        arr[i].cond = true;
+      } else {
+        arr[i].cond = false;
+      }
+    }
+    this.setData({
+      swiperNav: arr
+    })
+
+    var that = this;
+    if (this.data.swiperNav[1].cond) {
+      that.request()
+    }
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -159,6 +195,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    var that = this;
+    if (this.data.swiperNav[1].cond) {
+      that.request()
+    }
 
   },
   // sexinp
@@ -659,6 +699,83 @@ Page({
     })
 
 
+  },
+
+  request: function (e) {
+    var that = this;
+    wx.request({
+      url: app.globalData.baseUrl + 'WxOrg/getUsersByOrg',
+      method: 'GET',
+      header: {
+        'content-type': 'application/json', // 默认值
+        'X-token': app.globalData.token
+      },
+      data: {
+        orgId: app.globalData.orgId
+      },
+
+      success(res) {
+        console.log(res.data)
+        if (res.data.code == 7) {
+          that.setData({
+            tips: res.data.message
+          })
+        }
+        that.setData({
+          orgUsers: res.data.data
+        })
+
+      }
+    })
+  },
+
+  bindDelete:function(e){
+    var that = this;
+    var id = e.currentTarget.dataset.id;
+    var name = e.currentTarget.dataset.name;
+    console.log(e.currentTarget.dataset)
+    wx.showModal({
+      content: '确定要删除 ' +name + ' 的信息吗？' ,
+      success(res){
+        if(res.confirm){
+          wx.request({
+            url: app.globalData.baseUrl + 'WxOrg/deleteUser',
+            method: 'GET',
+            header: {
+              'content-type': 'application/json', // 默认值
+              'X-token': app.globalData.token
+            },
+            data: {
+              userId: id
+            },
+            success(res){
+              console.log(res.data)
+              if(res.data.data == 1){
+                wx.showToast({
+                  title: '成功',
+                })
+                that.request()
+              }else{
+                wx.showToast({
+                  title: '系统繁忙',
+                })
+              }
+              
+            }
+          })
+        }
+      }
+    })
+    
+  },
+
+  bindModify:function(e){
+    var user = e.currentTarget.dataset.user
+    console.log(user)
+    user = JSON.stringify(user)
+    wx.navigateTo({
+      url: '/pages/organization/andInfo/modifyInfo/modifyInfo?user='+user,
+    })
   },
 
   /**

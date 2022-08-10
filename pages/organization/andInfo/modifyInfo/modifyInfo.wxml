@@ -1,11 +1,5 @@
-<!--pages/organization/andInfo/andInfo.wxml-->
-
-<view class='swiper-nav'>
-  <view wx:for="{{swiperNav}}" wx:key="index" class='item-nav {{item.cond ? "active" : ""}}' data-index="{{index}}" bindtap='swiperNav'>{{item.tabName}}</view>
-</view>
-
-
-<mp-form-page wx:if="{{swiperNav[0].cond}}" title="个人信息填写" subtitle="请依据提示填写正确信息，并将确保您的信息安全">
+<!--pages/organization/andInfo/modifyInfo/modifyInfo.wxml-->
+<mp-form-page title="个人信息填写" subtitle="请依据提示填写正确信息，并将确保您的信息安全">
   <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
 
   <mp-form id="form" rules="{{rules}}" models="{{formData}}">
@@ -167,7 +161,7 @@
               </view>
               <!-- 用来提示用户上传图片 -->
               <view class="imageIcon" bindtap="chooseImg" wx:if="{{isUpload}}">
-                <image class="icon" src="../../../image/add.png"></image>
+                <image class="icon" src="/image/add.png"></image>
               </view>
             </view>
           </view>
@@ -185,24 +179,3 @@
     <button class="weui-btn" bindtap="submit">提交</button>
   </view>
 </mp-form-page>
-
-<scroll-view wx:if="{{swiperNav[1].cond}}" class="box" scroll-y="true" enable-flex="true" enable-back-to-top="true" scroll-top="30">
-  <view class="tips" wx:if="{{orgUsers.length == 0}}">
-    <text>暂无添加记录</text>
-  </view>
-  <view class="item" wx:for="{{orgUsers}}" wx:key="id" wx:for-item="item" data-id="{{item.id}}" data-name="{{item.name}}" bindlongpress="deleteRec">
-    <view class="body">
-      <view class="title">姓名： {{item.name}} </view>
-
-      <view class="contentbox">
-        <view class="content">电话： {{item.phone}}</view>
-        <view class="content">现居地:  {{item.place}}</view>
-        <view class="time">提交日期：{{item.addTime}}</view>
-      </view>
-    </view>
-    <view class="option">
-      <view class="modify" bindtap="bindModify" data-id="{{item.id}}" data-user="{{item}}">编辑</view>
-      <view class="delete" bindtap="bindDelete" data-id="{{item.id}}" data-name="{{item.name}}">删除</view>
-    </view>
-  </view>
-</scroll-view>

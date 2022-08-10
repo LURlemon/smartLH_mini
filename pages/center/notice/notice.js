@@ -77,21 +77,21 @@ Page({
           notices: list
         })
 
-        const query = wx.createSelectorQuery();
-        query.selectAll('#body').boundingClientRect(function (rects) {
-          console.log(rects)
-          for(var i=0 ; i< rects.length; i++){
-            if(rects[i].height < 130){
-              that.setData({
-                ['notices['+i+'].isMore']: false
-              })
-            }else{
-              that.setData({
-                ['notices['+i+'].isMore']: true
-              })
-            }
-          }
-        }).exec()
+        // const query = wx.createSelectorQuery();
+        // query.selectAll('#body').boundingClientRect(function (rects) {
+        //   console.log(rects)
+        //   for(var i=0 ; i< rects.length; i++){
+        //     if(rects[i].height < 130){
+        //       that.setData({
+        //         ['notices['+i+'].isMore']: false
+        //       })
+        //     }else{
+        //       that.setData({
+        //         ['notices['+i+'].isMore']: true
+        //       })
+        //     }
+        //   }
+        // }).exec()
     
         console.log(that.data.notices)
       }

@@ -22,7 +22,8 @@
     "pages/user/welcome/welcome",
     "pages/organization/orgLink/change/changeLink",
     "pages/user/center/center",
-    "pages/organization/andInfo/andInfo"
+    "pages/organization/andInfo/andInfo",
+    "pages/organization/andInfo/modifyInfo/modifyInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -14,10 +14,14 @@
 
       <view class="contentbox">
         <view class="content {{item.isF?'show':'hide'}}">
-          <rich-text nodes="{{item.content}}"></rich-text>
+          <rich-text nodes="{{'\r'+item.content}}"></rich-text>
         </view>
-        <view wx:if="{{item.isMore}}" bindtap="change" class="state" data-index="{{index}}">{{item.isF ?'收起':'展开'}}</view>
+        <!-- <view class="content {{item.isF?'show':'hide'}}">
+          <rich-text nodes="{{'\r'+item.content}}"></rich-text>
+        </view>
+        <view  bindtap="change" class="state" data-index="{{index}}">{{item.isF ?'收起':'展开'}}</view> -->
       </view>
+      
 
       <view class="time">{{item.sendTime}}</view>
     </view>
