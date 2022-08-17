@@ -1,5 +1,5 @@
 {
   "usingComponents": {
-    
+    "mp-html": "/pages/components/mp-html/index"
   }
 }

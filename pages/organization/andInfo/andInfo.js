@@ -48,6 +48,10 @@ Page({
     politicIndex: 0,
     politic: null,
 
+    types: ['请选择', '党政人才', '企业经营管理人才', '专业技术人才', '高技能人才', '农村实用人才', '社会工作人才'],
+    typeIndex: 0,
+    type: null,
+
     isFresh: 0,
 
     currentWord: 0,
@@ -82,7 +86,8 @@ Page({
       photo: null, //照片
       submit: Number,
       isDelete: Number,
-      status: Number
+      status: Number,
+      detail: null
     },
 
     formData: {},
@@ -131,6 +136,12 @@ Page({
       rules: {
         required: true,
         message: '请选择学历'
+      },
+    },{
+      name: 'type',
+      rules: {
+        required: true,
+        message: '请选择人才类别'
       },
     }, {
       name: 'politics',
@@ -196,8 +207,9 @@ Page({
    */
   onShow() {
     var that = this;
+    console.log(this.data.swiperNav[1].cond)
     if (this.data.swiperNav[1].cond) {
-      that.request()
+      this.request()
     }
 
   },
@@ -254,6 +266,30 @@ Page({
     console.log(academics[e.detail.value])
     console.log(this.data.user.academic)
     console.log(this.data.academic)
+  },
+
+  bindTypeChange: function (e) {
+    console.log(e.detail.value)
+    var types = this.data.types;
+    console.log(types)
+    if (types[e.detail.value] == '请选择') {
+      this.setData({
+        typeIndex: e.detail.value,
+        ['user.detail']: null,
+        ['formData.type']: null,
+      })
+      return;
+    }
+
+    this.setData({
+      typeIndex: e.detail.value,
+      ['user.detail']: types[e.detail.value],
+      ['formData.type']: e.detail.value,
+      type: types[e.detail.value]
+    })
+    console.log(types[e.detail.value])
+    console.log(this.data.user.detail)
+    console.log(this.data.type)
   },
 
 
@@ -570,7 +606,6 @@ Page({
     var edusStr = JSON.stringify(this.data.eduList);
     this.setData({
       ['user.education']: edusStr,
-      ['user.id']: app.globalData.userId
     })
     var user = this.data.user;
     user.academic = this.data.academic
@@ -589,6 +624,9 @@ Page({
     if (user.academic == "请选择") {
       user.academic = '';
     }
+    if (user.detail == "请选择") {
+      user.detail = '';
+    }
     console.log(user, Object);
 
 
@@ -606,65 +644,12 @@ Page({
         wx.showToast({
           title: '校验通过'
         })
-        that.setData({
-          formData: {},
-          user: {
-            id: Number,
-            wxAccount: null,
-            name: null,
-            phone: null,
-            sex: null,
-            birthday: "请选择",
-            home: null, //籍贯
-            place: null, //现居地
-            subject: null, //专业
-            academic: "本科", //学历
-            education: null, //教育经历
-            marriage: null, //婚姻状况
-            nation: null, //民族
-            politics: "中共党员", //政治面貌
-            graduation: "请选择", //毕业时间
-            fresh: Number, //是否应届生
-            mailbox: null,
-            work: null, //现工作单位
-            post: null, //职务职称
-            prize: null, //获奖情况
-            introduction: null,
-            undergo: null, //个人经历
-            photo: null, //照片
-            submit: Number,
-            isDelete: Number,
-            status: Number
-          },
-          endTime: '请选择',
-          academicIndex: 0,
-          politicIndex: 0,
-          experienceIndex: 0,
-          content: "",
-          currentWord: 0,
-          isFresh: 0,
-
-          eduList: [],
-          isShow: false, //教育经历表单是否显示
-          eduId: 0,
-
-          imgs: [],
-          imgUrl: '',
-          isUpload: 1,
-
-          ['sex[0].checked']: false,
-          ['sex[1].checked']: false,
-          ['marriage[0].checked']: false,
-          ['marriage[1].checked']: false
-        })
 
         if (wx.pageScrollTo) {
           wx.pageScrollTo({
             scrollTop: 0
           })
         }
-
-
 
         wx.request({
           url: app.globalData.baseUrl + 'WxOrg/addUser',
@@ -677,15 +662,70 @@ Page({
           success(res) {
             console.log(res.data);
             wx.showToast({
-              title: '添加成功',
-              content: res.data.message,
+              icon: 'none',
+              title: res.data.message,
               duration: 2000
             })
-            setTimeout(function () {
-              // wx.switchTab({
-              //   url: '../../information/information',
-              // })
-            }, 2000)
+            if (res.data.message == '成功') {
+              that.setData({
+                formData: {},
+                user: {
+                  id: Number,
+                  wxAccount: null,
+                  name: null,
+                  phone: null,
+                  sex: null,
+                  birthday: "请选择",
+                  home: null, //籍贯
+                  place: null, //现居地
+                  subject: null, //专业
+                  academic: "本科", //学历
+                  education: null, //教育经历
+                  marriage: null, //婚姻状况
+                  nation: null, //民族
+                  politics: "中共党员", //政治面貌
+                  graduation: "请选择", //毕业时间
+                  fresh: Number, //是否应届生
+                  mailbox: null,
+                  work: null, //现工作单位
+                  post: null, //职务职称
+                  prize: null, //获奖情况
+                  introduction: null,
+                  undergo: null, //个人经历
+                  photo: null, //照片
+                  submit: Number,
+                  isDelete: Number,
+                  status: Number,
+                  detail: null
+                },
+                endTime: '请选择',
+                academicIndex: 0,
+                politicIndex: 0,
+                experienceIndex: 0,
+                content: "",
+                currentWord: 0,
+                isFresh: 0,
+
+                eduList: [],
+                isShow: false, //教育经历表单是否显示
+                eduId: 0,
+
+                imgs: [],
+                imgUrl: '',
+                isUpload: 1,
+
+                ['sex[0].checked']: false,
+                ['sex[1].checked']: false,
+                ['marriage[0].checked']: false,
+                ['marriage[1].checked']: false
+              })
+              setTimeout(function () {
+                // wx.switchTab({
+                //   url: '../../information/information',
+                // })
+              }, 2000)
+            }
+
           },
           error(res) {
             console.log(res.data)
@@ -729,15 +769,15 @@ Page({
     })
   },
 
-  bindDelete:function(e){
+  bindDelete: function (e) {
     var that = this;
     var id = e.currentTarget.dataset.id;
     var name = e.currentTarget.dataset.name;
     console.log(e.currentTarget.dataset)
     wx.showModal({
-      content: '确定要删除 ' +name + ' 的信息吗？' ,
-      success(res){
-        if(res.confirm){
+      content: '确定要删除 ' + name + ' 的信息吗？',
+      success(res) {
+        if (res.confirm) {
           wx.request({
             url: app.globalData.baseUrl + 'WxOrg/deleteUser',
             method: 'GET',
@@ -748,33 +788,33 @@ Page({
             data: {
               userId: id
             },
-            success(res){
+            success(res) {
               console.log(res.data)
-              if(res.data.data == 1){
+              if (res.data.data == 1) {
                 wx.showToast({
                   title: '成功',
                 })
                 that.request()
-              }else{
+              } else {
                 wx.showToast({
                   title: '系统繁忙',
                 })
               }
-              
+
             }
           })
         }
       }
     })
-    
+
   },
 
-  bindModify:function(e){
+  bindModify: function (e) {
     var user = e.currentTarget.dataset.user
     console.log(user)
     user = JSON.stringify(user)
     wx.navigateTo({
-      url: '/pages/organization/andInfo/modifyInfo/modifyInfo?user='+user,
+      url: '/pages/organization/andInfo/modifyInfo/modifyInfo?user=' + user,
     })
   },
 

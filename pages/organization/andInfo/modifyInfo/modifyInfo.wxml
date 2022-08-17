@@ -60,6 +60,14 @@
         </picker>
       </mp-cell>
 
+      <mp-cell ext-class="type" title="人才类别">
+        <image slot="icon" src="/image/must.png" style="width: 36rpx; height: 36rpx; position: absolute; left: 210rpx;"></image>
+        <picker bindchange="bindTypeChange" value="{{typeIndex}}" range="{{types}}">
+          <view>{{types[typeIndex]}}</view>
+        </picker>
+      </mp-cell>
+
+
       <mp-cell ext-class="education">
         <view slot="title">教育经历</view>
         <block wx:if="{{isShow}}" wx:for="{{eduList}}" wx:key="index" wx:for-item="item">

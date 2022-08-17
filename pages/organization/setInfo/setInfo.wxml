@@ -30,11 +30,11 @@
       </mp-cell>
 
 
-      <mp-cell prop="introduction" title="单位介绍" ext-class=""></mp-cell>
+      <!-- <mp-cell prop="introduction" title="单位介绍" ext-class=""></mp-cell>
       <mp-cell has-header="{{false}}" has-footer="{{false}}" title="" ext-class="">
         <textarea class="textarea" value="{{organization.introduction}}" bindinput="bindContent" placeholder="请输入该单位的简单介绍" style="height: 3.3em" maxlength="200" auto-height />
         <view class="weui-textarea-counter">{{currentWord}}/200</view>
-      </mp-cell>
+      </mp-cell> -->
 
 
     </mp-cells>

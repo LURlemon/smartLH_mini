@@ -59,44 +59,56 @@ Page({
           })
         }
         if (res.data.code == 6) {
-          for (var i = 0; i < res.data.data.length; i++) {
-            var notice = {
-              content: res.data.data[i].content,
-              isF: false,
-              title: res.data.data[i].title,
-              sendTime: res.data.data[i].sendTime,
-              id: res.data.data[i].id,
-              isMore: false
+          console.log(res.data.data)
+          if (res.data.data.length > 0) {
+            for (var i = 0; i < res.data.data.length; i++) {
+              var notice = {
+                content: res.data.data[i].content,
+                isF: false,
+                title: res.data.data[i].title,
+                sendTime: res.data.data[i].sendTime,
+                index: res.data.data[i].id,
+                isMore: false
+              }
+              list = list.concat(notice);
             }
-            list = list.concat(notice);
+
           }
-          
+          that.setData({
+            tips: '',
+            notices: list
+          })
+
+          // const query = wx.createSelectorQuery();
+          // query.selectAll('#body').boundingClientRect(function (rects) {
+          //   console.log(rects)
+          //   for(var i=0 ; i< rects.length; i++){
+          //     if(rects[i].height < 130){
+          //       that.setData({
+          //         ['notices['+i+'].isMore']: false
+          //       })
+          //     }else{
+          //       that.setData({
+          //         ['notices['+i+'].isMore']: true
+          //       })
+          //     }
+          //   }
+          // }).exec()
+
+          console.log(list)
         }
-        that.setData({
-          tips: '',
-          notices: list
-        })
-
-        // const query = wx.createSelectorQuery();
-        // query.selectAll('#body').boundingClientRect(function (rects) {
-        //   console.log(rects)
-        //   for(var i=0 ; i< rects.length; i++){
-        //     if(rects[i].height < 130){
-        //       that.setData({
-        //         ['notices['+i+'].isMore']: false
-        //       })
-        //     }else{
-        //       that.setData({
-        //         ['notices['+i+'].isMore']: true
-        //       })
-        //     }
-        //   }
-        // }).exec()
-    
-        console.log(that.data.notices)
       }
-
     })
+  },
+
+  linktap: function (e) {
+    console.log(e.detail.href)
+    if (e.detail.href.includes('.com')) {
+      // 跳转到 webview
+      wx.navigateTo({
+        url: '../../web-view/web-view?url=' + e.detail.href,
+      })
+    }
   },
 
   request: function (e) {

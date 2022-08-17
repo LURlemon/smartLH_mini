@@ -21,7 +21,7 @@
       </mp-cell>
 
       <mp-cell prop="phone" title="联系电话" ext-class="">
-        <input bindinput="formInputChange" data-field="phone" class="weui-input" placeholder="请输入联系电话" />
+        <input bindinput="formInputChange" data-field="phone" class="weui-input" maxlength="11" placeholder="请输入联系电话" />
       </mp-cell>
 
       <mp-cell prop="serialNumber" title="机构代码" ext-class="">
@@ -29,36 +29,36 @@
       </mp-cell>
 
 
-      <mp-cell prop="introduction" title="单位介绍" ext-class=""></mp-cell>
+      <!-- <mp-cell prop="introduction" title="单位介绍" ext-class=""></mp-cell>
       <mp-cell has-header="{{false}}" has-footer="{{false}}" title="" ext-class="">
         <textarea class="textarea" value="{{introduction}}" bindinput="bindContent" placeholder="请输入该单位的简单介绍" style="height: 3.3em" maxlength="200" auto-height />
         <view class="weui-textarea-counter">{{currentWord}}/200</view>
-      </mp-cell>
+      </mp-cell> -->
 
-      <mp-cell prop="material" title="审核材料" ext-class=""></mp-cell>
+      <!-- <mp-cell prop="material" title="审核材料" ext-class=""></mp-cell>
       <mp-cells title="上传单位营业执照（小于10MB）">
         <mp-cell>
-          <view slot="title"></view>
+          <view slot="title"></view> -->
           <!-- 打开截图 开始 -->
-          <view class="imageContainer">
+          <!-- <view class="imageContainer">
             <view class="imageFrame">
               <view class="imageSingle" wx:for="{{imgs}}" wx:for-item="item" wx:key="*this">
                 <image class="imagePic" src="{{item}}" data-index="{{index}}" mode="aspectFill" bindtap="previewImg">
                   <icon type="cancel" class="imageRemove" data-index="{{index}}" catchtap="deleteImg"></icon>
                 </image>
-              </view>
+              </view> -->
               <!-- 用来提示用户上传图片 -->
-              <view class="imageIcon" bindtap="chooseImg" wx:if="{{isUpload}}">
+              <!-- <view class="imageIcon" bindtap="chooseImg" wx:if="{{isUpload}}">
                 <image class="icon" src="../../../image/add.png"></image>
               </view>
             </view>
           </view>
           <view class="upButton" wx:if="{{!isUpload}}">
             <button type="default" bindtap="upload">上传</button>
-          </view>
+          </view> -->
           <!-- 打开截图 结束 -->
-        </mp-cell>
-      </mp-cells>
+        <!-- </mp-cell>
+      </mp-cells> -->
 
 
     </mp-cells>

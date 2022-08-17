@@ -39,6 +39,10 @@ Page({
     politicIndex: 0,
     politic: null,
 
+    types: ['请选择', '党政人才', '企业经营管理人才', '专业技术人才', '高技能人才', '农村实用人才', '社会工作人才'],
+    typeIndex: 0,
+    type: null,
+
     isFresh: 0,
 
     currentWord: 0,
@@ -93,6 +97,12 @@ Page({
         message: '请选择学历'
       },
     }, {
+      name: 'type',
+      rules: {
+        required: true,
+        message: '请选择人才类别'
+      },
+    },{
       name: 'politics',
       rules: {
         required: true,
@@ -197,13 +207,21 @@ Page({
       }
     }
 
-
-
     for (let i = 0; i < that.data.academics.length; i++) {
       if (user.academic == that.data.academics[i]) {
         console.log(user.academic)
         that.setData({
           academicIndex: i
+        })
+        break;
+      }
+    }
+
+    for (let i = 0; i < that.data.types.length; i++) {
+      if (user.detail == that.data.types[i]) {
+        console.log(user.detail)
+        that.setData({
+          typeIndex: i
         })
         break;
       }
@@ -264,6 +282,30 @@ Page({
     console.log(academics[e.detail.value])
     console.log(this.data.user.academic)
     console.log(this.data.academic)
+  },
+
+  bindTypeChange: function (e) {
+    console.log(e.detail.value)
+    var types = this.data.types;
+    console.log(types)
+    if (types[e.detail.value] == '请选择') {
+      this.setData({
+        typeIndex: e.detail.value,
+        ['user.detail']: null,
+        ['formData.type']: null,
+      })
+      return;
+    }
+
+    this.setData({
+      typeIndex: e.detail.value,
+      ['user.detail']: types[e.detail.value],
+      ['formData.type']: e.detail.value,
+      type: types[e.detail.value]
+    })
+    console.log(types[e.detail.value])
+    console.log(this.data.user.detail)
+    console.log(this.data.type)
   },
 
 
@@ -581,7 +623,6 @@ Page({
     var edusStr = JSON.stringify(this.data.eduList);
     this.setData({
       ['user.education']: edusStr,
-      ['user.id']: app.globalData.userId
     })
     var user = this.data.user;
     user.academic = this.data.academic
@@ -600,6 +641,9 @@ Page({
     }
     if (user.academic == "请选择") {
       user.academic = '';
+    }
+    if (user.detail == "请选择") {
+      user.detail = '';
     }
     console.log(user, Object);
 

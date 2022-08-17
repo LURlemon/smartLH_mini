@@ -49,21 +49,9 @@ Page({
     }, {
       name: 'serialNumber',
       rules: {
-        required: true,
+        required: false,
         message: '请输入统一社会信用代码'
-      },
-    }, {
-      name: 'introduction',
-      rules: {
-        required: true,
-        message: '请输入单位介绍'
-      },
-    }, {
-      name: 'material',
-      rules: {
-        required: true,
-        message: '请上传证明材料'
-      },
+      }
     }]
 
 

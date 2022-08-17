@@ -23,7 +23,8 @@
     "pages/organization/orgLink/change/changeLink",
     "pages/user/center/center",
     "pages/organization/andInfo/andInfo",
-    "pages/organization/andInfo/modifyInfo/modifyInfo"
+    "pages/organization/andInfo/modifyInfo/modifyInfo",
+    "pages/web-view/web-view"
   ],
   "window": {
     "backgroundTextStyle": "light",
