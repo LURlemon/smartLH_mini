@@ -23,9 +23,9 @@ App({
     orgName: "欢迎使用",
     //baseUrl: 'https://localhost:8443/',
     //baseUrl: 'http://49.51.244.95:8081/',
-    //baseUrl: 'https://www.rencai.lhx.cn:8443/',
-    //baseUrl: 'https://8.134.53.211/',
-    baseUrl: 'https://zhuzhibu.xiangyan.shop:8443/',
+    baseUrl: 'https://www.lhxwzzb.cn:8443/',
+    //baseUrl: 'https://8.134.53.211:8443/',
+    //baseUrl: 'https://zhuzhibu.xiangyan.shop:8443/',
     isAudit: Number,
     isSubmit: Number,
 
@@ -40,5 +40,4 @@ App({
     token: wx.getStorageSync('token')
   
   },
-
 })

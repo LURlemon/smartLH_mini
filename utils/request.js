@@ -1,7 +1,7 @@
 export default (url, data = {}, header) => {
   return new Promise((resolve, reject) => {
     wx.request({
-      url: 'https://zhuzhibu.xiangyan.shop:8443' + url,
+      url: 'https://www.lhxwzzb.cn:8443' + url,
       data,
       method: 'GET',
       header,
