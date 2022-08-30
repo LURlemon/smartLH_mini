@@ -22,7 +22,7 @@ Page({
     contentWord: 0,
     remark: "",
     remarkWord: 0,
-    
+
     salaryFloor: 0,
     salaryCell: 0,
 
@@ -33,9 +33,9 @@ Page({
       subject: null, //专业
       fresh: null, //是否要求应届生
       age: null, //最高年龄需求
-      education: "本科", //最低学历要求
+      education: "不限", //最低学历要求
       place: null, //工作地
-      politics: "中共党员", //政治面貌
+      politics: "不限", //政治面貌
       endTime: null, //截止日期
       salaryFloor: null, //薪资上限
       salaryCell: null, //薪资下限
@@ -43,7 +43,7 @@ Page({
       title: null,
       view: 0, //访问量
       remark: null, //备注
-      experience: null, //工作经验
+      experience: "工作经验不限", //工作经验
       wxOrgId: app.globalData.wxId,
       orgId: app.globalData.orgId
     },
@@ -51,48 +51,84 @@ Page({
     formData: {},
     rules: [{
       name: 'title',
-      rules: { required: true, message: '请输入标题' },
+      rules: {
+        required: true,
+        message: '请输入标题'
+      },
     }, {
       name: 'position',
-      rules: { required: true, message: '请输入岗位名称' },
+      rules: {
+        required: true,
+        message: '请输入岗位名称'
+      },
     }, {
       name: 'content',
-      rules: { required: true, message: '请输入岗位职责' },
-    },{
+      rules: {
+        required: true,
+        message: '请输入岗位职责'
+      },
+    }, {
       name: 'number',
-      rules: { required: true, message: '请输入人数要求' },
+      rules: {
+        required: true,
+        message: '请输入人数要求'
+      },
     }, {
       name: 'subject',
-      rules: { required: true, message: '请输入专业' },
+      rules: {
+        required: true,
+        message: '请输入专业'
+      },
     }, {
       name: 'fresh',
-      rules: { required: true, message: '请输入招聘对象' },
-    },{
+      rules: {
+        required: true,
+        message: '请输入招聘对象'
+      },
+    }, {
       name: 'age',
-      rules: { required: true, message: '请输入年龄要求' },
+      rules: {
+        required: true,
+        message: '请输入年龄要求'
+      },
     }, {
       name: 'place',
-      rules: { required: true, message: '请输入工作地点' },
+      rules: {
+        required: true,
+        message: '请输入工作地点'
+      },
     }, {
       name: 'date',
-      rules: { required: true, message: '请选择截止日期' },
+      rules: {
+        required: true,
+        message: '请选择截止日期'
+      },
     }, {
       name: 'salaryFloor',
-      rules: { required: true, message: '请输入工资上限' },
+      rules: {
+        required: true,
+        message: '请输入工资上限'
+      },
     }, {
       name: 'salaryCell',
-      rules: { required: true, message: '请输入工资下限' },
+      rules: {
+        required: true,
+        message: '请输入工资下限'
+      },
     }, {
       name: 'remark',
-      rules: { required: true, message: '请填写岗位要求' },
+      rules: {
+        required: true,
+        message: '请填写岗位要求'
+      },
     }]
 
   },
 
 
   /**
-  * 生命周期函数--监听页面加载
-  */
+   * 生命周期函数--监听页面加载
+   */
   onLoad(options) {
     var that = this;
     console.log(options);
@@ -267,29 +303,34 @@ Page({
           ['formData.fresh']: content
         })
         break;
+      case "includeOrg":
+        that.setData({
+          ['recruitment.includeOrg']: content,
+        })
+        break;
     }
     console.log(this.data.recruitment, Object)
   },
 
 
-  bindSalary:function(e){
-    
+  bindSalary: function (e) {
+
     var type = e.currentTarget.dataset.field;
     var content = e.detail.value;
     console.log("输入类别：" + type)
     var that = this;
     console.log(content)
-    
-    switch(type){
+
+    switch (type) {
       case "salaryCell":
         console.log(that.data.salaryFloor)
-        if(content - that.data.salaryFloor > 0){
+        if (content - that.data.salaryFloor > 0) {
           that.setData({
             ['recruitment.salaryCell']: content,
             ['formData.salaryCell']: content,
             salaryCell: content
           })
-        }else{
+        } else {
           wx.showToast({
             title: '注意薪资范围',
             image: '/image/tips.png'
@@ -299,13 +340,13 @@ Page({
         break;
       case "salaryFloor":
         console.log(that.data.salaryCell)
-        if(content - that.data.salaryCell < 0){
+        if (content - that.data.salaryCell < 0) {
           that.setData({
             ['recruitment.salaryFloor']: content,
             ['formData.salaryFloor']: content,
             salaryFloor: content
           })
-        }else{
+        } else {
           wx.showToast({
             title: '注意薪资范围',
             image: '/image/tips.png'
@@ -327,8 +368,7 @@ Page({
           })
 
         }
-      } 
-      else {
+      } else {
         wx.showToast({
           title: '校验通过',
         })
@@ -340,7 +380,7 @@ Page({
           recruitment.endTime = '';
         }
         console.log(recruitment, Object);
-    
+
         wx.request({
           url: app.globalData.baseUrl + 'Recruitment/setRecruitInfo',
           method: 'POST',
@@ -360,19 +400,19 @@ Page({
           }
         })
         setTimeout(function () {
-          
-          let pages = getCurrentPages();   //获取小程序页面栈
-          let beforePage = pages[pages.length - 2];  //获取上个页面的实例对象
+
+          let pages = getCurrentPages(); //获取小程序页面栈
+          let beforePage = pages[pages.length - 2]; //获取上个页面的实例对象
           console.log(beforePage)
           wx.navigateBack({
             delta: 1
           })
-    
+
         }, 2000)
       }
     })
 
-    
+
   },
 
 

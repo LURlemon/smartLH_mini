@@ -8,7 +8,7 @@ Page({
   data: {
 
 
-    academics: ['不限','初中', '高中', '大专', '本科', '硕士', '博士'],
+    academics: ['不限', '初中', '高中', '大专', '本科', '硕士', '博士'],
     academicIndex: 0,
 
     politics: ["不限", "中共党员", "中共预备党员", "共青团员", "群众", "民革党员", "民盟盟员", "民建会员", "民进会员", "农工党党员", "致公党党", "九三学社社员", "台盟盟员", "无党派人士"],
@@ -34,9 +34,9 @@ Page({
       subject: null, //专业
       fresh: null, //是否要求应届生
       age: null, //最高年龄需求
-      education: "本科", //最低学历要求
+      education: "不限", //最低学历要求
       place: null, //工作地
-      politics: "中共党员", //政治面貌
+      politics: "不限", //政治面貌
       endTime: null, //截止日期
       salaryFloor: null, //薪资上限
       salaryCell: null, //薪资下限
@@ -117,13 +117,18 @@ Page({
         message: '请输入工资下限'
       },
     }, {
+      name: 'experience',
+      rules: {
+        required: true,
+        message: '请选择工作经验要求'
+      },
+    }, {
       name: 'remark',
       rules: {
         required: true,
         message: '请填写岗位要求'
       },
     }]
-
   },
 
   bindEducationChange: function (e) {
@@ -134,7 +139,7 @@ Page({
       academicIndex: e.detail.value,
       ['recruitment.education']: academics[e.detail.value],
     })
-    console.log( academics[e.detail.value])
+    console.log(academics[e.detail.value])
     console.log(this.data.recruitment.education)
   },
 
@@ -180,7 +185,8 @@ Page({
     console.log(experience)
     this.setData({
       experienceIndex: e.detail.value,
-      ['recruitment.experience']: experience[e.detail.value]
+      ['recruitment.experience']: experience[e.detail.value],
+      ['formData.experience']: experience[e.detail.value]
     })
     console.log(this.data.recruitment.experience)
   },
@@ -247,34 +253,39 @@ Page({
         })
         break;
 
-        case "fresh":
+      case "fresh":
         that.setData({
           ['recruitment.fresh']: content,
           ['formData.fresh']: content
+        })
+        break;
+      case "includeOrg":
+        that.setData({
+          ['recruitment.includeOrg']: content,
         })
         break;
     }
     console.log(this.data.recruitment, Object)
   },
 
-  bindSalary:function(e){
-    
+  bindSalary: function (e) {
+
     var type = e.currentTarget.dataset.field;
     var content = e.detail.value;
     console.log("输入类别：" + type)
     var that = this;
     console.log(content)
-    
-    switch(type){
+
+    switch (type) {
       case "salaryCell":
         console.log(that.data.salaryFloor)
-        if(content - that.data.salaryFloor > 0){
+        if (content - that.data.salaryFloor > 0) {
           that.setData({
             ['recruitment.salaryCell']: content,
             ['formData.salaryCell']: content,
             salaryCell: content
           })
-        }else{
+        } else {
           wx.showToast({
             title: '注意薪资范围',
             image: '/image/tips.png'
@@ -284,13 +295,13 @@ Page({
         break;
       case "salaryFloor":
         console.log(that.data.salaryCell)
-        if(content - that.data.salaryCell < 0){
+        if (content - that.data.salaryCell < 0) {
           that.setData({
             ['recruitment.salaryFloor']: content,
             ['formData.salaryFloor']: content,
             salaryFloor: content
           })
-        }else{
+        } else {
           wx.showToast({
             title: '注意薪资范围',
             image: '/image/tips.png'
@@ -316,15 +327,14 @@ Page({
           }
         }
       })
-    }else if(app.globalData.orgStatus == 3){
+    } else if (app.globalData.orgStatus == 3) {
       wx.showToast({
         title: '请等待您的加入申请通过',
         duration: 2000,
         image: "/image/tips.png"
       })
 
-    }
-    else{
+    } else {
       that.selectComponent('#form').validate((valid, errors) => {
         console.log('valid', valid, errors);
         if (!valid) {
@@ -333,7 +343,7 @@ Page({
             that.setData({
               error: errors[firstError[0]].message
             })
-  
+
           }
         } else {
           wx.showToast({
@@ -344,7 +354,7 @@ Page({
             recruitment.endTime = '';
           }
           console.log(recruitment, Object);
-  
+
           wx.request({
             url: app.globalData.baseUrl + 'Recruitment/addRecruitment',
             method: 'POST',
@@ -369,9 +379,9 @@ Page({
                   ['recruitment.subject']: null, //专业
                   ['recruitment.fresh']: null, //是否要求应届生
                   ['recruitment.age']: null, //最高年龄需求
-                  ['recruitment.education']: "本科", //最低学历要求
+                  ['recruitment.education']: "不限", //最低学历要求
                   ['recruitment.place']: null, //工作地
-                  ['recruitment.politics']: "中共党员", //政治面貌
+                  ['recruitment.politics']: "不限", //政治面貌
                   ['recruitment.endTime']: null, //截止日期
                   ['recruitment.salaryFloor']: null, //薪资上限
                   ['recruitment.salaryCell']: null, //薪资下限
@@ -390,7 +400,7 @@ Page({
                   remark: "",
                   remarkWord: 0,
                 })
-                setTimeout(function(){
+                setTimeout(function () {
                   wx.switchTab({
                     url: '/pages/information/information',
                   }, 2000)
@@ -398,7 +408,7 @@ Page({
               }
             }
           })
-  
+
         }
       })
     }
@@ -410,11 +420,11 @@ Page({
   onLoad(options) {
     console.log('onload')
     console.log(app.globalData.state),
-    this.setData({
-      ['recruitment.orgName']: app.globalData.orgName,
-      ['recruitment.wxOrgId']: app.globalData.wxId,
-      ['recruitment.orgId']: app.globalData.orgId
-    })
+      this.setData({
+        ['recruitment.orgName']: app.globalData.orgName,
+        ['recruitment.wxOrgId']: app.globalData.wxId,
+        ['recruitment.orgId']: app.globalData.orgId
+      })
   },
 
   /**
@@ -453,8 +463,7 @@ Page({
           }
         }
       })
-    }
-    else if (app.globalData.orgId == '' || app.globalData.orgId == null || app.globalData.orgId == 0 || app.globalData.orgStatus == 4 || app.globalData.orgStatus == 0) {
+    } else if (app.globalData.orgId == '' || app.globalData.orgId == null || app.globalData.orgId == 0 || app.globalData.orgStatus == 4 || app.globalData.orgStatus == 0) {
       wx.showModal({
         title: '温馨提示',
         content: '请先绑定您的单位',
@@ -466,27 +475,26 @@ Page({
           }
         }
       })
-    }
-    else if(app.globalData.isAudit != 1 ){
+    } else if (app.globalData.isAudit != 1) {
       wx.showToast({
         title: '单位待创建',
         duration: 2000,
         image: "/image/tips.png"
       })
-      setTimeout(function() {
+      setTimeout(function () {
         wx.switchTab({
           url: '/pages/center/center',
         })
       }, 2000)
     }
 
-    if(app.globalData.orgStatus == 3){
+    if (app.globalData.orgStatus == 3) {
       wx.showToast({
         title: '请等待加入审核',
         duration: 2000,
         image: "/image/tips.png"
       })
-      setTimeout(function() {
+      setTimeout(function () {
         wx.switchTab({
           url: '/pages/center/center',
         })

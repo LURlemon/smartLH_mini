@@ -137,3 +137,8 @@ page{
 
   border-radius: 50%;
 }
+
+.point{
+  width: 60rpx;
+  height: 60rpx;
+}

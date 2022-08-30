@@ -15,11 +15,20 @@
 
   <view class="process">
 
+    <view class="item" data-url="/pages/user/deliverList/deliverList" hover-class="search-hover" bindtap="openPage">
+      <view class="icon">
+        <image src="/image/andinfo.png" />
+      </view>
+      <view class="box">我的投递</view>
+    </view>
+
     <view class="item" data-url="/pages/center/notice/notice" hover-class="search-hover" bindtap="openPage">
       <view class="icon">
         <image src="/image/message.png" />
       </view>
-      <view class="box">系统消息</view>
+      <view class="box">系统消息
+        <image wx:if="{{isNew}}" class="point" src="/image/point.png"></image>
+      </view>
     </view>
 
     <view class="item" data-url="/pages/center/about/about" hover-class="search-hover" bindtap="openPage">

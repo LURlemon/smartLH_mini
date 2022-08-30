@@ -69,7 +69,7 @@
 
             <view class="item" style="margin:15rpx 20rpx">
               <text class="xrequired">学校名称</text>
-              <input class="weui-input" name="schoolName" data-id="{{index}}" type="text" placeholder="输入学校名称" value="{{item.schoolName}}" bindinput="schoolInput" />
+              <input class="school" name="schoolName" data-id="{{index}}" type="text" placeholder="输入学校名称" value="{{item.schoolName}}" bindinput="schoolInput" />
             </view>
 
             <view class="item" style="border-bottom:1px solid #f5f5f5; margin:15rpx 20rpx">
@@ -238,7 +238,7 @@
 
             <view class="item" style="margin:15rpx 20rpx">
               <text class="xrequired">学校名称</text>
-              <view class="weui-input">{{item.schoolName}}</view>
+              <view class="school">{{item.schoolName}}</view>
             </view>
 
             <view class="item" style="border-bottom:1px solid #f5f5f5; margin:15rpx 20rpx">

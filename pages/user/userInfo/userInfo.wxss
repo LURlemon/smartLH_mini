@@ -115,3 +115,7 @@
   align-items: center;
   font-size: 36rpx;
 }
+
+.school{
+  border-bottom: 1rpx solid rgb(241, 241, 241);
+}

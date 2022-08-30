@@ -21,12 +21,16 @@
         <view class="weui-textarea-counter">{{contentWord}}/200</view>
       </mp-cell>
 
+      <mp-cell prop="includeOrg" title="下级单位" ext-class="">
+        <input bindinput="formInputChange" data-field="includeOrg" class="weui-input" placeholder="请输入所属下级单位全称" value="{{recruitment.includeOrg}}" />
+      </mp-cell>
+
       <mp-cell prop="number" title="人数" ext-class="">
         <input bindinput="formInputChange" data-field="number" class="weui-input" placeholder="请输入需求人数" value="{{recruitment.number}}" />
       </mp-cell>
 
       <mp-cell prop="subject" title="专业" ext-class="">
-        <input bindinput="formInputChange" data-field="subject" class="weui-input" placeholder="请输入专业要求" value="{{recruitment.subject}}" />
+        <input bindinput="formInputChange" data-field="subject" class="weui-input" placeholder="请输入专业全称" value="{{recruitment.subject}}" />
       </mp-cell>
 
       <mp-cell prop="fresh" title="招聘对象" ext-class="">

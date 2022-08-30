@@ -101,6 +101,11 @@ Page({
           ['formData.mail']: content
         })
         break;
+        case "subOrg":
+          that.setData({
+            ['wxOrg.subOrg']: content,
+          })
+          break;
     }
     console.log(this.data.user, Object)
   },

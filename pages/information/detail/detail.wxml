@@ -3,9 +3,8 @@
   <view class="top">
     <view class="title">{{list.title}}</view>
     <view class="salary">{{list.salaryFloor}} ~ {{list.salaryCell}} 元 / 月</view>
-    <view class="education" >{{list.education}}</view>
-    <View class="experience">{{list.experience}}</View>
-    <view class="date"></view>
+    <view wx:if="{{list.education!=null && list.education!='' }}" class="education">学历要求：{{list.education}}</view>
+    <view class="experience">{{list.experience}}</view>
   </view>
   <view class="org_name">
     <image style="width: 86rpx; height: 92rpx; display: inline-block; box-sizing: border-box; position: relative; left: 10rpx; top: 8rpx" calss="png" mode="heightFix" src="../../../image/orgs.png" />
@@ -23,6 +22,14 @@
     <view style=" margin-top: 40rpx;font-size: 32rpx; line-height: 32rpx; color:dodgerblue;margin-bottom: 10rpx;">岗位要求：</view>
     <text class="content">{{list.remark}}</text>
 
+    <view wx:if="{{isDeliver}}" style=" margin-top: 40rpx;font-size: 32rpx; line-height: 32rpx; color:dodgerblue;margin-bottom: 10rpx;">单位联系电话：</view>
+    <text wx:if="{{isDeliver}}" class="content">{{orgPhone}}</text>
+
   </view>
 
-</view>
+  <view wx:if="{{state == 0 && isSubmit == 1}}" class="deliverBtn">
+    <button wx:if="{{!isDeliver}}" class="deliver" bindtap="deliver">投递简历</button>
+    <button wx:if="{{isDeliver}}" class="deliver" bindtap="cancelDeliver">取消投递</button>
+  </view>
+
+</view> 

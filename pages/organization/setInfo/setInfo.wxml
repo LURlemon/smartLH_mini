@@ -7,21 +7,25 @@
     <mp-cells title="" footer="感谢合作，请认真检查信息的准确性">
 
       <mp-cell prop="orgname" title="单位名称" ext-class="">
+        <image slot="icon" src="/image/must.png" style="width: 36rpx; height: 36rpx; position: absolute; left: 210rpx;"></image>
         <view>{{organization.name}}</view>
       </mp-cell>
 
       <mp-cell prop="address" title="地址" ext-class="">
+        <image slot="icon" src="/image/must.png" style="width: 36rpx; height: 36rpx; position: absolute; left: 210rpx;"></image>
         <input bindinput="formInputChange" data-field="address" class="weui-input" placeholder="请输入单位地址" value="{{organization.address}}" />
       </mp-cell>
 
       <mp-cell ext-class="type">
         <view slot="title" class="">单位类型</view>
+        <image slot="icon" src="/image/must.png" style="width: 36rpx; height: 36rpx; position: absolute; left: 210rpx;"></image>
         <picker bindchange="bindTypeChange" value="{{typeIndex}}" range="{{types}}">
           <view class="select">{{organization.type}}</view>
         </picker>
       </mp-cell>
 
       <mp-cell prop="phone" title="联系电话" ext-class="">
+        <image slot="icon" src="/image/must.png" style="width: 36rpx; height: 36rpx; position: absolute; left: 210rpx;"></image>
         <input bindinput="formInputChange" data-field="phone" class="weui-input" placeholder="请输入联系电话" value="{{organization.phone}}" />
       </mp-cell>
 

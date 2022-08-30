@@ -13,7 +13,10 @@
 
       <view class="contentbox">
         <view class="content">岗位职责：{{item.content}}</view>
-        <view class="time">截止日期：{{item.endTime}}</view>
+        <view class="bottom" data-id="{{item.id}}">
+          <view class="deliver" data-id="{{item.id}}" catchtap="deliverList" hover-stop-propagation="true">简历投递数：{{item.deliverNumber}}</view>
+          <view class="time">截止日期：{{item.endTime}}</view>
+        </view>
 
       </view>
     </view>

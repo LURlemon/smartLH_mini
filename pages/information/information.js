@@ -22,6 +22,7 @@ Page({
     isNew: true,
     isJoin: false,
   },
+  
   salary(list, floor, cell) {
     let i = 0,
       length = list.length

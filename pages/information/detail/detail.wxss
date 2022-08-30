@@ -1,7 +1,7 @@
 /* pages/detail/detail.wxss */
 page {
   height: 100%;
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(250, 250, 250);
 }
 
 .top {
@@ -83,7 +83,7 @@ page {
 }
 
 .education {
-  width: 144rpx;
+  width: 330rpx;
   height: 44rpx;
   display: block;
   box-sizing: border-box;
@@ -96,13 +96,25 @@ page {
 }
 
 .experience {
-  width: 194rpx;
+  width: 200rpx;
   height: 44rpx;
   display: block;
   box-sizing: border-box;
   position: relative;
-  left: 200rpx;
+  left: 420rpx;
   top: -30rpx;
   margin-bottom: 2%;
   color: #fdfdfd;
+}
+
+.deliverBtn{
+  padding-top: 50rpx;
+}
+
+.deliver{
+  background-color: #3369e6;
+  width: 310rpx;
+  height: 80rpx;
+  font-size: 33rpx;
+  color: #fefefe;
 }

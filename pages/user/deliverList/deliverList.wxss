@@ -1,0 +1,110 @@
+/* pages/user/deliverList/deliverList.wxss */
+.recommand {
+  height: calc(100vh - 264rpx);
+  width: 98%;
+  margin-left: 1%;
+  background-color: #fafafa;
+  margin-top: 4%;
+
+}
+
+.title {
+  /* font-family:cursive; */
+  font-size: 35rpx;
+  font-weight: 510;
+  position: relative;
+  left: 20rpx;
+  margin-top: 3%;
+  margin-left: 2%;
+}
+
+.title text {
+  color: #0c58a0;
+}
+
+.info {
+
+  display: flex;
+  align-items: center;
+}
+
+.name {
+  margin-top: 15rpx;
+  margin-left: 5%;
+  width: 60%;
+   
+}
+
+.position {
+  margin-left: 1%;
+  color: #64a7e6;
+}
+
+.content {
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  /*设置对齐模式：垂直对齐*/
+  -webkit-line-clamp: 2;
+  /*设置多行的行数*/
+  line-height: 25px;
+
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+
+
+.date {
+  /* font-family:cursive; */
+  font-size: 27rpx;
+  font-weight: 100;
+  margin-left: 61%;
+  margin-bottom: 1%;
+  color: #6988a1;
+}
+
+
+
+.item {
+  /* display:flex; */
+  border: 1px solid #acd5fc;
+
+  margin-bottom: 2%;
+  background-color: #fefefe;
+  border-radius: 16rpx;
+  width: 94%;
+  margin-left: 3%;
+
+
+}
+
+.noMore {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30%;
+  font-size: 18px;
+  font-weight: bold;
+  color:  rgb(255, 165, 0);
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  margin-left: 5%;
+  color: #2d5b86;
+}
+
+.number {
+  margin-right: 14%;
+
+}
+
+.subject {
+  margin-right: 14%;
+}

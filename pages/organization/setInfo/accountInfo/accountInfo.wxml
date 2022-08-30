@@ -23,6 +23,10 @@
         <input bindinput="formInputChange" data-field="mail" class="weui-input" placeholder="请输入邮箱" value="{{wxOrg.mail}}" />
       </mp-cell>
 
+      <mp-cell prop="subOrg" title="下级单位" ext-class="">
+        <input bindinput="formInputChange" data-field="subOrg" class="weui-input" placeholder="请输入所属下级单位全称" value="{{wxOrg.subOrg}}" />
+      </mp-cell>
+
     </mp-cells>
   </mp-form>
 

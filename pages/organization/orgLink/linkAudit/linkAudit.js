@@ -119,6 +119,39 @@ Page({
     })
 
  },
+
+ recall:function(e){
+   var that = this;
+    console.log(e.currentTarget.dataset.id)
+    var id = e.currentTarget.dataset.id
+    var name = e.currentTarget.dataset.name
+    wx.showModal({
+      title: "您确定要撤销 "+name+" 的加入申请吗",
+      success(res) {
+        if (res.confirm) {
+          
+          wx.request({
+            url: app.globalData.baseUrl + 'WxOrg/wxAuditRecall',
+            method: 'GET',
+            header: {
+              'content-type': 'application/json', // 默认值
+              'X-token': app.globalData.token
+            },
+            data: {
+              id: id,
+              orgName: app.globalData.orgName
+            },
+            success(res) {
+              console.log(res.data)
+              that.request(2)
+
+            }
+          })
+        }
+      }
+      
+    })
+ },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

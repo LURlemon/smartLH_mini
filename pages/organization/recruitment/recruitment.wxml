@@ -24,6 +24,11 @@
         <view class="weui-textarea-counter">{{currentWord}}/200</view>
       </mp-cell>
 
+      <mp-cell prop="includeOrg" title="下级单位" ext-class="">
+        <input bindinput="formInputChange" data-field="includeOrg" class="weui-input" placeholder="请输入所属下级单位全称" value="{{recruitment.includeOrg}}" />
+      </mp-cell>
+
+
       <mp-cell prop="number" title="人数" ext-class="">
         <image slot="icon" src="/image/must.png" style="width: 36rpx; height: 36rpx; position: absolute; left: 210rpx;"></image>
         <input bindinput="formInputChange" data-field="number" class="weui-input" placeholder="请输入需求人数" value="{{recruitment.number}}" />
@@ -31,7 +36,7 @@
 
       <mp-cell prop="subject" title="专业" ext-class="">
         <image slot="icon" src="/image/must.png" style="width: 36rpx; height: 36rpx; position: absolute; left: 210rpx;"></image>
-        <input bindinput="formInputChange" data-field="subject" class="weui-input" placeholder="请输入专业要求" value="{{recruitment.subject}}" />
+        <input bindinput="formInputChange" data-field="subject" class="weui-input" placeholder="请输入专业全称" value="{{recruitment.subject}}" />
       </mp-cell>
 
       <mp-cell prop="fresh" title="招聘对象" ext-class="">
@@ -84,8 +89,9 @@
         <input bindblur="bindSalary" data-field="salaryFloor" class="weui-input" placeholder="请输入薪资下限" value="{{recruitment.salaryFloor}}" />
       </mp-cell>
 
-      <mp-cell ext-class="experience">
+      <mp-cell prop="experience" ext-class="experience">
         <view slot="title" class="">工作经验</view>
+        <image slot="icon" src="/image/must.png" style="width: 36rpx; height: 36rpx; position: absolute; left: 210rpx;"></image>
         <picker bindchange="bindExperienceChange" value="{{experienceIndex}}" range="{{experience}}">
           <view class="select">{{experience[experienceIndex]}}</view>
         </picker>

@@ -12,7 +12,8 @@ Page({
     avatarUrl: '../../image/avatar.png',
     orgStatus: 0,
     wxOrg: {},
-    isAudit: 0
+    isAudit: 0,
+    isNew: false
   },
 
   /**
@@ -90,6 +91,29 @@ Page({
           })
         }
 
+        if(res.data.data.newNoticeTime == null){
+          that.setData({
+            isNew: false
+          })
+        }else{
+          if(res.data.data.readNoticeTime == null){
+            that.setData({
+              isNew: true
+            })
+          }
+          else{
+            if(res.data.data.readNoticeTime < res.data.data.newNoticeTime){
+              that.setData({
+                isNew: true
+              })
+            }
+            else{
+              that.setData({
+                isNew: false
+              })
+            }
+          }
+        }
       }
     })
 
@@ -123,6 +147,7 @@ Page({
     var linkUrl = '/pages/organization/orgLink/orgLink';
     var recordUrl = '/pages/organization/recruitment/record/record';
     var infoUrl = '/pages/organization/andInfo/andInfo'
+    var resumeListUrl = '/pages/organization/resumeList/resumeList'
     var that = this;
     console.log(url);
     console.log(app.globalData.orgId)

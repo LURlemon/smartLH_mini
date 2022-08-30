@@ -10,6 +10,7 @@ Page({
     userId: app.globalData.userId,
     orgName: '欢迎使用',
     avatarUrl: '/image/avatar.png',
+    isNew: false
   },
 
   /**
@@ -55,13 +56,70 @@ Page({
       orgName: app.globalData.orgName,
     })
 
+    wx.request({
+      url: app.globalData.baseUrl + 'User/getUserById',
+      method: 'GET',
+      header: {
+        'content-type': 'application/json', // 默认值
+        'X-token': app.globalData.token
+      },
+      data: {
+        userId: app.globalData.userId,
+      },
+
+      success(res){
+        console.log(res.data)
+        app.globalData.isSubmit = res.data.data.submit
+        if(res.data.data.newNoticeTime == null){
+          that.setData({
+            isNew: false
+          })
+        }else{
+          if(res.data.data.readNoticeTime == null){
+            that.setData({
+              isNew: true
+            })
+          }
+          else{
+            if(res.data.data.readNoticeTime < res.data.data.newNoticeTime){
+              that.setData({
+                isNew: true
+              })
+            }
+            else{
+              that.setData({
+                isNew: false
+              })
+            }
+          }
+        }
+      }
+
+    })
   },
 
   openPage: function (e) {
+    console.log(app.globalData.isSubmit)
     var url = e.currentTarget.dataset.url;
-    wx.navigateTo({
-      url: url,
-    })
+    var deliverUrl = '/pages/user/deliverList/deliverList'
+    if(url == deliverUrl && app.globalData.isSubmit != 1){
+
+      wx.showModal({
+        title: '温馨提示',
+        content: '请先提交您的个人信息',
+        success(res) {
+          if (res.confirm) {
+            wx.switchTab({
+              url: '/pages/user/userInfo/userInfo'
+            })
+          }
+        }
+      })
+    }else{
+      wx.navigateTo({
+        url: url,
+      })
+    }
   },
 
 

@@ -36,6 +36,13 @@
       <view class="box">人才需求发布记录</view>
     </view>
 
+    <view wx:if="{{orgStatus == 2 || orgStatus == 1}}" class="item" data-url="/pages/organization/resumeList/resumeList" hover-class="search-hover" bindtap="openPage">
+      <view class="icon">
+        <image src="../../image/org.png" />
+      </view>
+      <view class="box">人才简历投递记录</view>
+    </view>
+
     <view wx:if="{{orgStatus == 0 || orgStatus == 4}}" class="item" bindtap="openPage" data-url="/pages/organization/orgLink/orgLink" hover-class="search-hover">
       <view class="icon">
         <image src="../../image/link.png" />
@@ -84,7 +91,9 @@
       <view class="icon">
         <image src="../../image/message.png" />
       </view>
-      <view class="box">系统消息</view>
+      <view class="box">系统消息
+        <image wx:if="{{isNew}}" class="point" src="../../image/point.png"></image>
+      </view>
     </view>
 
     <view class="item" data-url="/pages/center/about/about" hover-class="search-hover" bindtap="openPage">

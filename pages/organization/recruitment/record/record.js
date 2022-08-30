@@ -25,6 +25,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    wx.showToast({
+      icon: 'none',
+      title: '长按删除',
+      duration: 500
+    })
     var that = this;
     wx.request({
       url: app.globalData.baseUrl + 'WxOrg/getRecByWxOrgId',
@@ -49,6 +54,11 @@ Page({
   },
 
   request: function (e) {
+    wx.showToast({
+      icon: 'none',
+      title: '长按删除',
+      duration: 500
+    })
     var that = this;
     wx.request({
       url: app.globalData.baseUrl + 'Recruitment/getRecListByOrgId',
@@ -116,7 +126,7 @@ Page({
     console.log(recId)
     wx.showModal({
       title: '删除需求信息',
-      content: "确定要删除标题为 “"+ title +"” 的人才需求信息吗？",
+      content: "确定要删除标题为 “" + title + "” 的人才需求信息吗？",
       success(res) {
         if (res.confirm) {
           wx.request({
@@ -129,7 +139,7 @@ Page({
             data: {
               recruitmentId: recId
             },
-            success(res){
+            success(res) {
               console.log(res)
               wx.showToast({
                 title: res.data.message,
@@ -147,6 +157,14 @@ Page({
       }
     })
 
+  },
+
+  deliverList: function (e) {
+    var recId = e.currentTarget.dataset.id;
+    console.log(recId)
+    wx.navigateTo({
+      url: '/pages/organization/resumeList/resumeList?recId=' + recId
+    })
   },
 
   /**

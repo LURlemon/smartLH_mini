@@ -24,7 +24,9 @@
     "pages/user/center/center",
     "pages/organization/andInfo/andInfo",
     "pages/organization/andInfo/modifyInfo/modifyInfo",
-    "pages/web-view/web-view"
+    "pages/web-view/web-view",
+    "pages/user/deliverList/deliverList",
+    "pages/organization/resumeList/resumeList"
   ],
   "window": {
     "backgroundTextStyle": "light",
