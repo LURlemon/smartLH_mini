@@ -35,14 +35,14 @@ Page({
         },
         success(res) {
           console.log(res.data)
-          if (res.data.data.users == null) {
+          if (res.data.data.deliverInfos == null) {
             that.setData({
               isDeliver: false
             })
           } else {
-            if (res.data.data.users.length > 0) {
+            if (res.data.data.deliverInfos.length > 0) {
               that.setData({
-                deliverList: res.data.data.users,
+                deliverList: res.data.data.deliverInfos,
                 isDeliver: true
               })
             }

@@ -1,11 +1,11 @@
 /* pages/organization/resumeList/resumeList.wxss */
 .recommand {
-  height: calc(100vh - 264rpx);
+
   width: 98%;
   margin-left: 1%;
   background-color: #fafafa;
   margin-top: 4%;
-
+  margin-bottom: 1%;
 }
 
 .title {
@@ -19,7 +19,7 @@
 }
 
 .title text {
-  color: #0c58a0;
+  color: #2051b9;
 }
 
 .info {
@@ -28,39 +28,48 @@
   justify-content: center;
   margin-left: 7%;
   font-size: 16px;
-  margin-top: 2%;
+  margin-top: 1%;
+}
+
+.name {
+  margin-left: 0%;
+  margin-top: 1%;
+  font-size: 19px;
+  color: rgb(15, 9, 3);
 }
 
 .phone {
   margin-top: 1%;
   font-size: 17px;
-  color: rgb(30, 50, 94);
+  color: rgb(58, 82, 134);
 }
 
 .academic {
   margin-top: 1%;
   font-size: 16.5px;
-  color: rgb(34, 78, 173);
+  color: rgb(35, 40, 49);
 }
 
 .politics {
   margin-top: 1%;
+  color: rgb(3, 9, 22);
 }
+
 
 .sex {
   margin-top: 1%;
+  color: rgb(5, 10, 22);
 }
 
 .birthday {
   margin-top: 1%;
+  color: rgb(71, 74, 78);
 }
 
-
-.name {
-  margin-top: 15rpx;
-  margin-left: 5%;
-  width: 60%;
-
+.subOrg{
+  margin-top: 1%;
+  font-size: 16.5px;
+  color: rgb(218, 137, 45);
 }
 
 .position {

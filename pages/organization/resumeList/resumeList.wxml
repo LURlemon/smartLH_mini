@@ -1,16 +1,17 @@
 <!--pages/organization/resumeList/resumeList.wxml-->
 <scroll-view class="recommand" enable-flex scroll-y wx:if="{{isDeliver}}">
   <view class="item" wx:for="{{deliverList}}" wx:for-item="item" wx:key="id" data-index="{{item.recruitmentId}}" bindtap="detail">
-    <view class="title">
-      <text selectable="true">姓名：{{item.name}}</text>
+    <view wx:if="{{item.recruitmentTitle != null}}" class="title">
+      <text selectable="true">标题：{{item.recruitmentTitle}}</text>
     </view>
     <view class="info">
-      <text class="phone" selectable="true">岗位名称：湖南大学辅导员</text>
+      <text class="name" selectable="true">姓名：{{item.name}}</text>
       <text class="phone" selectable="true">联系电话：{{item.phone}}</text>
       <text class="academic">学历：{{item.academic}}</text>
       <text class="politics">政治面貌：{{item.politics}}</text>
       <text class="sex">性别：{{item.sex}}</text>
       <text class="birthday">出生日期：{{item.birthday}}</text>
+      <text wx:if="{{item.subOrg != null && item.subOrg != ''}}" class="subOrg">所属下级单位：{{item.subOrg}}</text>
 
     </view>
 
