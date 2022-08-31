@@ -96,3 +96,7 @@
   align-items: center;
   font-size: 36rpx;
 }
+
+.selected{
+  background-color: rgb(245, 249, 255);
+}

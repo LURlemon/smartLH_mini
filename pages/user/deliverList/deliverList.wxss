@@ -108,3 +108,7 @@
 .subject {
   margin-right: 14%;
 }
+
+.selected{
+  background-color: rgb(245, 249, 255);
+}

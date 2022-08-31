@@ -15,35 +15,35 @@
 
   <view class="process">
 
-    <view class="item" data-url="/pages/organization/setInfo/accountInfo/accountInfo" hover-class="search-hover" bindtap="openPage">
+    <view class="item" hover-class="selected" data-url="/pages/organization/setInfo/accountInfo/accountInfo" bindtap="openPage">
       <view class="icon">
         <image src="../../image/user.png" />
       </view>
       <view class="box">个人信息</view>
     </view>
 
-    <view class="item" data-url="/pages/organization/andInfo/andInfo" hover-class="search-hover" bindtap="openPage">
+    <view class="item" hover-class="selected" data-url="/pages/organization/andInfo/andInfo" bindtap="openPage">
       <view class="icon">
         <image src="../../image/andinfo.png" />
       </view>
       <view class="box">人才信息填报</view>
     </view>
 
-    <view class="item" data-url="/pages/organization/recruitment/record/record" hover-class="search-hover" bindtap="openPage">
+    <view class="item" hover-class="selected" data-url="/pages/organization/recruitment/record/record" bindtap="openPage">
       <view class="icon">
         <image src="../../image/send.png" />
       </view>
       <view class="box">人才需求发布记录</view>
     </view>
 
-    <view wx:if="{{orgStatus == 2 || orgStatus == 1}}" class="item" data-url="/pages/organization/resumeList/resumeList" hover-class="search-hover" bindtap="openPage">
+    <view wx:if="{{orgStatus == 2 || orgStatus == 1}}" class="item" hover-class="selected" data-url="/pages/organization/resumeList/resumeList" bindtap="openPage">
       <view class="icon">
         <image src="../../image/org.png" />
       </view>
       <view class="box">人才简历投递记录</view>
     </view>
 
-    <view wx:if="{{orgStatus == 0 || orgStatus == 4}}" class="item" bindtap="openPage" data-url="/pages/organization/orgLink/orgLink" hover-class="search-hover">
+    <view wx:if="{{orgStatus == 0 || orgStatus == 4}}" class="item" hover-class="selected" bindtap="openPage" data-url="/pages/organization/orgLink/orgLink">
       <view class="icon">
         <image src="../../image/link.png" />
       </view>
@@ -51,14 +51,14 @@
     </view>
 
     
-    <view wx:if="{{orgStatus == 2}}" class="item" bindtap="cancelLink"  hover-class="search-hover">
+    <view wx:if="{{orgStatus == 2}}" class="item" hover-class="selected" bindtap="cancelLink">
       <view class="icon">
         <image src="../../image/link.png" />
       </view>
       <view class="box">解绑单位</view>
     </view>
 
-    <view wx:if="{{orgStatus == 1 && isAudit == 1}}" class="item" bindtap="openPage" data-url="/pages/organization/orgLink/change/changeLink" hover-class="search-hover">
+    <view wx:if="{{orgStatus == 1 && isAudit == 1}}" class="item" hover-class="selected" bindtap="openPage" data-url="/pages/organization/orgLink/change/changeLink">
       <view class="icon">
         <image src="../../image/link.png" />
       </view>
@@ -66,28 +66,28 @@
     </view>
 
 
-    <view wx:if="{{orgStatus == 1}}" class="item" bindtap="openPage" data-url="/pages/organization/aduitState/aduitState" hover-class="search-hover">
+    <view wx:if="{{orgStatus == 1}}" class="item" hover-class="selected" bindtap="openPage" data-url="/pages/organization/aduitState/aduitState">
       <view class="icon">
         <image src="../../image/state.png" />
       </view>
       <view class="box">单位审核状态</view>
     </view>
 
-    <view wx:if="{{orgStatus == 1}}" class="item" data-url="/pages/organization/setInfo/setInfo" hover-class="search-hover" bindtap="openPage">
+    <view wx:if="{{orgStatus == 1}}" class="item" hover-class="selected" data-url="/pages/organization/setInfo/setInfo" bindtap="openPage">
       <view class="icon">
         <image src="../../image/set.png" />
       </view>
       <view class="box">修改单位信息</view>
     </view>
 
-    <view wx:if="{{orgStatus == 1 && isAudit == 1}}" class="item" data-url="/pages/organization/orgLink/linkAudit/linkAudit" hover-class="search-hover" bindtap="openPage">
+    <view wx:if="{{orgStatus == 1 && isAudit == 1}}" class="item" hover-class="selected" data-url="/pages/organization/orgLink/linkAudit/linkAudit" bindtap="openPage">
       <view class="icon">
         <image src="../../image/audit.png" />
       </view>
       <view class="box">发布人审核</view>
     </view>
 
-    <view class="item" data-url="/pages/center/notice/notice" hover-class="search-hover" bindtap="openPage">
+    <view class="item" data-url="/pages/center/notice/notice" hover-class="selected" bindtap="openPage">
       <view class="icon">
         <image src="../../image/message.png" />
       </view>
@@ -96,7 +96,7 @@
       </view>
     </view>
 
-    <view class="item" data-url="/pages/center/about/about" hover-class="search-hover" bindtap="openPage">
+    <view class="item" data-url="/pages/center/about/about" hover-class="selected" bindtap="openPage">
       <view class="icon">
         <image src="../../image/recall.png" />
       </view>

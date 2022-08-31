@@ -50,6 +50,11 @@ const tabTxt = [
           'id': 7,
           'text': '博士',
           'selected': false,
+        },
+        {
+          'id': 8,
+          'text': '其他',
+          'selected': false,
         }
 
       ],

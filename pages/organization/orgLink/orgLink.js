@@ -23,7 +23,7 @@ Page({
     ],
 
     isfind: false,
-    orgName: '',
+    content: ''
 
 
   },
@@ -49,20 +49,27 @@ Page({
 
   },
 
-  bindInput(e) {
+  inputClick(e){
+    wx.showToast({
+      icon: 'none',
+      title: '机构代码: 统一社会信用代码',
+    })
+  },
+
+  bindInput(e) {  
     this.setData({
       name: e.detail.value,
-      orgName: e.detail.value
+      content: e.detail.value,
     })
   },
 
   search: function (e) {
-    console.log(this.data.orgName);
+    console.log(this.data.content);
     var that = this;
     wx.request({
       url: app.globalData.baseUrl + 'WxOrg/getOrgByWxSearch',
       data: {
-        orgName: this.data.orgName
+        content: this.data.content
       },
       header: {
         'content-type': 'application/json', // 默认值

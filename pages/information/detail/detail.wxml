@@ -11,6 +11,8 @@
     <text style="position: relative; left: 20rpx; top: -25rpx; font-size: 40rpx; color: #2d4e6d">{{list.orgName}}</text>
   </view>
   <view class="infor">
+    <view wx:if="{{list.includeOrg!= null && list.includeOrg != ''}}" style="font-size: 38rpx; line-height: 32rpx; color:dodgerblue; margin-bottom: 30rpx;">所属下级单位：{{list.includeOrg}}</view>
+
     <view class="subject" style="margin-bottom: 40rpx; font-size: 32rpx;">专业要求：{{list.subject}}</view>
     <view class="age" style="margin-bottom: 40rpx; font-size: 32rpx; ">年龄要求：{{list.age}}</view>
     <view style="  margin-bottom: 40rpx;font-size: 32rpx;">职位：{{list.position}}</view>
@@ -32,4 +34,4 @@
     <button wx:if="{{isDeliver}}" class="deliver" bindtap="cancelDeliver">取消投递</button>
   </view>
 
-</view> 
+</view>

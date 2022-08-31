@@ -49,8 +49,14 @@ Page({
     }, {
       name: 'serialNumber',
       rules: {
-        required: false,
+        required: true,
         message: '请输入统一社会信用代码'
+      }
+    }, {
+      name: 'material',
+      rules: {
+        required: true,
+        message: '请上传审核材料'
       }
     }]
 
@@ -91,14 +97,10 @@ Page({
         that.setData({
           organization: res.data.data,
           formData: res.data.data,
-          ['formData.orgname']: res.data.data.name
+          ['formData.orgname']: res.data.data.name,
+          ['formData.material']: null,
+          type: res.data.data.type,
         })
-        if(res.data.data.introduction != '' && res.data.data.introduction 
-        != null){
-          that.setData({
-            currentWord: parseInt(res.data.data.introduction.length)
-          })
-        }
       }
     })
     wx.request({
@@ -287,6 +289,7 @@ Page({
             var code = res.data.code;
             if (code == 7) {
               wx.showToast({
+                icon: 'error',
                 title: '提交失败',
                 duration: 2000
               })
@@ -295,9 +298,11 @@ Page({
               wx.showToast({
                 title: '已提交审核',
               })
-              wx.switchTab({
-                url: '../../center/center',
-              })
+              setTimeout(function () {
+                wx.switchTab({
+                  url: '/pages/center/center',
+                })
+              }, 2000)
             }
           }
         })

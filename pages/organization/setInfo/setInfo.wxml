@@ -8,7 +8,7 @@
 
       <mp-cell prop="orgname" title="单位名称" ext-class="">
         <image slot="icon" src="/image/must.png" style="width: 36rpx; height: 36rpx; position: absolute; left: 210rpx;"></image>
-        <view>{{organization.name}}</view>
+        <view bindtap="click">{{organization.name}}</view>
       </mp-cell>
 
       <mp-cell prop="address" title="地址" ext-class="">
@@ -30,7 +30,8 @@
       </mp-cell>
 
       <mp-cell prop="serialNumber" title="机构代码" ext-class="">
-        <input bindinput="formInputChange" data-field="serialNumber" class="weui-input" placeholder="请输入统一社会信用代码" value="{{organization.serialNumber}}" />
+        <image slot="icon" src="/image/must.png" style="width: 36rpx; height: 36rpx; position: absolute; left: 210rpx;"></image>
+        <view bindtap="click">{{organization.serialNumber}}</view>
       </mp-cell>
 
 

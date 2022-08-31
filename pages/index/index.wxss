@@ -61,6 +61,9 @@
   border-radius: 10px;
 }
 
+.selected{
+  background-color: rgb(228, 243, 255);
+}
 
 .select-info {
 

@@ -59,7 +59,7 @@ Page({
                 console.log(wx.getStorageSync('token'))
 
                 wx.showModal({
-                  title: '温馨提示',
+                  title: '个人用户登录',
                   content: '正在请求您的个人信息',
                   success(res) {
                     if (res.confirm) {
@@ -148,7 +148,7 @@ Page({
                 console.log(wx.getStorageSync('wxId'))
                 console.log(wx.getStorageSync('token'))
                 wx.showModal({
-                  title: '温馨提示',
+                  title: '单位用户登录',
                   content: '正在请求您的个人信息',
                   success(res) {
                     if (res.confirm) {

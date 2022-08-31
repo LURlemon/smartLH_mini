@@ -5,14 +5,13 @@
       <text selectable="true">标题：{{item.recruitmentTitle}}</text>
     </view>
     <view class="info">
-      <text class="name" selectable="true">姓名：{{item.name}}</text>
-      <text class="phone" selectable="true">联系电话：{{item.phone}}</text>
+      <text selectable="true" class="name">姓名：{{item.name}}</text>
+      <text selectable="true" class="phone">联系电话：{{item.phone}}</text>
       <text class="academic">学历：{{item.academic}}</text>
       <text class="politics">政治面貌：{{item.politics}}</text>
       <text class="sex">性别：{{item.sex}}</text>
       <text class="birthday">出生日期：{{item.birthday}}</text>
-      <text wx:if="{{item.subOrg != null && item.subOrg != ''}}" class="subOrg">所属下级单位：{{item.subOrg}}</text>
-
+      <text wx:if="{{item.subOrg != null && item.subOrg != ''}}" class="subOrg">需求所属下级单位：{{item.subOrg}}</text>
     </view>
 
     <!-- <text class="salary">{{item.salaryFloor}}-{{item.salaryCell}}/月</text> -->

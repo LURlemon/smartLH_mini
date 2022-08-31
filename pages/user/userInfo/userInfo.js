@@ -31,7 +31,7 @@ Page({
       value: '已婚'
     }],
 
-    academics: ['请选择', '初中', '高中', '大专', '本科', '硕士', '博士'],
+    academics: ['请选择', '初中', '高中', '大专', '本科', '硕士', '博士', '其他'],
     academicIndex: 0,
     academic: null,
 

@@ -7,14 +7,15 @@
   <view class="tips" wx:if="{{recruitments.length == 0}}">
     <text>暂无发布记录</text>
   </view>
-  <view class="item" wx:for="{{recruitments}}" wx:key="id" wx:for-item="item" bindtap="selectRec" data-id="{{item.id}}" data-title="{{item.title}}" bindlongpress="deleteRec">
-    <view class="body">
+  <view class="item" wx:for="{{recruitments}}" wx:key="id" wx:for-item="item" hover-class="selected" bindtap="selectRec" data-id="{{item.id}}" data-title="{{item.title}}" bindlongpress="deleteRec">
+    <view class="body" hover-class="selected">
       <view class="title">{{item.title}} </view>
 
       <view class="contentbox">
+        <view class="includeOrg" wx:if="{{item.includeOrg!=null && item.includeOrg!=''}}">所属下级单位：{{item.includeOrg}}</view>
         <view class="content">岗位职责：{{item.content}}</view>
         <view class="bottom" data-id="{{item.id}}">
-          <view class="deliver" data-id="{{item.id}}" catchtap="deliverList" hover-stop-propagation="true">简历投递数：{{item.deliverNumber}}</view>
+          <view class="deliver" data-id="{{item.id}}" hover-class="lookDdeliver" catchtap="deliverList" hover-stop-propagation="true">简历投递数：{{item.deliverNumber}}</view>
           <view class="time">截止日期：{{item.endTime}}</view>
         </view>
 

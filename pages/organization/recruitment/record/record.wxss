@@ -57,15 +57,19 @@
 
 .title {
   font-size: 18px;
-  color: #2384df;
+  color: #0a67be;
   margin-top: 16rpx;
-  margin-bottom: 20rpx;
+  margin-bottom: 16rpx;
 }
 
 .contentBox {
-  background-color: #ffffff;
- 
- 
+  background-color: #ffffff; 
+}
+
+.includeOrg{
+  font-size: 17px;
+  color: rgb(16, 73, 138);
+  margin-bottom: 10rpx;
 }
 
 .content{
@@ -97,7 +101,7 @@
 .deliver{
   font-size: 30rpx;
   color: #e68b24;
-  
+  border-radius: 16rpx;
 }
 
 .tips{
@@ -109,4 +113,12 @@
   font-size: 20px;
   font-weight: bold;
   background-color: #ffffff;
+}
+
+.selected{
+  background-color: rgb(245, 249, 255);
+}
+
+.lookDdeliver{
+  background-color: rgb(255, 248, 236);
 }

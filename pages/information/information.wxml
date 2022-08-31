@@ -47,7 +47,7 @@
 
   <view wx:if="{{state == 0}}">
     <scroll-view class="recommand" enable-flex scroll-y refresher-enabled bindrefresherrefresh="handleRefresh" refresher-triggered="{{isTriggered}}" bindscrolltolower="handleToLower">
-      <view class="item" wx:for="{{nowPositionList}}" wx:key="id" data-index="{{index}}" bindtap="detail" wx:if="{{bool}}">
+      <view class="item" hover-class="selected" wx:for="{{nowPositionList}}" wx:key="id" data-index="{{index}}" bindtap="detail" wx:if="{{bool}}">
         <view class="title">
           <text>{{item.title}}</text>
         </view>
@@ -62,8 +62,10 @@
         <!-- <text class="salary">{{item.salaryFloor}}-{{item.salaryCell}}/月</text> -->
         <view class="bottom">
           <view class="number">人数：{{item.number}}</view>
-          <view class="subject">{{item.subject}}</view>
-          <view class="education">{{item.education}}</view>
+          <view class="subject" wx:if="{{item.subject != '不限'}}">{{item.subject}}</view>
+          <view class="subject" wx:if="{{item.subject == '不限'}}">专业不限</view>
+          <view class="education" wx:if="{{item.education != '不限'}}">{{item.education}}</view>
+          <view class="education" wx:if="{{item.education == '不限'}}">学历不限</view>
         </view>
         <text class="date">{{item.publishTime}}</text>
       </view>
@@ -77,7 +79,7 @@
 
   <view wx:if="{{isJoin}}">
     <scroll-view class="recommand" enable-flex scroll-y refresher-enabled bindrefresherrefresh="handleRefresh" refresher-triggered="{{isTriggered}}" bindscrolltolower="handleToLower">
-      <view class="item" wx:for="{{nowPositionList}}" wx:key="id" data-index="{{index}}" bindtap="detail" wx:if="{{bool}}">
+      <view class="item" hover-class="selected" wx:for="{{nowPositionList}}" wx:key="id" data-index="{{index}}" bindtap="detail" wx:if="{{bool}}">
         <view class="title">
           <text>{{item.title}}</text>
         </view>
@@ -92,8 +94,10 @@
         <!-- <text class="salary">{{item.salaryFloor}}-{{item.salaryCell}}/月</text> -->
         <view class="bottom">
           <view class="number">人数：{{item.number}}</view>
-          <view class="subject">{{item.subject}}</view>
-          <view class="education">{{item.education}}</view>
+          <view class="subject" wx:if="{{item.subject != '不限'}}">{{item.subject}}</view>
+          <view class="subject" wx:if="{{item.subject == '不限'}}">专业不限</view>
+          <view class="education" wx:if="{{item.education != '不限'}}">{{item.education}}</view>
+          <view class="education" wx:if="{{item.education == '不限'}}">学历不限</view>
         </view>
         <text class="date">{{item.publishTime}}</text>
       </view>

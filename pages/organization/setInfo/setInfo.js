@@ -14,7 +14,7 @@ Page({
 
     organization: {
       type: "请选择", //单位类型
-      name: '',//单位名称
+      name: '', //单位名称
       address: '',
       phone: '',
       material: '', //审核材料，eg：图片
@@ -40,18 +40,6 @@ Page({
       rules: {
         required: true,
         message: '手机号必填'
-      },
-    }, {
-      name: 'serialNumber',
-      rules: {
-        required: true,
-        message: '请输入统一社会信用代码'
-      },
-    }, {
-      name: 'introduction',
-      rules: {
-        required: true,
-        message: '请输入单位介绍'
       },
     }]
 
@@ -85,13 +73,13 @@ Page({
       data: {
         orgId: app.globalData.orgId
       },
-      success(res){
+      success(res) {
         console.log(res);
         that.setData({
           organization: res.data.data,
-          formData:  res.data.data
+          formData: res.data.data
         })
-        if(res.data.data.introduction != '' && res.data.data.introduction != null){
+        if (res.data.data.introduction != '' && res.data.data.introduction != null) {
           that.setData({
             currentWord: parseInt(res.data.data.introduction.length)
           })
@@ -112,7 +100,14 @@ Page({
         console.log(that.data.types);
       }
     })
-    
+
+  },
+
+  click: function (e) {
+    wx.showToast({
+      icon: 'none',
+      title: '不可修改'
+    })
   },
 
   /**
@@ -146,12 +141,6 @@ Page({
         that.setData({
           ['organization.address']: content,
           ['formData.address']: content
-        })
-        break;
-      case "serialNumber":
-        that.setData({
-          ['organization.serialNumber']: content,
-          ['formData.serialNumber']: content
         })
         break;
     }
@@ -190,8 +179,8 @@ Page({
 
         wx.showModal({
           title: '确认提交吗？',
-          success(res){
-            if(res.confirm){
+          success(res) {
+            if (res.confirm) {
               var organization = that.data.organization;
               console.log(organization, Object);
               wx.request({
@@ -202,23 +191,25 @@ Page({
                   'X-token': app.globalData.token
                 },
                 data: organization,
-                success(res){
+                success(res) {
                   console.log(res.data);
                   var code = res.data.code;
-                  if(code == 7){
+                  if (code == 7) {
                     wx.showToast({
                       title: '修改失败',
                       duration: 2000
                     })
                   }
-                  if(code == 6){
+                  if (code == 6) {
                     wx.showToast({
                       title: '修改成功',
                       duration: 2000
                     })
-                    wx.switchTab({
-                      url: '../../center/center',
-                    })
+                    setTimeout(function () {
+                      wx.switchTab({
+                        url: '/pages/center/center',
+                      })
+                    }, 2000)
                   }
                 }
               })
@@ -227,7 +218,7 @@ Page({
         })
       }
     })
-    
+
   },
 
   /**

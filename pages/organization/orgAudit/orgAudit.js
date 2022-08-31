@@ -62,8 +62,14 @@ Page({
     }, {
       name: 'serialNumber',
       rules: {
-        required: false,
+        required: true,
         message: '请输入统一社会信用代码'
+      }
+    }, {
+      name: 'material',
+      rules: {
+        required: true,
+        message: '请上传审核材料'
       }
     }]
 
@@ -312,7 +318,8 @@ Page({
                   var code = res.data.code;
                   if (code == 2) {
                     wx.showToast({
-                      title: '该单位已存在，请搜索加入',
+                      icon:'none',
+                      title: res.data.message,
                       duration: 2000
                     })
                   }
@@ -321,12 +328,15 @@ Page({
                     app.globalData.orgName = res.data.data.name,
                     app.globalData.orgStatus = 1
                     wx.showToast({
-                      title: '已提交信息，请等待管理员审核',
+                      icon:'none',
+                      title: '已提交，请等待管理员审核',
                       duration: 2000
                     })
-                    wx.switchTab({
-                      url: '../../center/center',
-                    })
+                    setTimeout(function () {
+                      wx.switchTab({
+                        url: '/pages/center/center',
+                      })
+                    }, 2000)
                   }
                 }
               })

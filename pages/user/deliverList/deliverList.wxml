@@ -1,6 +1,6 @@
 <!--pages/user/deliverList/deliverList.wxml-->
 <scroll-view class="recommand" enable-flex scroll-y wx:if="{{isDeliver}}">
-  <view class="item" wx:for="{{deliverList}}" wx:for-item="item" wx:key="id" data-index="{{item.recruitmentId}}" bindtap="detail">
+  <view class="item" hover-class="selected" wx:for="{{deliverList}}" wx:for-item="item" wx:key="id" data-index="{{item.recruitmentId}}" bindtap="detail">
     <view class="title">
       <text>{{item.recruitmentTitle}}</text>
     </view>

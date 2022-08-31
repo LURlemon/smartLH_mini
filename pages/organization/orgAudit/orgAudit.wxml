@@ -29,6 +29,7 @@
       </mp-cell>
 
       <mp-cell prop="serialNumber" title="机构代码" ext-class="">
+        <image slot="icon" src="/image/must.png" style="width: 36rpx; height: 36rpx; position: absolute; left: 210rpx;"></image>
         <input bindinput="formInputChange" data-field="serialNumber" class="weui-input" placeholder="请输入统一社会信用代码" />
       </mp-cell>
 
@@ -39,7 +40,9 @@
         <view class="weui-textarea-counter">{{currentWord}}/200</view>
       </mp-cell> -->
 
-      <mp-cell prop="material" title="审核材料" ext-class=""></mp-cell>
+      <mp-cell prop="material" title="审核材料" ext-class="">
+        <image slot="icon" src="/image/must.png" style="width: 36rpx; height: 36rpx; position: absolute; left: 210rpx;"></image>
+      </mp-cell>
       <mp-cells title="上传单位营业执照（小于10MB）">
         <mp-cell>
           <view slot="title"></view>

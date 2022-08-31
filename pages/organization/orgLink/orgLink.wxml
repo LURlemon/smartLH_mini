@@ -1,8 +1,8 @@
 <!--pages/organization/orgLink/orgLink.wxml-->
 <view class="container">
   <view class="search">
-    <view class="inputBox">
-      <input placeholder="请查找您要绑定的单位名称" maxlength="30" type="text" value="{{name}}" bindinput="bindInput" />
+    <view class="inputBox" bindtap="inputClick">
+      <input placeholder="输入单位名称或机构代码进行查找" maxlength="30" type="text" value="{{name}}" bindtap="inputClick" bindinput="bindInput" />
     </view>
     <image src="../../../image/search.png" bindtap="search"></image>
   </view>
@@ -21,6 +21,7 @@
           <view class="orgName">名称：{{item.name}}</view>
           <view class="orgType">类型：{{item.type}}</view>
           <view class="orgAddress">地址：{{item.address}}</view>
+          <view class="orgAddress" wx:if="{{item.serialNumber != null && item.serialNumber != ''}}">机构代码：{{item.serialNumber}}</view>
         </view>
         <view class="join" data-orgName="{{item.name}}" data-id="{{item.id}}" data-audit="{{item.audit}}" bindtap="bindJoin">加入</view>
       </view>
@@ -32,7 +33,7 @@
 
 
 
-  <view class="build" bindtap="bindBuild">
+  <view class="build" hover-class="selected" bindtap="bindBuild">
     <text>创建用人单位</text>
   </view>
 

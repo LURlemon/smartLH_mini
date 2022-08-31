@@ -142,3 +142,7 @@ page{
   width: 60rpx;
   height: 60rpx;
 }
+
+.selected{
+  background-color: rgb(240, 240, 240);
+}
