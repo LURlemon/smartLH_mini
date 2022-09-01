@@ -3,7 +3,16 @@
   background-color: #fff;
   width: 100%;
   height: 115rpx;
-  padding: 0;
+  display: flex;
+  position: fixed;
+  z-index: 1;
+}
+
+.absolute{
+  position: absolute;
+  background-color: #fff;
+  width: 100%;
+  height: 115rpx;
   display: flex;
 }
 
@@ -22,13 +31,29 @@
   border-bottom: 5rpx solid #3369e6;
 }
 
+.absolute .item-nav {
+  flex: 1;
+  height: 110rpx;
+  line-height: 110rpx;
+  text-align: center;
+  color: #9fa0a2;
+  font-size: 36rpx;
+}
+
+/* 实现选项栏选中效果 */
+.absolute .active {
+  color: #3369e6;
+  border-bottom: 5rpx solid #3369e6;
+}
+
 .box {
   width: 98%;
   margin-left: 1%;
   background-color: #f8f8f8;
   margin-bottom: 14%;
   border-radius: 16rpx;
-
+  padding-top: 65px;
+  padding-bottom: 20px;
 }
 
 .item {

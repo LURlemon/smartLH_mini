@@ -8,13 +8,13 @@ Page({
   data: {
 
     swiperNav: [{
-        tabName: '我的发布',
-        cond: true
-      },
-      {
-        tabName: '所有发布',
-        cond: false
-      }
+      tabName: '我的发布',
+      cond: true
+    },
+    {
+      tabName: '所有发布',
+      cond: false
+    }
     ],
 
     recruitments: [],
@@ -167,6 +167,11 @@ Page({
     })
   },
 
+  onPageScroll: function (e) {
+    this.setData({
+      scrollTop: e.scrollTop
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

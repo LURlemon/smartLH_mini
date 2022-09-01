@@ -134,6 +134,7 @@ Page({
       formData: user,
       ['formData.username']: user.name,
       ['formData.date']: user.birthday,
+      ['formData.type']: user.detail
     })
 
     var that = this
@@ -682,7 +683,7 @@ Page({
           success(res) {
             console.log(res.data);
             wx.showToast({
-              title: '添加成功',
+              title: '修改成功',
               content: res.data.message,
               duration: 2000
             })
@@ -693,7 +694,7 @@ Page({
           error(res) {
             console.log(res.data)
             wx.showToast({
-              title: '添加失败',
+              title: '修改失败',
               duration: 2000
             })
           }

@@ -171,6 +171,11 @@ Page({
 
   },
 
+  onPageScroll: function (e) {
+    this.setData({
+      scrollTop: e.scrollTop
+    })
+  },
 
 
   //顶部选项栏切换函数
@@ -702,6 +707,7 @@ Page({
                 academicIndex: 0,
                 politicIndex: 0,
                 experienceIndex: 0,
+                typeIndex: 0,
                 content: "",
                 currentWord: 0,
                 isFresh: 0,

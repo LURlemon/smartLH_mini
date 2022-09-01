@@ -1,5 +1,5 @@
 <!--pages/organization/recruitment/record/record.wxml-->
-<view class='swiper-nav'>
+<view class="{{scrollTop>64 ? 'swiper-nav':'absolute'}}" >
   <view wx:for="{{swiperNav}}" wx:key="index" class='item-nav {{item.cond ? "active" : ""}}' data-index="{{index}}" bindtap='swiperNav'>{{item.tabName}}</view>
 </view>
 
