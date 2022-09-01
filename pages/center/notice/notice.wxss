@@ -26,7 +26,8 @@
   width: 98%;
   margin-left: 1%;
   background-color: #fafafa;
-  margin-bottom: 30px;
+  
+  padding-bottom: 20px;
 }
 
 .item {
