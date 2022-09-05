@@ -202,7 +202,7 @@
 
       <view class="contentbox">
         <view class="content">电话： {{item.phone}}</view>
-        <view class="content">现居地:  {{item.place}}</view>
+        <view class="content">现居地： {{item.place}}</view>
         <view class="time">提交日期：{{item.addTime}}</view>
       </view>
     </view>
