@@ -189,7 +189,7 @@
 
 .body {
   width: 73%;
-  margin-left: 6%;
+  margin-left: 9%;
   background-color: #fefefe;
   border-radius: 16rpx;
   margin-bottom: 2%;
@@ -202,6 +202,7 @@
   display: flex;
   flex-direction: column;
   font-size: 14px;
+  margin-left: 3%;
 }
 
 .title {

@@ -1,10 +1,10 @@
 <!--pages/center/notice/notice.wxml-->
 
-<view wx:if="{{state == 1}}" class='swiper-nav'>
+<view wx:if="{{state == 1}}" class="{{scrollTop>64 ? 'swiper-nav':'absolute'}}">
   <view wx:for="{{swiperNav}}" wx:key="index" class='item-nav {{item.cond ? "active" : ""}}' data-index="{{index}}" bindtap='swiperNav'>{{item.tabName}}</view>
 </view>
 
-<scroll-view class="noticeBox" scroll-y="true" enable-flex="true" enable-back-to-top="true" scroll-top="30">
+<scroll-view class="{{state==1 ? 'noticeBox': 'notices'}}" scroll-y="true" enable-flex="true" enable-back-to-top="true" scroll-top="30">
   <view class="tips" wx:if="{{tips != ''}}">
     <text>{{tips}}</text>
   </view>

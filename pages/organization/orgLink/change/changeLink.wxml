@@ -1,14 +1,11 @@
 <!--pages/organization/orgLink/change/changeLink.wxml-->
-<!--pages/organization/orgLink/orgLink.wxml-->
-<view class="container">
+<view class="containe">
   <view class="search">
     <view class="inputBox">
       <input placeholder="请输入手机号码或姓名查找" maxlength="30" type="text" value="{{content}}" bindinput="bindInput" />
     </view>
     <image src="../../../../image/search.png" bindtap="search"></image>
   </view>
-
-
 
   <view class="body" >
     <view class="tips" wx:if="{{isfind  && isSearch}}">

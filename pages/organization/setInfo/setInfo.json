@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "单位信息",
   "usingComponents": {
     "mp-form-page": "weui-miniprogram/form-page/form-page",
     "mp-toptips": "weui-miniprogram/toptips/toptips",

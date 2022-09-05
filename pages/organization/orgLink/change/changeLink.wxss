@@ -1,6 +1,6 @@
 /* pages/organization/orgLink/change/changeLink.wxss */
 
-.container {
+.containe {
   height: 100%;
   display: flex;
   width: 100%;
@@ -10,10 +10,11 @@
   position: relative; 
   box-sizing: border-box;
   background: #fefefe;
+  margin-top: 93px;
 }
 
 .search{
-  height:130rpx;
+  height:120rpx;
   width: 94%;
   background: #4393df;
   display: flex;

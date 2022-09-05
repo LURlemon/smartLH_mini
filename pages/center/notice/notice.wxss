@@ -3,8 +3,9 @@
   background-color: #fff;
   width: 100%;
   height: 115rpx;
-  padding: 0;
   display: flex;
+  position: fixed;
+  z-index: 100;
 }
 
 .swiper-nav .item-nav {
@@ -22,11 +23,42 @@
   border-bottom: 5rpx solid #3369e6;
 }
 
+.absolute{
+  position: absolute;
+  background-color: #fff;
+  width: 100%;
+  height: 115rpx;
+  display: flex;
+  z-index: 1;
+}
+
+.absolute .item-nav {
+  flex: 1;
+  height: 110rpx;
+  line-height: 110rpx;
+  text-align: center;
+  color: #9fa0a2;
+  font-size: 36rpx;
+}
+
+/* 实现选项栏选中效果 */
+.absolute .active {
+  color: #3369e6;
+  border-bottom: 5rpx solid #3369e6;
+}
+
 .noticeBox {
   width: 98%;
   margin-left: 1%;
   background-color: #fafafa;
-  
+  padding-top: 65px;
+  padding-bottom: 20px;
+}
+
+.notices{
+  width: 98%;
+  margin-left: 1%;
+  background-color: #fafafa;
   padding-bottom: 20px;
 }
 
