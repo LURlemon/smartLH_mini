@@ -24,3 +24,8 @@
   </view>
 </view>
 <text class="tips">请选择您的账户类别</text>
+
+<view class="base" style="width:300px;margin:0 auto; padding-top:120px;padding-bottom: 20px;">
+  <image src="/image/WechatIMG37.png" style="float: left;width: 20px;height: 20px;"/>
+  <text style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#acacac;">湘公网安备 43052402000209号</text>
+</view>

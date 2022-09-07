@@ -35,7 +35,7 @@
   flex-direction: row;
   justify-content: center;
 
-  color: #b6b6b6;
+  color: #a7a7a7;
 }
 
 
@@ -73,4 +73,10 @@
   align-items: center;
   color: rgb(43, 42, 40);
   font-size: 20px;
+}
+
+.base{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
