@@ -646,6 +646,7 @@ Page({
 
         }
       } else {
+        user.submit = 1
         wx.showToast({
           title: '校验通过'
         })

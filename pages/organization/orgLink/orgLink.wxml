@@ -4,7 +4,7 @@
     <view class="inputBox" bindtap="inputClick">
       <input placeholder="输入单位名称或机构代码进行查找" maxlength="30" type="text" value="{{name}}" bindtap="inputClick" bindinput="bindInput" />
     </view>
-    <image src="../../../image/search.png" bindtap="search"></image>
+    <image src="/image/search.png" bindtap="search"></image>
   </view>
 
 

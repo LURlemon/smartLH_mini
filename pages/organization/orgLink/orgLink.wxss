@@ -22,7 +22,8 @@
   align-items: center;
   border-radius: 20rpx;
   position: relative; 
-  bottom: 150rpx
+  bottom: 150rpx;
+  margin-top: 180rpx;
 }
 
 .inputBox{
@@ -34,7 +35,6 @@
   margin-left: 1%;
   padding-left: 9px;
   font-size: 34rpx;
-  
   border-radius: 10px;
 }
 
